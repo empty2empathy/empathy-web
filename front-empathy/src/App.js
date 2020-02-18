@@ -1,14 +1,22 @@
 import React from 'react';
-import './App.scss';
+import Main from "./pages/Main/Main";
+import EventDetail from "./pages/EventDetail/EventDetail";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
     return (
-        <div className="App">
-            app
-            <header className="header">
-                app-header
-            </header>
-        </div>
+        <>
+            <Router>
+                <Switch>
+                    <Route path={"/event/:id"}>
+                        <EventDetail/>
+                    </Route>
+                    <Route path={"/"}>
+                        <Main/>
+                    </Route>
+                </Switch>
+            </Router>
+        </>
     );
 }
 
