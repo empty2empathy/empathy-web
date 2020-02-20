@@ -1,19 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Main from "./pages/Main/Main";
+import EventDetail from "./pages/EventDetail/EventDetail";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h3>Empathy☺️</h3>
-        <p>
-          Jin & Abel
-        </p>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Router>
+                <Switch>
+                    <Route path={"/event/:id"}>
+                        <EventDetail/>
+                    </Route>
+                    <Route path={"/"}>
+                        <Main/>
+                    </Route>
+                </Switch>
+            </Router>
+        </>
+    );
 }
 
 export default App;
