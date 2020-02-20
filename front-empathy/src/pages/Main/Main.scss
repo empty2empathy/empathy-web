@@ -2,28 +2,39 @@
   margin: 0;
   .youtube {
     position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+  .fuck {
+    width: 100%;
+    height: 360px;
+    display: block;
+    content: "";
+    background: linear-gradient(
+      180deg,
+      rgba(160, 25, 25, 0.3) 0%,
+      #0f0f0f 100%
+    );
   }
   .shit {
-    position: relative;
     height: 5000px;
-    top: 446px;
     background-color: #0f0f0f;
     h1 {
       margin: 0;
     }
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 446px;
-      top: -446px;
-      background: linear-gradient(
-        180deg,
-        rgba(160, 25, 25, 0.3) 0%,
-        #0f0f0f 100%
-      );
-    }
+    // &::before {
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 360px;
+    //   top: -360px;
+    //   background: linear-gradient(
+    //     180deg,
+    //     rgba(160, 25, 25, 0.3) 0%,
+    //     #0f0f0f 100%
+    //   );
+    // }
     color: red;
   }
 }
