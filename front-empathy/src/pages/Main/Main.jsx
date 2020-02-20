@@ -14,8 +14,8 @@ function Main() {
         height: '390',
         width: '640',
         playerVars: { // https://developers.google.com/youtube/player_parameters
-            controls: 0,
-            modestbranding: 1,
+            // controls: 0,
+            // modestbranding: 1,
             start: 30
         },
     };
