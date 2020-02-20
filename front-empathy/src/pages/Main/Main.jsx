@@ -11,31 +11,31 @@ function Main() {
     };
 
     const opts = {
-        height: '390',
-        width: '640',
+        // height: '390',
+        width: '100%',
         playerVars: { // https://developers.google.com/youtube/player_parameters
-            // controls: 0,
-            // modestbranding: 1,
             start: 30
         },
     };
 
     return (
-        <>
-            <iframe src="https://player.vimeo.com/video/76979871?autoplay=1&loop=1&autopause=0" width="640" height="360"
-                    frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
+        <div className='Main'>
             <YouTube
+                className='youtube'
                 videoId="bdneye4pzMw"
                 opts={opts}
                 onReady={_onReady}
             />
+            <div>
+
+            </div>
             <h1>Service title</h1>
             <p>description description description description description description</p>
 
-            <div class="performance-info-container">
+            <div className="performance-info-container">
                 <div>
                     <div>Fab 17, Mon</div>
-                    <div class="item">
+                    <div className="item">
                         <h4>Event title</h4>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ function Main() {
                 background={"#f2f2f2"}
                 radius={30}
             />
-        </>
+        </div>
     );
 }
 
