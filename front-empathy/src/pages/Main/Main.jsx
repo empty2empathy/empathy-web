@@ -4,9 +4,11 @@ import { Frame } from "framer";
 import "./Main.scss";
 
 function Main() {
+  let youtubeRef;
+
   const _onReady = event => {
     // access to player in all event handlers via event.target
-    event.target.playVideo();
+    youtubeRef = event.target;
   };
 
   const opts = {
@@ -20,7 +22,13 @@ function Main() {
 
   return (
     <div className="Main">
-      <div className="youtube" onClick={_onReady}>
+      <div
+        className="fuck"
+        onClick={() => {
+          youtubeRef.playVideo();
+        }}
+      ></div>
+      <div className="youtube">
         <YouTube
           className="youtube"
           videoId="QrR_gm6RqCo"
