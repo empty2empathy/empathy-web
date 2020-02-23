@@ -23,7 +23,7 @@ function Main() {
   return (
     <div className="Main">
       <div
-        className="fuck"
+        className="video-overlay"
         onClick={() => {
           youtubeRef.playVideo();
         }}
@@ -40,23 +40,167 @@ function Main() {
           height="446"
           src="https://www.youtube.com/embed/QrR_gm6RqCo"
           frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-pyicture"
           allowfullscreen
         ></iframe> */}
       </div>
-      <div className="shit">
-        <h1>Service title</h1>
-        <p>
-          description description description description description
-          description
-        </p>
-      </div>
 
-      <div className="performance-info-container">
-        <div>
-          <div>Fab 17, Mon</div>
-          <div className="item">
-            <h4>Event title</h4>
+      <div className="featured-event-info">
+        <div className="event-title">
+          <span className="title">Event Title</span>
+          <span className="now">Now</span>
+        </div>
+
+        <div className="performance-info">
+          <div className="info">
+            <span className="title">Location</span>
+            <span className="description">Location</span>
+          </div>
+          <div className="info">
+            <span className="title">Start Performance</span>
+            <span className="description">Fab,19 Wed 18:00</span>
+          </div>
+          <div className="info">
+            <span className="title">Artist</span>
+            <span className="description">Artist-array1, Artist-array2</span>
+          </div>
+        </div>
+
+        <div className="insta-share">
+          <a className="sharing-link">인스타그램 공유하기 &rarr;</a>
+        </div>
+
+        <div className="group-per-day">
+          <div className="date-information">
+            <div className="sticky">
+              <p>Fab 17,</p>
+              <p>Mon</p>
+            </div>
+          </div>
+          <div className="event-list-container">
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+          </div>
+        </div>
+        <div className="group-per-day">
+          <div className="date-information">
+            <div className="sticky">
+              <p>Fab 18,</p>
+              <p>Tue</p>
+            </div>
+          </div>
+          <div className="event-list-container">
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
+            <div className="event-list-item">
+              <div className="event-title-time">
+                <span className="title">event-title</span>
+                <span className="time">00:00</span>
+              </div>
+              <p className="location-info">location</p>
+            </div>
           </div>
         </div>
       </div>
