@@ -26,11 +26,11 @@
 
   .featured-event-info {
     padding: 0 10px;
+
     .event-title {
       display: flex;
       align-items: flex-start;
       line-height: 1;
-
       font-weight: 700;
 
       > .title {
@@ -47,10 +47,10 @@
 
         &:after {
           position: absolute;
-          top: 4px;
-          right: -8px;
           display: inline-block;
           content: "";
+          top: 4px;
+          right: -8px;
           width: 4px;
           height: 4px;
           border-radius: 2px;
@@ -64,6 +64,7 @@
 .performance-info {
   margin-top: 16px;
   font-weight: 500;
+
   > .info {
     font-size: 13px;
     margin-bottom: 4px;
@@ -86,7 +87,6 @@
 
   > a {
     font-size: 13px;
-
     color: #fcfcfc;
   }
 }
@@ -100,6 +100,7 @@
 
     .sticky {
       position: sticky;
+      position: -webkit-sticky;
       top: 0;
       left: 0;
 
@@ -110,14 +111,11 @@
         line-height: 1.2;
 
         &:first-of-type {
-          background-color: #101010;
           font-weight: 300;
           color: #666666;
-          position: -webkit-sticky; /* 사파리 브라우저 지원 */
-          position: sticky;
-          top: 0;
-          left: 0;
+          background-color: #101010;
         }
+
         &:nth-child(2) {
           text-shadow: -1px -1px 0 #666666, 1px -1px 0 #666666,
             -1px 1px 0 #666666, 1px 1px 0 #666666;
@@ -125,6 +123,7 @@
       }
     }
   }
+
   > .event-list-container {
     flex: 3;
 
@@ -152,7 +151,7 @@
 
       > .location-info {
         font-size: 13px;
-        color: #2d2c2d;
+        color: #666666;
         font-weight: 500;
         margin: 0;
       }

@@ -206,11 +206,14 @@ function Main() {
       </div>
 
       <Frame
-        animate={{ rotate: 360 }}
+        initial={{ scale: 1 }}
+        animate={{ rotate: 360, scale: 2 }}
         transition={{ duration: 1 }}
         size={150}
         background={"#f2f2f2"}
-        radius={30}
+        radius={150 / 2}
+        drag
+        opacity={0.5}
       />
     </div>
   );
