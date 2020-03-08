@@ -6,58 +6,8 @@
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     "sans-serif", "System Default", serif;
 
-  .youtube {
-    position: fixed;
-    top: 0;
-    z-index: -1;
-  }
-
-  .video-overlay {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 360px;
-    background: linear-gradient(
-      180deg,
-      rgba(160, 25, 25, 0.3) 0%,
-      #0f0f0f 100%
-    );
-  }
-
   .featured-event-info {
     padding: 0 10px;
-
-    .event-title {
-      display: flex;
-      align-items: flex-start;
-      line-height: 1;
-      font-weight: 700;
-
-      > .title {
-        font-size: 40px;
-        text-shadow: -1px -1px 0 #fcfcfc, 1px -1px 0 #fcfcfc, -1px 1px 0 #fcfcfc,
-          1px 1px 0 #fcfcfc;
-        margin-right: 4px;
-      }
-
-      > .now {
-        font-size: 15px;
-        color: #dd2424;
-        position: relative;
-
-        &:after {
-          position: absolute;
-          display: inline-block;
-          content: "";
-          top: 4px;
-          right: -8px;
-          width: 4px;
-          height: 4px;
-          border-radius: 2px;
-          background-color: #dd2424;
-        }
-      }
-    }
   }
 }
 
@@ -77,17 +27,6 @@
     > .description {
       color: #424042;
     }
-  }
-}
-
-.insta-share {
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 20px 0 60px;
-
-  > a {
-    font-size: 13px;
-    color: #fcfcfc;
   }
 }
 
