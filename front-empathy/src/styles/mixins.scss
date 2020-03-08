@@ -1,0 +1,81 @@
+@mixin remove_list_style {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@mixin remove_button_style {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+}
+@mixin typo($fontSize, $color, $fontWeight: normal) {
+  font-size: $fontSize;
+  color: $color;
+  font-weight: $fontWeight;
+}
+@mixin text_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@mixin set-line-clamp($line) {
+  word-wrap: break-word;
+  -webkit-line-clamp: $line;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+@mixin inner-bottom-divider($color, $height: 1px) {
+  box-shadow: inset 0 -#{$height} 0 0 $color;
+}
+@mixin inner-top-divider($color, $height: 1px) {
+  box-shadow: inset 0 $height 0 0 $color;
+}
+@mixin bottom-divider($color, $height: 1px) {
+  box-shadow: 0 -#{$height} 0 0 $color;
+}
+@mixin top-divider($color, $height: 1px) {
+  box-shadow: 0 $height 0 0 $color;
+}
+@mixin inner-horizon-divider($color, $height: 1px) {
+  box-shadow: inset 0 -#{$height} 0 0 $color, inset 0 $height 0 0 $color;
+}
+@mixin ease-out-expo($target, $duration) {
+  transition: $target $duration;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+@mixin set-table-col-width($col) {
+  th,
+  td {
+    &.w-50 {
+      width: (100% / $col) * 0.5;
+    }
+    &.w-20 {
+      width: (100% / $col) * 0.2;
+    }
+    &.w-15 {
+      width: (100% / $col) * 0.15;
+    }
+    &.w-30 {
+      width: (100% / $col) * 0.3;
+    }
+    &.w-20 {
+      width: (100% / $col) * 0.2;
+    }
+    &.w-10 {
+      width: (100% / $col) * 0.1;
+    }
+    &.w-8 {
+      width: (100% / $col) * 0.08;
+    }
+    &.w-5 {
+      width: (100% / $col) * 0.05;
+    }
+    &.w-3 {
+      width: (100% / $col) * 0.03;
+    }
+  }
+}
