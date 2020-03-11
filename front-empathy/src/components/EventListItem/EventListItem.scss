@@ -1,0 +1,29 @@
+.EventListItem {
+  box-shadow: inset 0px -1px 0px 0px #1a1a1a;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+
+  > .event-title-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    line-height: 1.5;
+
+    > .title {
+      font-weight: 500;
+      color: #fcfcfc;
+    }
+
+    > .time {
+      font-weight: 700;
+      color: #424042;
+    }
+  }
+
+  > .location-info {
+    font-size: 13px;
+    color: #666666;
+    font-weight: 500;
+    margin: 0;
+  }
+}
