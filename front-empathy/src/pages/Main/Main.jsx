@@ -1,5 +1,4 @@
 import React from "react";
-import YouTube from "react-youtube";
 import { Frame } from "framer";
 import "./Main.scss";
 import FeaturedEvent from "components/FeaturedEvent";
