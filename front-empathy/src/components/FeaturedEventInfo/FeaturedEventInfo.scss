@@ -1,0 +1,18 @@
+.FeaturedEventInfo {
+  margin-top: 16px;
+  font-weight: 500;
+
+  > .info {
+    font-size: 13px;
+    margin-bottom: 4px;
+
+    > .title {
+      color: #999999;
+      margin-right: 8px;
+    }
+
+    > .description {
+      color: #424042;
+    }
+  }
+}
