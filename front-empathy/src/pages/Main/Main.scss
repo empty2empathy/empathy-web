@@ -1,6 +1,10 @@
 @import 'styles/mixins';
 
 .Main {
+  .black-background {
+    background-color: #0f0f0f;
+  }
+
   .featured-event-info {
     padding: 0 10px;
   }

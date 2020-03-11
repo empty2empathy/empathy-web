@@ -3,7 +3,7 @@ import './FeaturedEventInfo.scss';
 
 const FeaturedEventInfo = () => {
     return (
-        <div className="featured-event-info">
+        <div className="FeaturedEventInfo">
             <div className="info">
                 <span className="title">Location</span>
                 <span className="description">Location</span>

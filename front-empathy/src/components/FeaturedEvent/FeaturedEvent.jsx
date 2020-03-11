@@ -13,7 +13,6 @@ const FeaturedEvent = () => {
     };
 
     const opts = {
-        // height: '390',
         width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
@@ -23,30 +22,30 @@ const FeaturedEvent = () => {
 
     return (
         <>
-            <div
-                className="video-overlay"
-                onClick={() => {
-                    youtubeRef.playVideo();
-                }}
-            ></div>
+            <div className="video-overlay"
+                 onClick={() => {
+                     youtubeRef.playVideo();
+                 }}/>
             <div className="youtube">
                 <YouTube
                     className="youtube"
-                    videoId="yXrlhebkpIQ"
+                    videoId="xnS2tbgcTc0"
                     opts={opts}
                     onReady={_onReady}
                 />
             </div>
 
-            <div className="event-title">
-                <span className="title">Event Title</span>
-                <span className="now">Now</span>
-            </div>
+            <div className="black-background">
+                <div className="event-title">
+                    <span className="title">Event Title</span>
+                    <span className="now">Now</span>
+                </div>
 
-            <FeaturedEventInfo/>
+                <FeaturedEventInfo/>
 
-            <div className="insta-share">
-                <a className="sharing-link">인스타그램 공유하기 &rarr;</a>
+                <div className="insta-share">
+                    <a className="sharing-link">인스타그램 공유하기 &rarr;</a>
+                </div>
             </div>
         </>
     )
