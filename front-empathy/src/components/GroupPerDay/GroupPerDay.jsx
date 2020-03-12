@@ -1,21 +1,19 @@
 import React from 'react';
 import './GroupPerDay.scss';
 import EventListItem from 'components/EventListItem';
+import { MONTH, WEEK } from "utils";
 
-const GroupPerDay = () => {
-    const eventList = [
-        { title: 'title', time: '00:00', location: 'location' },
-        { title: 'title', time: '00:00', location: 'location' },
-        { title: 'title', time: '00:00', location: 'location' },
-        { title: 'title', time: '00:00', location: 'location' },
-        { title: 'title', time: '00:00', location: 'location' }
-    ];
+const GroupPerDay = ({ date, eventList }) => {
+    const _date = new Date(date);
+    const month = MONTH[_date.getMonth()];
+    const dayOfWeek = WEEK[_date.getDay()];
+    const day = _date.getDate();
     return (
         <div className="GroupPerDay">
             <div className="date-information">
                 <div className="sticky">
-                    <p>Fab 17,</p>
-                    <p>Mon</p>
+                    <p>{month} {day},</p>
+                    <p>{dayOfWeek}</p>
                 </div>
             </div>
             <div className="event-list-container">

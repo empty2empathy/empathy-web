@@ -5,19 +5,48 @@ import FeaturedEvent from "components/FeaturedEvent";
 import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
 
 function Main() {
+    const events = [
+        {
+            date: '2020-03-12',
+            eventList: [
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+            ]
+        },
+        {
+            date: '2020-03-13',
+            eventList: [
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-13 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-13 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-13 17:24:50' }
+            ]
+        },
+        {
+            date: '2020-03-14',
+            eventList: [
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+                { title: 'title', time: '00:00', location: 'location', date: '2020-03-14 17:24:50' },
+            ]
+        }
+    ];
     return (
         <div className="Main">
             <FeaturedEvent/>
             <div className="black-background">
                 <div className="all-event-list">
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
-                    <GroupPerDay/>
+                    {events.map((v, i) => <GroupPerDay key={i} {...v}/>)}
                 </div>
 
                 <Frame
