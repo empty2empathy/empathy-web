@@ -1,14 +1,14 @@
 import React from 'react';
 import './EventListItem.scss';
 
-const EventListItem = () => {
+const EventListItem = ({ title, time, location, date }) => {
     return (
         <div className="EventListItem">
             <div className="event-title-time">
-                <span className="title">event-title</span>
-                <span className="time">00:00</span>
+                <span className="title">{title}</span>
+                <span className="time">{time}</span>
             </div>
-            <p className="location-info">location</p>
+            <p className="location-info">{location}</p>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 
 
-const FeaturedEvent = () => {
+const FeaturedEvent = ({ featuredEvent }) => {
     let youtubeRef;
 
     const _onReady = event => {
@@ -24,7 +24,7 @@ const FeaturedEvent = () => {
         <>
             <div className="video-overlay"
                  onClick={() => {
-                     youtubeRef.playVideo();
+                     // youtubeRef.playVideo();
                  }}/>
             <div className="youtube">
                 <YouTube
@@ -37,11 +37,11 @@ const FeaturedEvent = () => {
 
             <div className="black-background">
                 <div className="event-title">
-                    <span className="title">Event Title</span>
+                    <span className="title">{featuredEvent && featuredEvent.title}</span>
                     <span className="now">Now</span>
                 </div>
 
-                <FeaturedEventInfo/>
+                <FeaturedEventInfo featuredEvent={featuredEvent}/>
 
                 <div className="insta-share">
                     <a className="sharing-link">인스타그램 공유하기 &rarr;</a>

@@ -1,4 +1,4 @@
-const PERFORMANCE_DATA = [
+export const PERFORMANCE_DATA = [
     {
         title: 'GHETTO-RAY with Ahadadream',
         programType: new Set(['DJING', 'CLUB']),

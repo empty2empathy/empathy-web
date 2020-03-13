@@ -1,18 +1,42 @@
-import React from "react";
-import { Frame } from "framer";
+import React, { useState, useEffect } from "react";
 import "./Main.scss";
 import FeaturedEvent from "components/FeaturedEvent";
 import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
+import { PERFORMANCE_DATA } from 'constants/domiData';
 
 function Main() {
+
+    const [featuredEvent, setFeaturedEvent] = useState(null);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setFeaturedEvent(PERFORMANCE_DATA[0]);
+        }, 1000);
+    }, [featuredEvent]);
+
     const events = [
         {
             date: '2020-03-12',
             eventList: [
-                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
-                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
-                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
-                { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
+                {
+                    title: 'GHETTO-RAY with Ahadadream',
+                    time: '00:00',
+                    location: '이태원 / soap seoul',
+                    date: '2020-03-12 17:24:50'
+                },
+                { title: '김희나 Quartet', time: '00:00', location: 'Bartican(잠실 석촌호수)', date: '2020-03-12 17:24:50' },
+                {
+                    title: 'GHETTO-RAY with Ahadadream',
+                    time: '00:00',
+                    location: 'location',
+                    date: '2020-03-12 17:24:50'
+                },
+                {
+                    title: 'GHETTO-RAY with Ahadadream',
+                    time: '00:00',
+                    location: 'location',
+                    date: '2020-03-12 17:24:50'
+                },
                 { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
                 { title: 'title', time: '00:00', location: 'location', date: '2020-03-12 17:24:50' },
             ]
@@ -43,22 +67,9 @@ function Main() {
     ];
     return (
         <div className="Main">
-            <FeaturedEvent/>
-            <div className="black-background">
-                <div className="all-event-list">
-                    {events.map((v, i) => <GroupPerDay key={i} {...v}/>)}
-                </div>
-
-                <Frame
-                    initial={{ scale: 1 }}
-                    animate={{ rotate: 360, scale: 2 }}
-                    transition={{ duration: 1 }}
-                    size={150}
-                    background={"#f2f2f2"}
-                    radius={150 / 2}
-                    drag
-                    opacity={0.5}
-                />
+            <FeaturedEvent featuredEvent={featuredEvent}/>
+            <div className="all-event-list">
+                {events.map((v, i) => <GroupPerDay key={i} {...v}/>)}
             </div>
         </div>
     );

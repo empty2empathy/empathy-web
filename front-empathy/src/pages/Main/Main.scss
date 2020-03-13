@@ -1,11 +1,8 @@
 @import 'styles/mixins';
 
 .Main {
-  .black-background {
-    background-color: #0f0f0f;
-  }
-
   .all-event-list {
     padding: 0 10px;
+    background-color: #0f0f0f;
   }
 }
