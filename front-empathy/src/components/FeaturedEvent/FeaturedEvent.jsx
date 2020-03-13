@@ -1,50 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import YouTube from "react-youtube";
 import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 
 
-const FeaturedEvent = () => {
-    let youtubeRef;
+const FeaturedEvent = ({ featuredEvent }) => {
+    // youtube 비디오 있으면 보여주고, 없으면 default 비디오 보여주기
+    const [youtubeRef, setYoutubeRef] = useState(null);
+    const [isYoutubePlay, setIsYoutubePlay] = useState(false);
 
-    const _onReady = event => {
+    function togglePlay() {
+        if (youtubeRef) {
+            isYoutubePlay ? youtubeRef.pauseVideo() : youtubeRef.playVideo();
+        }
+    }
+
+    function _onReady(event) {
         // access to player in all event handlers via event.target
-        youtubeRef = event.target;
-    };
+        setYoutubeRef(event.target);
+    }
+
+    function _onStateChange(e) {
+        console.log('_onStateChange', e);
+        if (e.data === 1) {
+            setIsYoutubePlay(true);
+        } else {
+            setIsYoutubePlay(false);
+        }
+    }
 
     const opts = {
         width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
-            start: 30
+            start: 30,
+            controls: 0,
+            fs: 0,
+            playsinline: 1
         }
     };
 
+    if (!featuredEvent) return null;
     return (
         <>
-            <div className="video-overlay"
-                 onClick={() => {
-                     youtubeRef.playVideo();
-                 }}/>
+            <div className="video-overlay" onClick={togglePlay}/>
             <div className="youtube">
                 <YouTube
                     className="youtube"
-                    videoId="xnS2tbgcTc0"
+                    videoId="vRzwREOQn3s"
                     opts={opts}
                     onReady={_onReady}
+                    onStateChange={_onStateChange}
                 />
             </div>
 
-            <div className="black-background">
+            <div className="info-wrapper">
                 <div className="event-title">
-                    <span className="title">Event Title</span>
+                    <span className="title">{featuredEvent.title}</span>
                     <span className="now">Now</span>
                 </div>
 
-                <FeaturedEventInfo/>
+                <FeaturedEventInfo featuredEvent={featuredEvent}/>
 
                 <div className="insta-share">
-                    <a className="sharing-link">인스타그램 공유하기 &rarr;</a>
+                    <span className="sharing-link">인스타그램 공유하기 &rarr;</span>
                 </div>
             </div>
         </>

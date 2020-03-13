@@ -1,79 +1,8 @@
 @import 'styles/mixins';
 
 .Main {
-  .black-background {
-    background-color: #0f0f0f;
-  }
-
-  .featured-event-info {
+  .all-event-list {
     padding: 0 10px;
-  }
-}
-
-.group-per-day {
-  display: flex;
-  margin-bottom: 30px;
-
-  > .date-information {
-    flex: 2;
-
-    .sticky {
-      position: sticky;
-      position: -webkit-sticky;
-      top: 0;
-      left: 0;
-
-      > p {
-        margin: 0;
-        font-size: 30px;
-        font-weight: 700;
-        line-height: 1.2;
-
-        &:first-of-type {
-          font-weight: 300;
-          color: #666666;
-          background-color: #101010;
-        }
-
-        &:nth-child(2) {
-          text-shadow: -1px -1px 0 #666666, 1px -1px 0 #666666,
-          -1px 1px 0 #666666, 1px 1px 0 #666666;
-        }
-      }
-    }
-  }
-
-  > .event-list-container {
-    flex: 3;
-
-    > .event-list-item {
-      box-shadow: inset 0px -1px 0px 0px #1a1a1a;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
-
-      > .event-title-time {
-        display: flex;
-        justify-content: space-between;
-        font-size: 15px;
-        line-height: 1.5;
-
-        > .title {
-          font-weight: 500;
-          color: #fcfcfc;
-        }
-
-        > .time {
-          font-weight: 700;
-          color: #424042;
-        }
-      }
-
-      > .location-info {
-        font-size: 13px;
-        color: #666666;
-        font-weight: 500;
-        margin: 0;
-      }
-    }
+    background-color: #0f0f0f;
   }
 }

@@ -1,159 +1,32 @@
-import React from "react";
-import { Frame } from "framer";
+import React, { useState, useEffect } from "react";
 import "./Main.scss";
 import FeaturedEvent from "components/FeaturedEvent";
+import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
+import { PERFORMANCE_DATA } from 'constants/domiData';
+import { mapEvents } from "utils";
 
 function Main() {
+
+    const [featuredEvent, setFeaturedEvent] = useState(null);
+    useEffect(() => {
+        setTimeout(() => {
+            setFeaturedEvent(PERFORMANCE_DATA[0]);
+        }, 1000);
+    }, [featuredEvent]);
+
+    const [events, setEvents] = useState([]);
+    useEffect(() => {
+        setTimeout(() => {
+            // PERFORMANCE_DATA는 당일 기준으로 오름차순으로 sorting 되어 있어야 함.
+            setEvents(mapEvents(PERFORMANCE_DATA));
+        }, 1000)
+    }, [events]);
+
     return (
         <div className="Main">
-            <FeaturedEvent/>
-            <div class="black-background">
-                <div className="featured-event-info">
-                    <div className="group-per-day">
-                        <div className="date-information">
-                            <div className="sticky">
-                                <p>Fab 17,</p>
-                                <p>Mon</p>
-                            </div>
-                        </div>
-                        <div className="event-list-container">
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="group-per-day">
-                        <div className="date-information">
-                            <div className="sticky">
-                                <p>Fab 18,</p>
-                                <p>Tue</p>
-                            </div>
-                        </div>
-                        <div className="event-list-container">
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                            <div className="event-list-item">
-                                <div className="event-title-time">
-                                    <span className="title">event-title</span>
-                                    <span className="time">00:00</span>
-                                </div>
-                                <p className="location-info">location</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <Frame
-                    initial={{ scale: 1 }}
-                    animate={{ rotate: 360, scale: 2 }}
-                    transition={{ duration: 1 }}
-                    size={150}
-                    background={"#f2f2f2"}
-                    radius={150 / 2}
-                    drag
-                    opacity={0.5}
-                />
+            <FeaturedEvent featuredEvent={featuredEvent}/>
+            <div className="all-event-list">
+                {events.map((event, i) => <GroupPerDay key={i} {...event}/>)}
             </div>
         </div>
     );
