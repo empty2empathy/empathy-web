@@ -5,6 +5,7 @@ import FeaturedEventInfo from "components/FeaturedEventInfo";
 
 
 const FeaturedEvent = ({ featuredEvent }) => {
+    // youtube 비디오 있으면 보여주고, 없으면 default 비디오 보여주기
     let youtubeRef;
 
     const _onReady = event => {
