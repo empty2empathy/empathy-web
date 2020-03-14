@@ -17,7 +17,7 @@ const GroupPerDay = ({ date, eventList }) => {
                 </div>
             </div>
             <div className="event-list-container">
-                {eventList.map((v, i) => <EventListItem key={i} {...v}/>)}
+                {eventList.map((v, i) => <EventListItem key={i} eventId={i} {...v}/>)}
             </div>
         </div>
     );

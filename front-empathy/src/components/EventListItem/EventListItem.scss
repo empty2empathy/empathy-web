@@ -3,7 +3,7 @@
   padding-bottom: 8px;
   margin-bottom: 16px;
 
-  > .event-title-time {
+  .event-title-time {
     display: flex;
     justify-content: space-between;
     font-size: 15px;
@@ -20,7 +20,7 @@
     }
   }
 
-  > .location-info {
+  .location-info {
     font-size: 13px;
     color: #666666;
     font-weight: 500;

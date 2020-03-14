@@ -8,11 +8,11 @@ function App() {
         <>
             <Router>
                 <Switch>
+                    <Route exact path={"/"}>
+                        <Main/>
+                    </Route>
                     <Route path={"/event/:id"}>
                         <EventDetail/>
-                    </Route>
-                    <Route path={"/"}>
-                        <Main/>
                     </Route>
                 </Switch>
             </Router>
