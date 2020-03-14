@@ -1,0 +1,19 @@
+.FeaturedYoutube {
+  .youtube {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+
+  .video-overlay {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 360px;
+    background: linear-gradient(
+                    180deg,
+                    rgba(160, 25, 25, 0.3) 0%,
+                    #0f0f0f 100%
+    );
+  }
+}

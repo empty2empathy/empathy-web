@@ -53,7 +53,8 @@ export const PERFORMANCE_DATA = [
             'Ahadadream (UK) 은 런던을 기반으로 Asian Sounds 를 널리 알리고, BBC Asian Network​ 의 레지던시이며, 최근 R&S Records 와 12인치 바이닐 컴필레이션 앨범을 릴리즈 하였던 More Time Records 의 수장인 그와 SOAP seoul 에서 함께합니다.\n' +
             '⠀\n' +
             'SPECIAL GUEST :\n' +
-            'AHADADREAM (UK) @ahadadreamx'
+            'AHADADREAM (UK) @ahadadreamx',
+        youtubeVideoId: 'vRzwREOQn3s',
     },
     {
         title: '김희나 Quartet',

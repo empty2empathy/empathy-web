@@ -12,7 +12,7 @@ function Main() {
         setTimeout(() => {
             setFeaturedEvent(PERFORMANCE_DATA[0]);
         }, 1000);
-    }, [featuredEvent]);
+    }, []);
 
     const [events, setEvents] = useState([]);
     useEffect(() => {
@@ -20,7 +20,7 @@ function Main() {
             // PERFORMANCE_DATA는 당일 기준으로 오름차순으로 sorting 되어 있어야 함.
             setEvents(mapEvents(PERFORMANCE_DATA));
         }, 1000)
-    }, [events]);
+    }, []);
 
     return (
         <div className="Main">
