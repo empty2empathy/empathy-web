@@ -1,29 +1,31 @@
+@import "styles/colors.scss";
+@import "styles/mixins.scss";
+
 .EventListItem {
-  box-shadow: inset 0px -1px 0px 0px #1a1a1a;
+  @include inner-bottom-divider(rgba(#292542, 0.3));
   padding-bottom: 8px;
   margin-bottom: 16px;
 
   .event-title-time {
     display: flex;
     justify-content: space-between;
-    font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.2;
+    font-weight: bold;
 
     > .title {
-      font-weight: 500;
-      color: #fcfcfc;
+      @include typo(15px, rgba(#fcfcfc, 0.85), bold);
+      @include set-line-clamp(2);
+      flex: 1;
+      margin: 0 8px 8px 0;
     }
 
     > .time {
-      font-weight: 700;
-      color: #424042;
+      color: rgba(#292524, 0.7);
     }
   }
 
   .location-info {
-    font-size: 13px;
-    color: #666666;
-    font-weight: 500;
+    @include typo(13px, rgba(#292524, 0.45));
     margin: 0;
   }
 }

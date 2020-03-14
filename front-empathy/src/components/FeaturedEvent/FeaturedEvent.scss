@@ -1,6 +1,9 @@
+@import "styles/colors.scss";
+@import "styles/mixins.scss";
+
 .info-wrapper {
-  background-color: #0f0f0f;
   padding: 0 10px;
+  background-image: url(../../assets/img-noise-361x3702.png);
 
   .event-title {
     display: flex;
@@ -9,36 +12,36 @@
     font-weight: 700;
 
     > .title {
-      font-size: 40px;
-      text-shadow: -1px -1px 0 #fcfcfc, 1px -1px 0 #fcfcfc, -1px 1px 0 #fcfcfc,
-      1px 1px 0 #fcfcfc;
+      @include outlined-typo(40px, #292524, #ff5450, bold);
+      // @include typo(30px, #ff5450, bold);
+      @include set-line-clamp(3);
       margin-right: 4px;
     }
 
-    > .now {
-      font-size: 15px;
-      color: #dd2424;
-      position: relative;
+    // > .now {
+    //   font-size: 15px;
+    //   color: #dd2424;
+    //   position: relative;
 
-      &:after {
-        position: absolute;
-        display: inline-block;
-        content: "";
-        top: 4px;
-        right: -8px;
-        width: 4px;
-        height: 4px;
-        border-radius: 2px;
-        background-color: #dd2424;
-      }
-    }
+    //   &:after {
+    //     position: absolute;
+    //     display: inline-block;
+    //     content: "";
+    //     top: 4px;
+    //     right: -8px;
+    //     width: 4px;
+    //     height: 4px;
+    //     border-radius: 2px;
+    //     background-color: #dd2424;
+    //   }
+    // }
   }
 
   .insta-share {
     display: flex;
     flex-direction: row-reverse;
     margin: 20px 0 0;
-    padding: 0 0 60px;
+    padding: 0 0 30px;
 
     > span {
       font-size: 13px;

@@ -1,9 +1,11 @@
+@import "styles/colors.scss";
+@import "styles/mixins.scss";
+
 .FeaturedEventInfo {
   margin-top: 16px;
   font-weight: 500;
 
   > .info {
-    font-size: 13px;
     margin-bottom: 4px;
 
     > .title {
