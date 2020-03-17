@@ -2,19 +2,22 @@
 @import "styles/mixins.scss";
 
 .FeaturedEventInfo {
-  margin-top: 16px;
+  margin: 24px 0 0;
   font-weight: 500;
 
   > .info {
+    display: flex;
     margin-bottom: 4px;
+    font-size: 15px;
 
     > .title {
-      color: #999999;
+      color: rgba(#fcfcfc, 0.7);
       margin-right: 8px;
     }
 
     > .description {
-      color: #424042;
+      @include set-line-clamp(1);
+      color: rgba(#fcfcfc, 0.3);
     }
   }
 }

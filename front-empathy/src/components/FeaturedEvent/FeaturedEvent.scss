@@ -8,40 +8,41 @@
   .event-title {
     display: flex;
     align-items: flex-start;
-    line-height: 1;
+    line-height: 1.2;
     font-weight: 700;
 
     > .title {
-      @include outlined-typo(40px, #292524, #ff5450, bold);
-      // @include typo(30px, #ff5450, bold);
+      @include outlined-typo(30px, #292524, #fcfcfc, bold);
       @include set-line-clamp(3);
-      margin-right: 4px;
+      width: 75%;
     }
 
-    // > .now {
-    //   font-size: 15px;
-    //   color: #dd2424;
-    //   position: relative;
+    > .now {
+      font-size: 15px;
+      color: #dd2424;
+      position: relative;
+      top: 0;
+      left: 0;
 
-    //   &:after {
-    //     position: absolute;
-    //     display: inline-block;
-    //     content: "";
-    //     top: 4px;
-    //     right: -8px;
-    //     width: 4px;
-    //     height: 4px;
-    //     border-radius: 2px;
-    //     background-color: #dd2424;
-    //   }
-    // }
+      &:after {
+        position: absolute;
+        display: inline-block;
+        content: "";
+        top: 4px;
+        right: -8px;
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #dd2424;
+      }
+    }
   }
 
   .insta-share {
     display: flex;
     flex-direction: row-reverse;
-    margin: 20px 0 0;
-    padding: 0 0 30px;
+    margin: 24px 0 0px;
+    padding: 0 0 60px;
 
     > span {
       font-size: 13px;
