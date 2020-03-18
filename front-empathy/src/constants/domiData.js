@@ -45,7 +45,7 @@ export const PERFORMANCE_DATA = [
             }
         ],
         sns: 'https://www.instagram.com/p/B8a-yT8BR8l/',
-        ticketing: false,
+        paidType: 'ticket',
         price: 20000,
         priceType: 'ADMISSION_FEE',
         description: '2020년의 첫 GHETTO-RAY 파티가 토요일 Soap Seoul 에 다시 찾아옵니다. 아프리칸 리듬과 트로피컬 샘플 기반의 음악들로 여러분을 사로 잡았던 뜨거운 에너지가 있는 이번 파티에선 스페셜 게스트로 참여하는 Ahadadream (UK) 그리고 무게감있는 로컬 디제이들과 함께 에너지를 느껴보세요.\n' +

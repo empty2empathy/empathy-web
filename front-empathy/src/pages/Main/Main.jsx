@@ -4,11 +4,22 @@ import FeaturedEvent from "components/FeaturedEvent";
 import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
 import { PERFORMANCE_DATA } from 'constants/domiData';
 import { mapEvents } from "utils";
+import { FirebaseContext } from '../../firebase';
 
 function Main() {
+    return (
+        <FirebaseContext.Consumer>
+            {firebase => <MainContainer firebase={firebase}/>}
+        </FirebaseContext.Consumer>
+    );
+}
 
+function MainContainer({ firebase }) {
     const [featuredEvent, setFeaturedEvent] = useState(null);
     useEffect(() => {
+        firebase.loadEvents()
+
+
         setTimeout(() => {
             setFeaturedEvent(PERFORMANCE_DATA[0]);
         }, 1000);
@@ -29,7 +40,7 @@ function Main() {
                 {events.map((event, i) => <GroupPerDay key={i} {...event}/>)}
             </div>
         </div>
-    );
+    )
 }
 
 export default Main;
