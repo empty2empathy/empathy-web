@@ -4,20 +4,12 @@ import FeaturedEvent from "components/FeaturedEvent";
 import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
 import { PERFORMANCE_DATA } from 'constants/domiData';
 import { mapEvents } from "utils";
-import { FirebaseContext } from '../../firebase';
+import { withFirebase } from "redbricks-firebase";
 
-function Main() {
-    return (
-        <FirebaseContext.Consumer>
-            {firebase => <MainContainer firebase={firebase}/>}
-        </FirebaseContext.Consumer>
-    );
-}
-
-function MainContainer({ firebase }) {
+function Main({ firebase }) {
     const [featuredEvent, setFeaturedEvent] = useState(null);
     useEffect(() => {
-        firebase.loadEvents()
+        firebase.loadEvents().then(v => console.log(v))
 
 
         setTimeout(() => {
@@ -43,4 +35,4 @@ function MainContainer({ firebase }) {
     )
 }
 
-export default Main;
+export default withFirebase(Main);

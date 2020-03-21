@@ -37,10 +37,13 @@ class Firebase {
     // *** Event API ***
 
     loadEvents = () => {
-        return this.db.collection('event').get()
-            .then(querySnapshot => {
-                return querySnapshot.map((doc) => ({ id: doc.id, data: doc.data }));
-            })
+        return this.db.collection('event').get().then(querySnapshot => {
+            const events = [];
+            querySnapshot.forEach((doc) => {
+                events.push({ id: doc.id, ...doc.data() });
+            });
+            return events;
+        })
     }
 }
 
