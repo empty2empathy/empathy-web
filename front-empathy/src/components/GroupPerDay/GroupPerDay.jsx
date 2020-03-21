@@ -4,7 +4,6 @@ import EventListItem from 'components/EventListItem';
 import { MONTH, WEEK } from "utils";
 
 const GroupPerDay = ({ date, eventList }) => {
-    console.log(date)
     const _date = new Date(date);
     const month = MONTH[_date.getMonth()];
     const dayOfWeek = WEEK[_date.getDay()];

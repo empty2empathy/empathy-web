@@ -1,5 +1,6 @@
 import React from 'react';
 import './FeaturedEventInfo.scss';
+import { formatTime } from 'utils';
 
 const FeaturedEventInfo = ({ featuredEvent }) => {
     if (!featuredEvent) return null;
@@ -14,7 +15,7 @@ const FeaturedEventInfo = ({ featuredEvent }) => {
             <div className="info">
                 <span className="title">Start Performance</span>
                 {/*<span className="description">Fab,19 Wed 18:00</span>*/}
-                <span className="description">{date.start.seconds}</span>
+                <span className="description">{formatTime(date.start.seconds)}</span>
             </div>
             <div className="info">
                 <span className="title">Artist</span>
