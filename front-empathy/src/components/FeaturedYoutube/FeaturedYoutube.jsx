@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FeaturedYoutube.scss";
 import YouTube from "react-youtube";
 
-const FeaturedYoutube = ({ youtubeVideoId }) => {
+const FeaturedYoutube = ({ youtubeVideoId, isYoutubePlay, setIsYoutubePlay, setYoutubeRef, togglePlay }) => {
     if (!youtubeVideoId) youtubeVideoId = "yXrlhebkpIQ";
-    const [youtubeRef, setYoutubeRef] = useState(null);
-    const [isYoutubePlay, setIsYoutubePlay] = useState(false);
     const opts = {
         width: "100%",
         playerVars: {
@@ -15,12 +13,6 @@ const FeaturedYoutube = ({ youtubeVideoId }) => {
             playsinline: 1
         }
     };
-
-    function togglePlay() {
-        if (youtubeRef) {
-            isYoutubePlay ? youtubeRef.pauseVideo() : youtubeRef.playVideo();
-        }
-    }
 
     function _onReady(event) {
         // access to player in all event handlers via event.target
