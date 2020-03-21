@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import 'firebase/analytics';
+import 'firebase/firebase-firestore';
 
 const prodConfig = {
     apiKey: process.env.REACT_APP_PROD_API_KEY,
@@ -29,6 +30,20 @@ class Firebase {
     constructor() {
         firebase.initializeApp(config);
         firebase.analytics();
+
+        this.db = firebase.firestore();
+    }
+
+    // *** Event API ***
+
+    loadEvents = () => {
+        return this.db.collection('event').get().then(querySnapshot => {
+            const events = [];
+            querySnapshot.forEach((doc) => {
+                events.push({ id: doc.id, ...doc.data() });
+            });
+            return events;
+        })
     }
 }
 

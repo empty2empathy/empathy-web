@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Firebase, { FirebaseContext } from './firebase';
+import Firebase, { FirebaseContext } from 'redbricks-firebase';
 
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
