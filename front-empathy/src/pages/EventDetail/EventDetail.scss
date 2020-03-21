@@ -1,0 +1,17 @@
+@import "styles/colors.scss";
+@import "styles/mixins.scss";
+
+.fixed-header {
+  background-color: rgba(15, 15, 15, 0.3);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  padding: 10px 10px 10px 20px;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  a {
+    @include typo(21px, gray(10), bold);
+  }
+}

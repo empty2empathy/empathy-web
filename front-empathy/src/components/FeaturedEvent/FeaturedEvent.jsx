@@ -5,19 +5,20 @@ import FeaturedYoutube from "components/FeaturedYoutube";
 
 const FeaturedEvent = ({ featuredEvent }) => {
   if (!featuredEvent) return null;
+
   return (
     <>
       <FeaturedYoutube youtubeVideoId={featuredEvent.youtubeVideoId} />
 
       <div className="info-wrapper">
-        <div className="event-title">
+        <p className="event-location">{featuredEvent.location}</p>
+        <p className="event-title">
           <span className="title">{featuredEvent.title}</span>
-          <span className="now">Now</span>
-        </div>
+        </p>
 
         <FeaturedEventInfo featuredEvent={featuredEvent} />
 
-        <div className="insta-share">
+        <div className="share">
           <span className="sharing-link">인스타그램 공유하기 &rarr;</span>
         </div>
       </div>
