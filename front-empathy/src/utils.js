@@ -3,7 +3,7 @@ export const WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 export const mapEvents = performanceData => {
     const eventMap = performanceData.reduce((acc, v) => {
-        const date = v.date.start.slice(0, 10);
+        const date = v.date.start.seconds;
         return {
             ...acc,
             [date]: acc[date] ? [...acc[date], v] : [v]
