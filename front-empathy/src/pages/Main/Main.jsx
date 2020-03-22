@@ -13,7 +13,7 @@ function Main({ firebase }) {
             setFeaturedEvent(events[0]);
             setEvents(mapEvents(events));
         })
-    }, []);
+    }, [firebase]);
 
     return (
         <div className="Main">
