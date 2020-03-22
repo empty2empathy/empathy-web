@@ -44,6 +44,16 @@ class Firebase {
             });
             return events;
         })
+    };
+
+    loadEvent = eventId => {
+        return this.db.collection('event').doc(eventId).get().then(doc => {
+            if (doc.exists) {
+                return doc.data();
+            } else {
+                throw new Error("No such document!");
+            }
+        })
     }
 }
 
