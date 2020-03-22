@@ -12,11 +12,13 @@
     > .title {
       @include typo(15px, rgba(white, 0.5));
       margin-right: 8px;
+      text-transform: capitalize;
     }
 
     > .description {
       @include set-line-clamp(1);
       @include typo(15px, rgba(black, 0.3), bold);
+      padding: 0;
     }
   }
 }
