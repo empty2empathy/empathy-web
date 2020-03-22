@@ -6,16 +6,19 @@ import ArrowRight from "assets/svg/arrowRight";
 import YouTube from "react-youtube";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import { withFirebase } from "redbricks-firebase";
+import CtaButton from "components/CtaButton";
 
 
 function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
     useEffect(() => {
         firebase.loadEvent(id).then(event => {
+            console.log(event)
             setEvent(event);
         })
     }, [firebase]);
 
+    if (!event) return <div>Loading</div>;
     return (
         <div className="EventDetail">
             <div className="fixed-header">
@@ -33,10 +36,8 @@ function EventDetail({ firebase, match: { params: { id } } }) {
             </div>
 
             <div className="cta-button">
-                <button>
-                    <span>'eventTitle'공유하기</span>
-                    <ArrowRight width={20} height={20} color={"#0f0f0f"}/>
-                </button>
+                {/*onClick시에 share함수 호출 해 주기 */}
+                <CtaButton label={`${event.title} 공유하기`}/>
             </div>
 
             <div className="featured-event-info">
