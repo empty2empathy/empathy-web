@@ -3,8 +3,8 @@ import "./EventDetail.scss";
 import { Link, withRouter } from "react-router-dom";
 import CloseIcon from "assets/svg/closeIcon";
 import ArrowRight from "assets/svg/arrowRight";
-import YouTube from "react-youtube";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
+import FeaturedYoutube from "components/FeaturedYoutube";
 import { withFirebase } from "redbricks-firebase";
 import CtaButton from "components/CtaButton";
 
@@ -13,12 +13,21 @@ function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
     useEffect(() => {
         firebase.loadEvent(id).then(event => {
-            console.log(event)
             setEvent(event);
         })
     }, [firebase]);
 
+    const [isYoutubePlay, setIsYoutubePlay] = useState(false);
+    const [youtubeRef, setYoutubeRef] = useState(null);
+
+    function togglePlay() {
+        if (youtubeRef) {
+            isYoutubePlay ? youtubeRef.pauseVideo() : youtubeRef.playVideo();
+        }
+    }
+
     if (!event) return <div>Loading</div>;
+    const { title, youtubeVideoId } = event;
     return (
         <div className="EventDetail">
             <div className="fixed-header">
@@ -31,13 +40,19 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 </Link>
             </div>
 
+
             <div className="youtube">
-                <YouTube videoId="kT-EK_G0guA"/>
+                <FeaturedYoutube
+                    youtubeVideoId={youtubeVideoId}
+                    isYoutubePlay={isYoutubePlay}
+                    setIsYoutubePlay={setIsYoutubePlay}
+                    setYoutubeRef={setYoutubeRef}
+                    togglePlay={togglePlay}/>
             </div>
 
             <div className="cta-button">
                 {/*onClick시에 share함수 호출 해 주기 */}
-                <CtaButton label={`${event.title} 공유하기`}/>
+                <CtaButton label={`${title} 공유하기`}/>
             </div>
 
             <div className="featured-event-info">
