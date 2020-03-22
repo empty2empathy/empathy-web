@@ -26,3 +26,21 @@ function _formatTime(number) {
         return number
     }
 }
+
+export const shareLink = (title, text) => {
+    const url = window.location.href;
+
+    if (isMobile) {
+        navigator.share({ title, text, url })
+    } else {
+        const dummy = document.createElement('input');
+        document.body.appendChild(dummy);
+        dummy.value = url;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('클립보드에 복사 되었습니다');
+    }
+};
+
+export const isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
