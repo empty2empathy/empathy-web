@@ -1,0 +1,27 @@
+@import "styles/mixins";
+
+.FeaturedYoutube {
+  height: 375px;
+
+  .youtube {
+    position: fixed;
+    top: 0;
+    height: 375px;
+    z-index: -1;
+  }
+
+  .video-overlay {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 375px;
+    mask-type: luminance;
+    mask: linear-gradient(
+      0deg,
+      rgba(#292524, 1),
+      rgba(#292524, 0.95) 10%,
+      rgba(#292524, 0.3) 70.71%
+    );
+    background-image: url(../../assets/img-noise-361x370.png);
+  }
+}

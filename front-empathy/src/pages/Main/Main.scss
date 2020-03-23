@@ -1,8 +1,8 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .Main {
   .all-event-list {
-    padding: 0 10px;
-    background-color: #0f0f0f;
+    padding: 30px 10px;
+    background-image: url(../../assets/img-noise-361x370.png);
   }
 }

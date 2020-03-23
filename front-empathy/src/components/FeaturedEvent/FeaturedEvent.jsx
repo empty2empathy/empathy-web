@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import YouTube from "react-youtube";
+import React, { useState } from "react";
 import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
-
+import FeaturedYoutube from "components/FeaturedYoutube";
+import { shareLink } from "utils";
 
 const FeaturedEvent = ({ featuredEvent }) => {
-    // youtube 비디오 있으면 보여주고, 없으면 default 비디오 보여주기
-    const [youtubeRef, setYoutubeRef] = useState(null);
     const [isYoutubePlay, setIsYoutubePlay] = useState(false);
+    const [youtubeRef, setYoutubeRef] = useState(null);
 
     function togglePlay() {
         if (youtubeRef) {
@@ -15,59 +14,35 @@ const FeaturedEvent = ({ featuredEvent }) => {
         }
     }
 
-    function _onReady(event) {
-        // access to player in all event handlers via event.target
-        setYoutubeRef(event.target);
-    }
-
-    function _onStateChange(e) {
-        console.log('_onStateChange', e);
-        if (e.data === 1) {
-            setIsYoutubePlay(true);
-        } else {
-            setIsYoutubePlay(false);
-        }
-    }
-
-    const opts = {
-        width: "100%",
-        playerVars: {
-            // https://developers.google.com/youtube/player_parameters
-            start: 30,
-            controls: 0,
-            fs: 0,
-            playsinline: 1
-        }
-    };
-
     if (!featuredEvent) return null;
+    const { youtubeVideoId, location, title, description } = featuredEvent;
     return (
         <>
-            <div className="video-overlay" onClick={togglePlay}/>
-            <div className="youtube">
-                <YouTube
-                    className="youtube"
-                    videoId="vRzwREOQn3s"
-                    opts={opts}
-                    onReady={_onReady}
-                    onStateChange={_onStateChange}
-                />
-            </div>
+            <FeaturedYoutube
+                youtubeVideoId={youtubeVideoId}
+                isYoutubePlay={isYoutubePlay}
+                setIsYoutubePlay={setIsYoutubePlay}
+                setYoutubeRef={setYoutubeRef}
+                togglePlay={togglePlay}/>
 
             <div className="info-wrapper">
-                <div className="event-title">
-                    <span className="title">{featuredEvent.title}</span>
-                    <span className="now">Now</span>
-                </div>
+                <p className="event-location">{location}</p>
+                <p className="event-title">
+                    <span className="title">{title}</span>
+                </p>
+                <button onClick={togglePlay}>play</button>
 
                 <FeaturedEventInfo featuredEvent={featuredEvent}/>
 
-                <div className="insta-share">
-                    <span className="sharing-link">인스타그램 공유하기 &rarr;</span>
+                <div className="share">
+                    <span className="sharing-link"
+                          onClick={() => shareLink(title, description)}>
+                        인스타그램 공유하기 &rarr;
+                    </span>
                 </div>
             </div>
         </>
-    )
+    );
 };
 
-export default FeaturedEvent
+export default FeaturedEvent;

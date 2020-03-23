@@ -1,18 +1,24 @@
+@import "styles/colors.scss";
+@import "styles/mixins.scss";
+
 .FeaturedEventInfo {
-  margin-top: 16px;
+  margin: 30px 0 0;
   font-weight: 500;
 
   > .info {
-    font-size: 13px;
+    display: flex;
     margin-bottom: 4px;
 
     > .title {
-      color: #999999;
+      @include typo(15px, rgba(white, 0.5));
       margin-right: 8px;
+      text-transform: capitalize;
     }
 
     > .description {
-      color: #424042;
+      @include set-line-clamp(1);
+      @include typo(15px, rgba(black, 0.3), bold);
+      padding: 0;
     }
   }
 }
