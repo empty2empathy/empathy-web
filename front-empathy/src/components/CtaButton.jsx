@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import ArrowRight from 'assets/svg/arrowRight';
+import React from "react";
+import styled from "styled-components";
+import ArrowRight from "assets/svg/arrowRight";
 
-const CtaButton = ({ label = '' }) => {
-    return (
-        <Button>
-            <span>{label}</span>
-            <ArrowRight width={20} height={20} color={"#0f0f0f"}/>
-        </Button>
-    );
+const CtaButton = ({ label = "" }) => {
+  return (
+    <Button>
+      <span>{label}</span>
+      <ArrowRight width={20} height={20} color={"#0f0f0f"} />
+    </Button>
+  );
 };
 
 const Button = styled.button`
