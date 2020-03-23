@@ -15,7 +15,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         firebase.loadEvent(id).then(event => {
             setEvent(event);
         })
-    }, [firebase]);
+    }, [firebase, id]);
 
     const [isYoutubePlay, setIsYoutubePlay] = useState(false);
     const [youtubeRef, setYoutubeRef] = useState(null);
@@ -85,7 +85,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
             <div className="detail-info">
                 <div className="top-info">
-                    <img></img>
+                    <img alt="artist"></img>
                     <div className="text-info">
                         <p>Artist name</p>
                         <p>Progrmme Type</p>
@@ -104,7 +104,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
             <div className="detail-info">
                 <div className="top-info">
-                    <img></img>
+                    <img alt="location"></img>
                     <div className="text-info">
                         <p>Location</p>
                         <p>Progrmme Type</p>
