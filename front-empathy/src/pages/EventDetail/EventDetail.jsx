@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./EventDetail.scss";
 import { withRouter } from "react-router-dom";
-import ArrowRight from "assets/svg/arrowRight";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
 import { withFirebase } from "redbricks-firebase";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
+import LinkTextButton from "components/LinkTextButton";
 
 function EventDetail({ firebase, match: { params: { id } } }) {
   const [event, setEvent] = useState(null);
@@ -26,10 +26,12 @@ function EventDetail({ firebase, match: { params: { id } } }) {
   }
 
   if (!event) return <div>Loading</div>;
-  const { title, youtubeVideoId } = event;
+  console.log(event)
+  const { title, youtubeVideoId, description } = event;
   return (
     <div className="EventDetail">
       <FixedHeader />
+
       <div className="youtube">
         <FeaturedYoutube
           youtubeVideoId={youtubeVideoId}
@@ -49,17 +51,9 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         <FeaturedEventInfo featuredEvent={event} />
       </div>
 
-      <div className="link-text-button">
-        <span>공연장소 위치 검색</span>
-        <ArrowRight width={16} height={16} color={"#fcfcfc"}></ArrowRight>
-      </div>
+      <LinkTextButton label="공연장소 위치 검색" />
 
-      <p className="description">
-        De Amerikaanse indiepunkband Sleater-Kinney is terug met nieuwe muziek,
-        vier jaar na de release van het meest recente album ‘No Cities to Love’.
-        Het riot grrrl-trio kwam op in de jaren negentig, maar klinkt juist nu
-        grootser en gedurfder dan ooit tevoren.
-      </p>
+      <p className="description">{description}</p>
 
       <div className="detail-info">
         <div className="top-info">
@@ -75,10 +69,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         </p>
       </div>
 
-      <div className="link-text-button">
-        <span>아트스트 인스타그램</span>
-        <ArrowRight width={16} height={16} color={"#fcfcfc"}></ArrowRight>
-      </div>
+      <LinkTextButton label="아트스트 인스타그램" />
 
       <div className="detail-info">
         <div className="top-info">
@@ -94,10 +85,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         </p>
       </div>
 
-      <div className="link-text-button">
-        <span>공연 장소 인스타그램</span>
-        <ArrowRight width={16} height={16} color={"#fcfcfc"}></ArrowRight>
-      </div>
+      <LinkTextButton label="공연 장소 인스타그램" />
     </div>
   );
 }

@@ -18,18 +18,6 @@
     padding: 16px 20px 30px;
   }
 
-  .link-text-button {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 20px;
-    margin: 0 0 30px;
-
-    span {
-      @include typo(13px, #fcfcfc);
-      margin: 0 4px 0;
-    }
-  }
-
   .description {
     @include typo(14px, rgba(#fcfcfc, 0.25));
     line-height: 1.5;
