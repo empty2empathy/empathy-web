@@ -37,7 +37,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 <div className="share">
                     <span className="sharing-link"
                           onClick={() => shareLink(title, description)}>
-                        인스타그램 공유하기 &rarr;
+                        공유하기 &rarr;
                     </span>
                 </div>
             </div>
