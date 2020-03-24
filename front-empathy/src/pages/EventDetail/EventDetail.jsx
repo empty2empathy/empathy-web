@@ -27,9 +27,10 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
   if (!event) return <div>Loading</div>;
   console.log(event)
-  const { title, youtubeVideoId, description } = event;
+  const { title, youtubeVideoId, description, location } = event;
   return (
     <div className="EventDetail">
+      <div className="movie-bg"></div>
       <FixedHeader />
 
       <div className="youtube">
@@ -40,11 +41,15 @@ function EventDetail({ firebase, match: { params: { id } } }) {
           setYoutubeRef={setYoutubeRef}
           togglePlay={togglePlay}
         />
+        <p className="title">
+          <span>{location}</span>
+          {title}
+        </p>
       </div>
 
       <div className="cta-button">
         {/*onClick시에 share함수 호출 해 주기 */}
-        <CtaButton label={`${title} 공유하기`} />
+        <CtaButton label={`${title}`} />
       </div>
 
       <div className="featured-event-info">
