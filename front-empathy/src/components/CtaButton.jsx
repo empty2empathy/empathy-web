@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import ArrowRight from "assets/svg/arrowRight";
 
-const CtaButton = ({ label = "" }) => {
+const CtaButton = ({ label = "", onClick }) => {
   return (
-    <Button>
+    <Button onClick={onClick}>
       <Label>{label}</Label>
       <ActionLabel>
         공유하기

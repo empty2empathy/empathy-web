@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./EventDetail.scss";
-import { withRouter } from "react-router-dom";
-import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
-import { withFirebase } from "redbricks-firebase";
+import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
 import LinkTextButton from "components/LinkTextButton";
+import { withFirebase } from "redbricks-firebase";
+import { withRouter } from "react-router-dom";
+import { shareLink } from "utils";
+import "./EventDetail.scss";
 
 function EventDetail({ firebase, match: { params: { id } } }) {
   const [event, setEvent] = useState(null);
@@ -30,7 +31,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
   const { title, youtubeVideoId, description, location } = event;
   return (
     <div className="EventDetail">
-      <div className="movie-bg"></div>
+      <div className="movie-bg" />
       <FixedHeader />
 
       <div className="youtube">
@@ -48,8 +49,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
       </div>
 
       <div className="cta-button">
-        {/*onClick시에 share함수 호출 해 주기 */}
-        <CtaButton label={`${title}`} />
+        <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>
       </div>
 
       <div className="featured-event-info">
@@ -62,7 +62,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
       <div className="detail-info">
         <div className="top-info">
-          <img alt="artist"></img>
+          <img alt="artist"/>
           <div className="text-info">
             <p>Artist name</p>
             <p>Progrmme Type</p>
