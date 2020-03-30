@@ -1,8 +1,6 @@
 @import "styles/mixins";
 
 .Main {
-  background: black;
-
   .movie-bg{
     height: 200%;
     left: -50%;
@@ -16,5 +14,6 @@
   }
   .all-event-list {
     padding: 30px 10px;
+    background: black;
   }
 }

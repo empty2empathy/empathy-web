@@ -1,10 +1,10 @@
 import React from "react";
 import "./FeaturedEventInfo.scss";
-import { formatTime } from "utils";
+import { formatTime, shareLink } from "utils";
 
 const FeaturedEventInfo = ({ featuredEvent }) => {
     if (!featuredEvent) return null;
-    const { location, date, artists, programType } = featuredEvent;
+    const { title, description, location, date, artists, programType } = featuredEvent;
     const artistStr = artists.map(v => v.name).join(", ");
     return (
         <div className="FeaturedEventInfo">
@@ -23,6 +23,12 @@ const FeaturedEventInfo = ({ featuredEvent }) => {
             <div className="info">
                 <span className="title">Programme Type</span>
                 <span className="description">{programType.join(', ')}</span>
+            </div>
+            <div className="share">
+                    <span className="sharing-link"
+                          onClick={() => shareLink(title, description)}>
+                        공유하기 &rarr;
+                    </span>
             </div>
         </div>
     );

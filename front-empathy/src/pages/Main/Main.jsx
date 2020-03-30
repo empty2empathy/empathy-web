@@ -17,7 +17,7 @@ function Main({ firebase }) {
 
     return (
         <div className="Main">
-            <div className="movie-bg"></div>
+            <div className="movie-bg"/>
             <FeaturedEvent featuredEvent={featuredEvent} />
             <div className="all-event-list">
                 {events.map((event, i) => <GroupPerDay key={i} {...event} />)}

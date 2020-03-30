@@ -2,12 +2,12 @@
 @import "styles/mixins.scss";
 
 .FeaturedEventInfo {
-  margin: 8px 0 0;
+  padding: 8px 0 0;
   font-weight: 500;
 
   > .info {
     display: flex;
-    margin-bottom: 4px;
+    padding: 0 0 4px;
 
     > .title {
       @include typo(15px, rgba(white, 0.5));
@@ -19,6 +19,17 @@
       @include set-line-clamp(1);
       @include typo(15px, rgba(white, 0.18), bold);
       padding: 0;
+    }
+  }
+
+  .share {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 24px 0 60px;
+    background: black;
+
+    > span {
+      @include typo(13px, #fcfcfc, bold);
     }
   }
 }

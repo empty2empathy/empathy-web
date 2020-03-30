@@ -19,14 +19,13 @@ const FeaturedEvent = ({ featuredEvent }) => {
     if (!featuredEvent) return null;
     const { youtubeVideoId, location, title, description } = featuredEvent;
     return (
-        <>
+        <div className="FeaturedEvent">
             <FeaturedYoutube
                 youtubeVideoId={youtubeVideoId}
                 isYoutubePlay={isYoutubePlay}
                 setIsYoutubePlay={setIsYoutubePlay}
                 setYoutubeRef={setYoutubeRef}
                 togglePlay={togglePlay} />
-
             <div className="info-wrapper">
                 <span className="event-location">{location}</span>
                 <p className="event-title">
@@ -45,14 +44,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
             <div className="featured-event-info">
                 <FeaturedEventInfo featuredEvent={featuredEvent} />
             </div>
-                <div className="share">
-                    <span className="sharing-link"
-                          onClick={() => shareLink(title, description)}>
-                        공유하기 &rarr;
-                    </span>
-                </div>
-            </div>
-        </>
+        </div>
     );
 };
 
