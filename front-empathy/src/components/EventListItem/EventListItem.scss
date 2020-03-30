@@ -2,7 +2,7 @@
 @import "styles/mixins.scss";
 
 .EventListItem {
-  @include inner-bottom-divider(rgba(#292542, 0.3));
+  @include inner-bottom-divider(rgba(#fcfcfc, 0.1));
   padding-bottom: 8px;
   margin-bottom: 16px;
 
@@ -20,12 +20,12 @@
     }
 
     > .time {
-      color: rgba(#292524, 0.7);
+      color: rgba(#fcfcfc, 0.15);
     }
   }
 
   .location-info {
-    @include typo(13px, rgba(#292524, 0.45));
+    @include typo(13px, rgba(#fcfcfc, 0.2));
     margin: 0;
   }
 }
