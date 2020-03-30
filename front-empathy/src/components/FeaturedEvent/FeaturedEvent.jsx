@@ -45,12 +45,12 @@ const FeaturedEvent = ({ featuredEvent }) => {
             <div className="featured-event-info">
                 <FeaturedEventInfo featuredEvent={featuredEvent} />
             </div>
-
-            <div className="share">
-                <span className="sharing-link"
-                    onClick={() => shareLink(title, description)}>
-                    인스타그램 공유하기 &rarr;
-                </span>
+                <div className="share">
+                    <span className="sharing-link"
+                          onClick={() => shareLink(title, description)}>
+                        공유하기 &rarr;
+                    </span>
+                </div>
             </div>
         </>
     );
