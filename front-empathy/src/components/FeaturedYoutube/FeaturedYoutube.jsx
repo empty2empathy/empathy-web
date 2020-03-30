@@ -37,7 +37,7 @@ const FeaturedYoutube = ({ youtubeVideoId, isYoutubePlay, setIsYoutubePlay, setY
                      src={`https://img.youtube.com/vi/${youtubeVideoId}/0.jpg`}/>
                 }
                 <YouTube
-                    // className={"youtube" + (isYoutubePlay ? 'show' : 'hidden')}
+                    className="youtube-ref"
                     videoId={youtubeVideoId}
                     opts={opts}
                     onReady={_onReady}
