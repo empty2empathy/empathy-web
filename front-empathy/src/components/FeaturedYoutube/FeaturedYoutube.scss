@@ -1,12 +1,12 @@
 @import "styles/mixins";
 
 .FeaturedYoutube {
-  height: 100vw;
+  height: 360px;
 
   .youtube {
     position: fixed;
     top: 0;
-    height: 100vw;
+    height: 360px;
     z-index: -1;
 
     .youtube-ref {
@@ -23,14 +23,14 @@
     display: block;
     content: "";
     width: 100%;
-    height: 100vw;
+    height: 360px;
     mask-type: luminance;
     mask: linear-gradient(
-                    0deg,
-                    rgba(#292524, 1),
-                    rgba(#292524, 0.95) 10%,
-                    rgba(#292524, 0.3) 70.71%
+      0deg,
+      rgba(#292524, 1),
+      rgba(#292524, 0.95) 10%,
+      rgba(#292524, 0.15) 70.71%
     );
-    background-image: url(../../assets/img-noise-361x370.png);
+    background-image: url(../../assets/img-noise-361x3702.png);
   }
 }
