@@ -11,7 +11,7 @@ const FeaturedEventInfo = ({ featuredEvent, ctaFunc, ctaLabel }) => {
         <div className="FeaturedEventInfo">
             <div className="info">
                 <span className="title">Location</span>
-                <span className="description">{location}</span>
+                <span className="description">{location.name}</span>
             </div>
             <div className="info">
                 <span className="title">Start Performance</span>

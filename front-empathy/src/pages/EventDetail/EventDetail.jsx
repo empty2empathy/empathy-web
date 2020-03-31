@@ -4,6 +4,7 @@ import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
 import LinkTextButton from "components/LinkTextButton";
+import DetailInfo from "components/DetailInfo";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
 import { shareLink } from "utils";
@@ -29,7 +30,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
     if (!event) return <div>Loading</div>;
     console.log(event)
-    const { title, youtubeVideoId, description, location } = event;
+    const { title, youtubeVideoId, description, location, artists } = event;
     return (
         <div className="EventDetail">
             <div className="movie-bg" />
@@ -41,7 +42,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 setYoutubeRef={setYoutubeRef}
                 togglePlay={togglePlay} />
             <div className="info-wrapper">
-                <span className="event-location">{location}</span>
+                <span className="event-location">{location.name}</span>
                 <p className="event-title">
                     {title}
                 </p>
@@ -69,28 +70,23 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
             <p className="description">{description}</p>
 
-            <div className="detail-info">
-                <div className="top-info">
-                    <img alt="artist" />
-                    <div className="text-info">
-                        <p>Artist name</p>
-                        <p>Progrmme Type</p>
-                    </div>
-                </div>
-                <p className="description">
-                    Artist Bio De Amerikaanse indiepunkband Sleater-Kinney is terug met
-                    nieuwe muziek,
-                </p>
-            </div>
-
-            <LinkTextButton label="아트스트 인스타그램" />
+            {artists.map(({ artistBio, instaId, name, img, programType }) => (
+                <DetailInfo
+                    img={img}
+                    title={name}
+                    programType={programType}
+                    description={artistBio}
+                    ctaLabel="아티스트 인스타그램"
+                    ctaFunc={() => console.log(`insta id ${instaId}`)}
+                />
+            ))}
 
             <div className="detail-info">
                 <div className="top-info">
                     <img alt="location"></img>
                     <div className="text-info">
-                        <p>Location</p>
-                        <p>Progrmme Type</p>
+                        <p>{location.name}</p>
+                        <p>{location.programType.join(', ')}</p>
                     </div>
                 </div>
                 <p className="description">
