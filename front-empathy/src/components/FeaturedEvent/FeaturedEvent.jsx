@@ -27,7 +27,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 setYoutubeRef={setYoutubeRef}
                 togglePlay={togglePlay}/>
             <div className="info-wrapper">
-                <span className="event-location">{location}</span>
+                <span className="event-location">{location.name}</span>
                 <p className="event-title">
                     {title}
                 </p>
