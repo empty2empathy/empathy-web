@@ -13,7 +13,7 @@ const EventListItem = ({ title, location, date, eventId }) => {
                     <span className="title">{title}</span>
                     <span className="time">{time}</span>
                 </div>
-                <p className="location-info">{location}</p>
+                <p className="location-info">{location.name}</p>
             </Link>
         </div>
     );

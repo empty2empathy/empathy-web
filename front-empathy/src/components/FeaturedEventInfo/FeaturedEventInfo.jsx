@@ -1,11 +1,11 @@
 import React from "react";
 import "./FeaturedEventInfo.scss";
 import LinkTextButton from "components/LinkTextButton";
-import { formatTime, shareLink } from "utils";
+import { formatTime } from "utils";
 
 const FeaturedEventInfo = ({ featuredEvent, ctaFunc, ctaLabel }) => {
     if (!featuredEvent) return null;
-    const { title, description, location, date, artists, programType } = featuredEvent;
+    const { location, date, artists, programType } = featuredEvent;
     const artistStr = artists.map(v => v.name).join(", ");
     return (
         <div className="FeaturedEventInfo">
