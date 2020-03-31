@@ -42,7 +42,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 togglePlay={togglePlay}/>
             <div className="info-wrapper">
                 <p className="title">
-                    <span>{location}</span>
+                    <span>{location.name}</span>
                     {title}
                 </p>
             </div>
@@ -73,26 +73,10 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
             <div className="detail-info">
                 <div className="top-info">
-                    <img alt="artist"/>
-                    <div className="text-info">
-                        <p>Artist name</p>
-                        <p>Progrmme Type</p>
-                    </div>
-                </div>
-                <p className="description">
-                    Artist Bio De Amerikaanse indiepunkband Sleater-Kinney is terug met
-                    nieuwe muziek,
-                </p>
-            </div>
-
-            <LinkTextButton label="아트스트 인스타그램"/>
-
-            <div className="detail-info">
-                <div className="top-info">
                     <img alt="location"></img>
                     <div className="text-info">
-                        <p>Location</p>
-                        <p>Progrmme Type</p>
+                        <p>{location.name}</p>
+                        <p>{location.programType.join(', ')}</p>
                     </div>
                 </div>
                 <p className="description">
