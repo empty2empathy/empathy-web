@@ -14,8 +14,8 @@ function LinkTextButton({ label = "" }) {
 const Button = styled.div`
     display: flex;
     justify-content: flex-end;
-    padding: 0 20px;
-    margin: 0 0 30px;
+    padding: 0 20px 30px;
+    background: black;
 
     span {
       font-size: 13px;

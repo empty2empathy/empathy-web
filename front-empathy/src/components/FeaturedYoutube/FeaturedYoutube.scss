@@ -11,6 +11,11 @@
 
     .youtube-ref {
       width: 100vw;
+      visibility: hidden;
+
+      &.visible {
+        visibility: visible;
+      }
     }
   }
 
