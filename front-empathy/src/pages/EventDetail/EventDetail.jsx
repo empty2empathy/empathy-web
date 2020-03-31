@@ -28,7 +28,6 @@ function EventDetail({ firebase, match: { params: { id } } }) {
     }
 
     if (!event) return <div>Loading</div>;
-    console.log(event)
     const { title, youtubeVideoId, description, location, artists } = event;
     return (
         <div className="EventDetail">
@@ -59,7 +58,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
             <div className="featured-event-info">
                 <FeaturedEventInfo
                     featuredEvent={event}
-                    ctaFunc={() => console.log('hi')}
+                    ctaFunc={() => window.open(location.mapLink)}
                     ctaLabel="공연장소 위치 검색"/>
             </div>
 
@@ -71,6 +70,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
             {artists.map(({ artistBio, instaId, name, img, programType }) => (
                 <DetailInfo
+                    key={name}
                     img={img}
                     title={name}
                     programType={programType}
