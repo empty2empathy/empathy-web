@@ -14,9 +14,8 @@ const DetailInfo = ({ img, title, programType, description, ctaLabel, ctaFunc })
                     </div>
                 </div>
                 <p className="description">{description}</p>
+                <LinkTextButton label={ctaLabel} onClick={ctaFunc}/>
             </div>
-
-            <LinkTextButton label={ctaLabel} onClick={ctaFunc}/>
         </div>
     );
 };

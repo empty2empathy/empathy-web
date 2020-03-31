@@ -3,11 +3,10 @@ import FeaturedYoutube from "components/FeaturedYoutube";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
-import LinkTextButton from "components/LinkTextButton";
 import DetailInfo from "components/DetailInfo";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
-import { shareLink } from "utils";
+import { shareLink, openInsta } from "utils";
 import "./EventDetail.scss";
 import Play from "assets/svg/play"
 
@@ -33,14 +32,14 @@ function EventDetail({ firebase, match: { params: { id } } }) {
     const { title, youtubeVideoId, description, location, artists } = event;
     return (
         <div className="EventDetail">
-            <div className="movie-bg" />
-            <FixedHeader />
+            <div className="movie-bg"/>
+            <FixedHeader/>
             <FeaturedYoutube
                 youtubeVideoId={youtubeVideoId}
                 isYoutubePlay={isYoutubePlay}
                 setIsYoutubePlay={setIsYoutubePlay}
                 setYoutubeRef={setYoutubeRef}
-                togglePlay={togglePlay} />
+                togglePlay={togglePlay}/>
             <div className="info-wrapper">
                 <span className="event-location">{location.name}</span>
                 <p className="event-title">
@@ -61,11 +60,11 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 <FeaturedEventInfo
                     featuredEvent={event}
                     ctaFunc={() => console.log('hi')}
-                    ctaLabel="공연장소 위치 검색" />
+                    ctaLabel="공연장소 위치 검색"/>
             </div>
 
             <div className="cta-button">
-                <CtaButton label={`${title}`} onClick={() => shareLink(title, description)} />
+                <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>
             </div>
 
             <p className="description">{description}</p>
@@ -77,25 +76,18 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                     programType={programType}
                     description={artistBio}
                     ctaLabel="아티스트 인스타그램"
-                    ctaFunc={() => console.log(`insta id ${instaId}`)}
+                    ctaFunc={() => openInsta(instaId)}
                 />
             ))}
 
-            <div className="detail-info">
-                <div className="top-info">
-                    <img alt="location"></img>
-                    <div className="text-info">
-                        <p>{location.name}</p>
-                        <p>{location.programType.join(', ')}</p>
-                    </div>
-                </div>
-                <p className="description">
-                    Artist Bio De Amerikaanse indiepunkband Sleater-Kinney is terug met
-                    nieuwe muziek,
-                </p>
-            </div>
-
-            <LinkTextButton label="공연 장소 인스타그램" />
+            <DetailInfo
+                img={location.img}
+                title={location.name}
+                programType={location.programType}
+                description={location.description}
+                ctaLabel="공연장소 인스타그램"
+                ctaFunc={() => openInsta(location.instaId)}
+            />
         </div>
     );
 }
