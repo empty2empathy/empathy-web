@@ -9,6 +9,7 @@ import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
 import { shareLink } from "utils";
 import "./EventDetail.scss";
+import Play from "assets/svg/play"
 
 function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
@@ -32,30 +33,39 @@ function EventDetail({ firebase, match: { params: { id } } }) {
     const { title, youtubeVideoId, description, location, artists } = event;
     return (
         <div className="EventDetail">
-            <div className="movie-bg"/>
-            <FixedHeader/>
+            <div className="movie-bg" />
+            <FixedHeader />
             <FeaturedYoutube
                 youtubeVideoId={youtubeVideoId}
                 isYoutubePlay={isYoutubePlay}
                 setIsYoutubePlay={setIsYoutubePlay}
                 setYoutubeRef={setYoutubeRef}
-                togglePlay={togglePlay}/>
+                togglePlay={togglePlay} />
             <div className="info-wrapper">
-                <p className="title">
-                    <span>{location.name}</span>
+                <span className="event-location">{location.name}</span>
+                <p className="event-title">
                     {title}
                 </p>
+                <button onClick={togglePlay}>
+                    <Play
+                        width={24}
+                        height={24}
+                        color={"white"}
+                        style={{ padding: "6px" }}
+                    />
+                </button>
             </div>
 
-            <div className="cta-button">
-                <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>
-            </div>
 
             <div className="featured-event-info">
                 <FeaturedEventInfo
                     featuredEvent={event}
                     ctaFunc={() => console.log('hi')}
-                    ctaLabel="공연장소 위치 검색"/>
+                    ctaLabel="공연장소 위치 검색" />
+            </div>
+
+            <div className="cta-button">
+                <CtaButton label={`${title}`} onClick={() => shareLink(title, description)} />
             </div>
 
             <p className="description">{description}</p>
@@ -85,7 +95,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 </p>
             </div>
 
-            <LinkTextButton label="공연 장소 인스타그램"/>
+            <LinkTextButton label="공연 장소 인스타그램" />
         </div>
     );
 }
