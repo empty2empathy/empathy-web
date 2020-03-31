@@ -4,6 +4,7 @@ import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
 import LinkTextButton from "components/LinkTextButton";
+import DetailInfo from "components/DetailInfo";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
 import { shareLink } from "utils";
@@ -28,7 +29,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
 
     if (!event) return <div>Loading</div>;
     console.log(event)
-    const { title, youtubeVideoId, description, location } = event;
+    const { title, youtubeVideoId, description, location, artists } = event;
     return (
         <div className="EventDetail">
             <div className="movie-bg"/>
@@ -58,6 +59,17 @@ function EventDetail({ firebase, match: { params: { id } } }) {
             </div>
 
             <p className="description">{description}</p>
+
+            {artists.map(({ artistBio, instaId, name, img, programType }) => (
+                <DetailInfo
+                    img={img}
+                    title={name}
+                    programType={programType}
+                    description={artistBio}
+                    ctaLabel="아티스트 인스타그램"
+                    ctaFunc={() => console.log(`insta id ${instaId}`)}
+                />
+            ))}
 
             <div className="detail-info">
                 <div className="top-info">
