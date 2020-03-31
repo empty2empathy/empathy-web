@@ -1,40 +1,53 @@
 @import "styles/colors.scss";
 @import "styles/mixins.scss";
 
-.info-wrapper {
-  padding: 0 10px;
-  background-image: url(../../assets/img-noise-361x370.png);
+.FeaturedEvent {
+  .info-wrapper {
+    padding: 0 20px;
+    position: relative;
+    background: black;
 
-  .event-location {
-    @include typo(16px, rgba(0, 0, 0, 0.7), bold);
-    margin: 0 0 8px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .event-title {
-    margin: 0;
-    padding: 0 8px;
-
-    > .title {
+    .event-location {
       @include outlined-typo(30px, rgb(0, 0, 0), #fcfcfc, bold);
-      display: inline;
-      background: rgba(0, 0, 0, 0.8);
-      box-shadow: -8px 0 0 rgba(0, 0, 0, 0.8), 8px 0 0 rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.65);
+      box-shadow: -4px 0 0 rgba(0, 0, 0, 0.65), 4px 0 0 rgba(0, 0, 0, 0.65);
       padding: 0.25rem;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      position: absolute;
+      top: -92px;
     }
+
+    .event-title {
+      position: absolute;
+      top: -53px;
+      margin: 0;
+      font-family: futura-pt, Helvetica, Arial, sans-serif;
+      color: white;
+      font-size: 28px;
+      width: 75%;
+      line-height: 1.2;
+      font-weight: 900;
+      text-shadow: 1px 2px 10px rgba(black, 0.75);
+    }
+
+    button {
+      position: absolute;
+      padding: 10px;
+      right: 20px;
+      background-color: #fcfcfc;
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      top: -27px;
+      cursor: pointer;
+    }
+
   }
 
-  .share {
-    display: flex;
-    flex-direction: row-reverse;
-    margin: 24px 0 0px;
-    padding: 0 0 60px;
-
-    > span {
-      @include typo(13px, rgba(0, 0, 0, 0.5), bold);
-      text-decoration: underline;
-    }
+  .featured-event-info {
+    padding: 27px 20px 0;
+    background: black;
   }
 }

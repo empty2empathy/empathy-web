@@ -9,10 +9,10 @@ export default ({ width = 12, height = 12, color = "white", style }) => (
     <path
       d="M 4.167 10 L 15 10 M 10 4.167 L 15.833 10 L 10 15.833"
       fill="transparent"
-      stroke-width="2.22"
+      strokeWidth="2.22"
       stroke={color}
-      stroke-linecap="square"
-      stroke-miterlimit="10"
+      strokeLinecap="square"
+      strokeMiterlimit="10"
     ></path>
   </svg>
 );
