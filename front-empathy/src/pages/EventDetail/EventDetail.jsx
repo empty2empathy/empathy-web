@@ -33,15 +33,13 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         <div className="EventDetail">
             <div className="movie-bg"/>
             <FixedHeader/>
-
-            <div className="youtube">
-                <FeaturedYoutube
-                    youtubeVideoId={youtubeVideoId}
-                    isYoutubePlay={isYoutubePlay}
-                    setIsYoutubePlay={setIsYoutubePlay}
-                    setYoutubeRef={setYoutubeRef}
-                    togglePlay={togglePlay}
-                />
+            <FeaturedYoutube
+                youtubeVideoId={youtubeVideoId}
+                isYoutubePlay={isYoutubePlay}
+                setIsYoutubePlay={setIsYoutubePlay}
+                setYoutubeRef={setYoutubeRef}
+                togglePlay={togglePlay}/>
+            <div className="info-wrapper">
                 <p className="title">
                     <span>{location}</span>
                     {title}
@@ -53,8 +51,10 @@ function EventDetail({ firebase, match: { params: { id } } }) {
             </div>
 
             <div className="featured-event-info">
-                <FeaturedEventInfo featuredEvent={event} ctaFunc={() => {
-                }} ctaLabel="공연장소 위치 검색"/>
+                <FeaturedEventInfo
+                    featuredEvent={event}
+                    ctaFunc={() => console.log('hi')}
+                    ctaLabel="공연장소 위치 검색"/>
             </div>
 
             <p className="description">{description}</p>
