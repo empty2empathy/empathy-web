@@ -3,11 +3,10 @@ import FeaturedYoutube from "components/FeaturedYoutube";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
-import LinkTextButton from "components/LinkTextButton";
 import DetailInfo from "components/DetailInfo";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
-import { shareLink } from "utils";
+import { shareLink, openInsta } from "utils";
 import "./EventDetail.scss";
 import Play from "assets/svg/play"
 
@@ -77,7 +76,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                     programType={programType}
                     description={artistBio}
                     ctaLabel="아티스트 인스타그램"
-                    ctaFunc={() => console.log(`insta id ${instaId}`)}
+                    ctaFunc={() => openInsta(instaId)}
                 />
             ))}
 
@@ -87,7 +86,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 programType={location.programType}
                 description={location.description}
                 ctaLabel="공연장소 인스타그램"
-                ctaFunc={() => console.log(`insta id ${location.instaId}`)}
+                ctaFunc={() => openInsta(location.instaId)}
             />
         </div>
     );

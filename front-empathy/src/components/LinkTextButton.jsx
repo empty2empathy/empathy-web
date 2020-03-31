@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import ArrowRight from "assets/svg/arrowRight";
 
-function LinkTextButton({ label = "" }) {
+function LinkTextButton({ label = "", onClick }) {
   return (
-    <Button>
+    <Button onClick={onClick}>
       <span>{label}</span>
       <ArrowRight width={16} height={16} color={"#fcfcfc"}></ArrowRight>
     </Button>

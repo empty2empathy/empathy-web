@@ -45,3 +45,5 @@ export const shareLink = (title, text) => {
 };
 
 export const isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
+
+export const openInsta = instaId => window.open(`https://www.instagram.com/${instaId}`);
