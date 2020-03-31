@@ -12,10 +12,11 @@
   -webkit-animation: movie 1s steps(4) infinite;
   animation: movie 1s steps(4) infinite;
   background-image: url(https://bepatrickdavid.com/assets/img/movie.png);
+  // background-image: url(../../assets/img-noise-100x100.png);
 }
 
 .EventDetail {
-  background-color: #000;
+  background-color: black;
   padding: 0 0 60px;
   
   .fixed-header {

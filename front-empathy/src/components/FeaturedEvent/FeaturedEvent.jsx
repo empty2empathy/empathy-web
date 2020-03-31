@@ -3,6 +3,8 @@ import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
 import { shareLink } from "utils";
+import Play from "assets/svg/play"
+
 
 const FeaturedEvent = ({ featuredEvent }) => {
     const [isYoutubePlay, setIsYoutubePlay] = useState(false);
@@ -17,31 +19,32 @@ const FeaturedEvent = ({ featuredEvent }) => {
     if (!featuredEvent) return null;
     const { youtubeVideoId, location, title, description } = featuredEvent;
     return (
-        <>
+        <div className="FeaturedEvent">
             <FeaturedYoutube
                 youtubeVideoId={youtubeVideoId}
                 isYoutubePlay={isYoutubePlay}
                 setIsYoutubePlay={setIsYoutubePlay}
                 setYoutubeRef={setYoutubeRef}
-                togglePlay={togglePlay}/>
-
+                togglePlay={togglePlay} />
             <div className="info-wrapper">
-                <p className="event-location">{location}</p>
+                <span className="event-location">{location}</span>
                 <p className="event-title">
-                    <span className="title">{title}</span>
+                    {title}
                 </p>
-                <button onClick={togglePlay}>play</button>
-
-                <FeaturedEventInfo featuredEvent={featuredEvent}/>
-
-                <div className="share">
-                    <span className="sharing-link"
-                          onClick={() => shareLink(title, description)}>
-                        인스타그램 공유하기 &rarr;
-                    </span>
-                </div>
+                <button onClick={togglePlay}>
+                    <Play
+                        width={24}
+                        height={24}
+                        color={"white"}
+                        style={{ padding: "6px" }}
+                    />
+                </button>
             </div>
-        </>
+            {/* <FeaturedEventInfo featuredEvent={featuredEvent} /> */}
+            <div className="featured-event-info">
+                <FeaturedEventInfo featuredEvent={featuredEvent} />
+            </div>
+        </div>
     );
 };
 

@@ -22,14 +22,13 @@
 
         &:first-of-type {
           font-weight: bold;
-          color: rgba(#fcfcfc, 0.45);
+          color: rgba(#fcfcfc, 0.5);
         }
 
         &:nth-child(2) {
-          color: #ff5405;
-          text-shadow: -1px -1px 0 rgba(#fcfcfc, 0.45),
-            1px -1px 0 rgba(#fcfcfc, 0.45), -1px 1px 0 rgba(#fcfcfc, 0.45),
-            1px 1px 0 rgba(#fcfcfc, 0.45);
+          text-shadow: -1px -1px 0 rgba(#fcfcfc, 0.5),
+            1px -1px 0 rgba(#fcfcfc, 0.5), -1px 1px 0 rgba(#fcfcfc, 0.5),
+            1px 1px 0 rgba(#fcfcfc, 0.5);
         }
       }
     }
