@@ -1,8 +1,9 @@
 import React from "react";
 import "./FeaturedEventInfo.scss";
+import LinkTextButton from "components/LinkTextButton";
 import { formatTime, shareLink } from "utils";
 
-const FeaturedEventInfo = ({ featuredEvent }) => {
+const FeaturedEventInfo = ({ featuredEvent, ctaFunc, ctaLabel }) => {
     if (!featuredEvent) return null;
     const { title, description, location, date, artists, programType } = featuredEvent;
     const artistStr = artists.map(v => v.name).join(", ");
@@ -24,11 +25,8 @@ const FeaturedEventInfo = ({ featuredEvent }) => {
                 <span className="title">Programme Type</span>
                 <span className="description">{programType.join(', ')}</span>
             </div>
-            <div className="share">
-                    <span className="sharing-link"
-                          onClick={() => shareLink(title, description)}>
-                        공유하기 &rarr;
-                    </span>
+            <div className="ctaBtn">
+                <LinkTextButton onClick={ctaFunc} label={ctaLabel}/>
             </div>
         </div>
     );

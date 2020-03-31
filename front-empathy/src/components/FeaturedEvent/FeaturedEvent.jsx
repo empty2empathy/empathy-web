@@ -3,6 +3,7 @@ import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
 import Play from "assets/svg/play"
+import { shareLink } from "../../utils";
 
 
 const FeaturedEvent = ({ featuredEvent }) => {
@@ -16,7 +17,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
     }
 
     if (!featuredEvent) return null;
-    const { youtubeVideoId, location, title } = featuredEvent;
+    const { youtubeVideoId, location, title, description } = featuredEvent;
     return (
         <div className="FeaturedEvent">
             <FeaturedYoutube
@@ -24,7 +25,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 isYoutubePlay={isYoutubePlay}
                 setIsYoutubePlay={setIsYoutubePlay}
                 setYoutubeRef={setYoutubeRef}
-                togglePlay={togglePlay} />
+                togglePlay={togglePlay}/>
             <div className="info-wrapper">
                 <span className="event-location">{location}</span>
                 <p className="event-title">
@@ -40,7 +41,9 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 </button>
             </div>
             <div className="featured-event-info">
-                <FeaturedEventInfo featuredEvent={featuredEvent} />
+                <FeaturedEventInfo featuredEvent={featuredEvent}
+                                   ctaFunc={() => shareLink(title, description)}
+                                   ctaLabel="공유하기"/>
             </div>
         </div>
     );
