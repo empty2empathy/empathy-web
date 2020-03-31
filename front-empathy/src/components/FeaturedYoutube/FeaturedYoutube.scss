@@ -11,6 +11,11 @@
 
     .youtube-ref {
       width: 100vw;
+      visibility: hidden;
+
+      &.visible {
+        visibility: visible;
+      }
     }
   }
 
@@ -21,10 +26,10 @@
     height: 100vw;
     mask-type: luminance;
     mask: linear-gradient(
-      0deg,
-      rgba(#292524, 1),
-      rgba(#292524, 0.95) 10%,
-      rgba(#292524, 0.3) 70.71%
+                    0deg,
+                    rgba(#292524, 1),
+                    rgba(#292524, 0.95) 10%,
+                    rgba(#292524, 0.3) 70.71%
     );
     background-image: url(../../assets/img-noise-361x370.png);
   }

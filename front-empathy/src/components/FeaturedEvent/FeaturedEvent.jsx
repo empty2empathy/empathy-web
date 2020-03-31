@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
-import { shareLink } from "utils";
 import Play from "assets/svg/play"
 
 
@@ -17,7 +16,7 @@ const FeaturedEvent = ({ featuredEvent }) => {
     }
 
     if (!featuredEvent) return null;
-    const { youtubeVideoId, location, title, description } = featuredEvent;
+    const { youtubeVideoId, location, title } = featuredEvent;
     return (
         <div className="FeaturedEvent">
             <FeaturedYoutube
@@ -40,7 +39,6 @@ const FeaturedEvent = ({ featuredEvent }) => {
                     />
                 </button>
             </div>
-            {/* <FeaturedEventInfo featuredEvent={featuredEvent} /> */}
             <div className="featured-event-info">
                 <FeaturedEventInfo featuredEvent={featuredEvent} />
             </div>

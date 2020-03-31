@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import "./FeaturedYoutube.scss";
 import YouTube from "react-youtube";
 
@@ -37,7 +38,7 @@ const FeaturedYoutube = ({ youtubeVideoId, isYoutubePlay, setIsYoutubePlay, setY
                      src={`https://img.youtube.com/vi/${youtubeVideoId}/0.jpg`}/>
                 }
                 <YouTube
-                    className="youtube-ref"
+                    className={classNames('youtube-ref', { 'visible': isYoutubePlay })}
                     videoId={youtubeVideoId}
                     opts={opts}
                     onReady={_onReady}
