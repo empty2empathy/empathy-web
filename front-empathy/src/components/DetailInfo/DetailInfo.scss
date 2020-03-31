@@ -3,7 +3,7 @@
 
 .DetailInfo {
   .detail-info {
-    padding: 60px 20px 30px;
+    padding: 60px 20px 0;
     background: black;
 
     .top-info {
@@ -38,7 +38,7 @@
       @include typo(14px, rgba(#fcfcfc, 0.25));
       line-height: 1.5;
       margin: 0;
-      padding: 0;
+      padding: 0 0 30px;
     }
   }
 }
