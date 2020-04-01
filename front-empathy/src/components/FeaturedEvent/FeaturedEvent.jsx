@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
-import Play from "assets/svg/play"
+import LottieTogglePlay from "components/LottieTogglePlay";
 import { shareLink } from "../../utils";
 
 
@@ -31,13 +31,8 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 <p className="event-title">
                     {title}
                 </p>
-                <button onClick={togglePlay}>
-                    <Play
-                        width={24}
-                        height={24}
-                        color={"white"}
-                        style={{ padding: "6px" }}
-                    />
+                <button>
+                    <LottieTogglePlay onClick={togglePlay} />
                 </button>
             </div>
             <div className="featured-event-info">

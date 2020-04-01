@@ -8,6 +8,7 @@
 		"@testing-library/react": "^9.3.2",
 		"@testing-library/user-event": "^7.1.2",
 		"classnames": "^2.2.6",
+		"dayjs": "^1.8.23",
 		"firebase": "^7.11.0",
 		"framer-motion": "^1.8.4",
 		"node-sass": "^4.13.1",

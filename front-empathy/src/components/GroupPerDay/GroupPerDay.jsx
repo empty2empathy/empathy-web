@@ -2,12 +2,15 @@ import React from 'react';
 import './GroupPerDay.scss';
 import EventListItem from 'components/EventListItem';
 import { MONTH, WEEK } from "utils";
+import dayjs from 'dayjs';
+
 
 const GroupPerDay = ({ date, eventList }) => {
-    const _date = new Date(date);
-    const month = MONTH[_date.getMonth()];
-    const dayOfWeek = WEEK[_date.getDay()];
-    const day = _date.getDate();
+    const _date = dayjs(date);
+    const month = MONTH[_date.get('month')];
+    const dayOfWeek = WEEK[_date.get('day')];
+    const day = _date.get('date');
+
     return (
         <div className="GroupPerDay">
             <div className="date-information">

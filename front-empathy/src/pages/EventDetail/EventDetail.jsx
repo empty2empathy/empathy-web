@@ -4,11 +4,11 @@ import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FixedHeader from "components/FixedHeader";
 import CtaButton from "components/CtaButton";
 import DetailInfo from "components/DetailInfo";
+import LottieTogglePlay from "components/LottieTogglePlay";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
 import { shareLink, openInsta } from "utils";
 import "./EventDetail.scss";
-import Play from "assets/svg/play"
 
 function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
@@ -44,13 +44,8 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 <p className="event-title">
                     {title}
                 </p>
-                <button onClick={togglePlay}>
-                    <Play
-                        width={24}
-                        height={24}
-                        color={"white"}
-                        style={{ padding: "6px" }}
-                    />
+                <button>
+                    <LottieTogglePlay onClick={togglePlay}/>
                 </button>
             </div>
 
@@ -80,14 +75,16 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 />
             ))}
 
-            <DetailInfo
-                img={location.img}
-                title={location.name}
-                programType={location.programType}
-                description={location.description}
-                ctaLabel="공연장소 인스타그램"
-                ctaFunc={() => openInsta(location.instaId)}
-            />
+            <div className="location-info">
+                <DetailInfo
+                    img={location.img}
+                    title={location.name}
+                    programType={location.programType}
+                    description={location.description}
+                    ctaLabel="공연장소 인스타그램"
+                    ctaFunc={() => openInsta(location.instaId)}
+                />
+            </div>
         </div>
     );
 }

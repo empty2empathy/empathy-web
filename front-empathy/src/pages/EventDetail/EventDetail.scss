@@ -61,7 +61,10 @@
 
     button {
       position: absolute;
-      padding: 10px;
+      width: 59px;
+      height: 59px;
+      padding: 20px;
+      box-sizing: border-box;
       right: 20px;
       background-color: #fcfcfc;
       border-radius: 50%;
@@ -74,7 +77,7 @@
 
   .cta-button {
     cursor: pointer;
-    padding: 44px 20px 30px;
+    padding: 44px 20px 0;
     position: sticky;
     position: -webkit-sticky;
     top: 0;
@@ -102,9 +105,13 @@
   .description {
     @include typo(14px, rgba(#fcfcfc, 0.25));
     line-height: 1.5;
-    padding: 0 20px;
+    padding: 30px 20px 0;
     margin: 0;
     background: black;
+  }
+
+  .location-info {
+    padding: 0 0 60px;
   }
 }
 
