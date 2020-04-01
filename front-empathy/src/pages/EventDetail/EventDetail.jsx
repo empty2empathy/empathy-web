@@ -45,7 +45,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                     {title}
                 </p>
                 <button>
-                    <LottieTogglePlay onClick={togglePlay} />
+                    <LottieTogglePlay onClick={togglePlay}/>
                 </button>
             </div>
 
@@ -75,14 +75,16 @@ function EventDetail({ firebase, match: { params: { id } } }) {
                 />
             ))}
 
-            <DetailInfo
-                img={location.img}
-                title={location.name}
-                programType={location.programType}
-                description={location.description}
-                ctaLabel="공연장소 인스타그램"
-                ctaFunc={() => openInsta(location.instaId)}
-            />
+            <div className="location-info">
+                <DetailInfo
+                    img={location.img}
+                    title={location.name}
+                    programType={location.programType}
+                    description={location.description}
+                    ctaLabel="공연장소 인스타그램"
+                    ctaFunc={() => openInsta(location.instaId)}
+                />
+            </div>
         </div>
     );
 }
