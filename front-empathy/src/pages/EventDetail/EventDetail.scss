@@ -61,7 +61,10 @@
 
     button {
       position: absolute;
-      padding: 10px;
+      width: 59px;
+      height: 59px;
+      padding: 20px;
+      box-sizing: border-box;
       right: 20px;
       background-color: #fcfcfc;
       border-radius: 50%;
@@ -105,6 +108,10 @@
     padding: 30px 20px 0;
     margin: 0;
     background: black;
+  }
+
+  .location-info {
+    padding: 0 0 60px;
   }
 }
 
