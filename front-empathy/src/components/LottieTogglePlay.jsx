@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Lottie from 'react-lottie';
+import React from 'react';
 import lottie from "lottie-web";
 import * as animationData from '../assets/lottie/play-pause.json';
 
@@ -76,7 +75,7 @@ class LottieToggleIcon extends React.Component {
     }
 
     render() {
-        return <div ref={el => (this.el = el)} />;
+        return <div ref={el => (this.el = el)}/>;
     }
 }
 
@@ -98,43 +97,18 @@ export default class LottieTogglePlay extends React.Component {
     };
 
     render() {
+        const { onClick } = this.props;
         const { direction } = this.state;
         return (
-            <div>
+            <div onClick={() => {
+                this.toggleDirection();
+                onClick();
+            }}>
                 <LottieToggleIcon
                     animationData={animationData.default}
                     direction={direction}
                 />
-                <a onClick={this.toggleDirection}>Click Me to change direction</a>
             </div>
         );
     }
-
-    // render() {
-    //     const buttonStyle = {
-    //         display: 'block',
-    //         margin: '10px auto'
-    //     };
-    //
-    //     const defaultOptions = {
-    //         loop: false,
-    //         autoplay: false,
-    //         animationData: animationData.default,
-    //         rendererSettings: {
-    //             preserveAspectRatio: 'xMidYMid slice'
-    //         },
-    //         direction: 1
-    //     };
-    //
-    //     return <div>
-    //         <Lottie options={defaultOptions}
-    //                 height={400}
-    //                 width={400}
-    //                 isStopped={this.state.isStopped}
-    //                 isPaused={this.state.isPaused}/>
-    //         <button style={buttonStyle} onClick={() => this.setState({isStopped: true})}>stop</button>
-    //         <button style={buttonStyle} onClick={() => this.setState({isStopped: false})}>play</button>
-    //         <button style={buttonStyle} onClick={() => this.setState({isPaused: !this.state.isPaused})}>pause</button>
-    //     </div>
-    // }
 }

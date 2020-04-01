@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./FeaturedEvent.scss";
 import FeaturedEventInfo from "components/FeaturedEventInfo";
 import FeaturedYoutube from "components/FeaturedYoutube";
-import Play from "assets/svg/play"
 import LottieTogglePlay from "components/LottieTogglePlay";
 import { shareLink } from "../../utils";
 
@@ -21,7 +20,6 @@ const FeaturedEvent = ({ featuredEvent }) => {
     const { youtubeVideoId, location, title, description } = featuredEvent;
     return (
         <div className="FeaturedEvent">
-            <LottieTogglePlay />
             <FeaturedYoutube
                 youtubeVideoId={youtubeVideoId}
                 isYoutubePlay={isYoutubePlay}
@@ -33,14 +31,8 @@ const FeaturedEvent = ({ featuredEvent }) => {
                 <p className="event-title">
                     {title}
                 </p>
-                <button onClick={togglePlay}>
-                    {/*<LottieTogglePlay size={36} />*/}
-                    {/*<Play*/}
-                    {/*    width={24}*/}
-                    {/*    height={24}*/}
-                    {/*    color={"white"}*/}
-                    {/*    style={{ padding: "6px" }}*/}
-                    {/*/>*/}
+                <button>
+                    <LottieTogglePlay onClick={togglePlay} />
                 </button>
             </div>
             <div className="featured-event-info">
