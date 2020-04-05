@@ -14,6 +14,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
     useEffect(() => {
         firebase.loadEvent(id).then(event => {
+            console.log(firebase.loadArtistWithPath(event.artists[1].path));
             setEvent(event);
         });
     }, [firebase, id]);

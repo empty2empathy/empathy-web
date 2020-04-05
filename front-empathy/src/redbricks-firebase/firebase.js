@@ -54,6 +54,17 @@ class Firebase {
                 throw new Error("No such document!");
             }
         })
+    };
+
+    loadArtistWithPath = artistPath => {
+        return this.db.doc(artistPath).get().then(doc => {
+            // TODO: 중복제거하기
+            if (doc.exists) {
+                return doc.data();
+            } else {
+                throw new Error("No such document!");
+            }
+        });
     }
 }
 
