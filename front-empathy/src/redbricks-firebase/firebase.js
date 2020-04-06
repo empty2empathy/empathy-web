@@ -65,6 +65,17 @@ class Firebase {
                 throw new Error("No such document!");
             }
         });
+    };
+
+    loadLocationWithPath = locationPath => {
+        return this.db.doc(locationPath).get().then(doc => {
+            // TODO: 중복제거하기
+            if (doc.exists) {
+                return doc.data();
+            } else {
+                throw new Error("No such document!");
+            }
+        });
     }
 }
 
