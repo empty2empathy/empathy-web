@@ -7,16 +7,22 @@ import DetailInfo from "components/DetailInfo";
 import LottieTogglePlay from "components/LottieTogglePlay";
 import { withFirebase } from "redbricks-firebase";
 import { withRouter } from "react-router-dom";
-import { shareLink, openInsta } from "utils";
+import { openInsta, shareLink } from "utils";
 import "./EventDetail.scss";
 
 function EventDetail({ firebase, match: { params: { id } } }) {
     const [event, setEvent] = useState(null);
     useEffect(() => {
-        firebase.loadEvent(id).then(event => {
-            console.log(firebase.loadArtistWithPath(event.artists[1].path));
-            setEvent(event);
-        });
+        const fetchData = async () => {
+            const event = await firebase.loadEvent(id);
+            const artists$ = event.artists.map(({ path }) => {
+                if (!path) return;
+                return firebase.loadArtistWithPath(path);
+            });
+            const artists = await Promise.all(artists$);
+            setEvent({ ...event, artists });
+        };
+        fetchData();
     }, [firebase, id]);
 
     const [isYoutubePlay, setIsYoutubePlay] = useState(false);
@@ -63,7 +69,6 @@ function EventDetail({ firebase, match: { params: { id } } }) {
             </div>
 
             <p className="description">{description}</p>
-
             {artists.map(({ artistBio, instaId, name, img, programType }) => (
                 <DetailInfo
                     key={name}
