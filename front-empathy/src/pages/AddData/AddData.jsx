@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './AddData.scss';
+import { withFirebase } from "redbricks-firebase";
 
-const AddData = () => {
+const AddData = ({ firebase }) => {
     // artist state
+    const [artistDocId, setArtistDocId] = useState('');
     const [artistBio, setArtistBio] = useState('');
     const [artistImg, setArtistImg] = useState('');
     const [artistInstaId, setArtistInstaId] = useState('');
@@ -18,13 +20,26 @@ const AddData = () => {
     const [locationProgramType, setLocationProgramType] = useState('');
 
     const handleSubmit = (event) => {
+        firebase.setArtist({
+            artistDocId,
+            artistBio,
+            artistImg,
+            artistInstaId,
+            artistName,
+            artistProgramType: artistProgramType.split(',')
+        });
         event.preventDefault();
     };
 
     return (
         <div className='AddData'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h1>Artist</h1>
+                <label>
+                    <h3>artist Doc Id</h3>
+                    <p>고유한 아티스트의 id이여야 한다.(ex. abel_ko)</p>
+                    <textarea value={artistDocId} onChange={e => setArtistDocId(e.target.value)}/>
+                </label>
                 <label>
                     <h3>artist Bio</h3>
                     <textarea value={artistBio} onChange={e => setArtistBio(e.target.value)}/>
@@ -82,4 +97,4 @@ const AddData = () => {
     );
 };
 
-export default AddData;
+export default withFirebase(AddData);

@@ -36,7 +36,7 @@ class Firebase {
 
     // *** Event API ***
 
-    loadEvents = () => {
+    loadEvents() {
         return this.db.collection('event').get().then(querySnapshot => {
             const events = [];
             querySnapshot.forEach((doc) => {
@@ -46,7 +46,7 @@ class Firebase {
         })
     };
 
-    loadEvent = eventId => {
+    loadEvent(eventId) {
         return this.db.collection('event').doc(eventId).get().then(doc => {
             if (doc.exists) {
                 return doc.data();
@@ -56,7 +56,9 @@ class Firebase {
         })
     };
 
-    loadArtistWithPath = artistPath => {
+    // *** Artist API ***
+
+    loadArtistWithPath(artistPath) {
         return this.db.doc(artistPath).get().then(doc => {
             // TODO: 중복제거하기
             if (doc.exists) {
@@ -67,7 +69,32 @@ class Firebase {
         });
     };
 
-    loadLocationWithPath = locationPath => {
+    setArtist(artistData) {
+        const {
+            artistDocId,
+            artistBio,
+            artistImg,
+            artistInstaId,
+            artistName,
+            artistProgramType
+        } = artistData;
+
+        this.db.collection('artist').doc(artistDocId).set({
+            artistBio,
+            artistImg,
+            artistInstaId,
+            artistName,
+            artistProgramType
+        }).then(() => {
+            alert('submit success!')
+        }).catch(() => {
+            alert('submit failure')
+        });
+    }
+
+    // *** Location API ***
+
+    loadLocationWithPath(locationPath) {
         return this.db.doc(locationPath).get().then(doc => {
             // TODO: 중복제거하기
             if (doc.exists) {
