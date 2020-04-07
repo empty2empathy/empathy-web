@@ -12,6 +12,7 @@ const AddData = ({ firebase }) => {
     const [artistProgramType, setArtistProgramType] = useState('');
 
     // location statek
+    const [locationDocId, setLocationDocId] = useState('');
     const [locationDescription, setLocationDescription] = useState('');
     const [locationImg, setLocationImg] = useState('');
     const [locationInstaId, setLocationInstaId] = useState('');
@@ -19,7 +20,7 @@ const AddData = ({ firebase }) => {
     const [locationName, setLocationName] = useState('');
     const [locationProgramType, setLocationProgramType] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleArtistSubmit = (event) => {
         firebase.setArtist({
             artistDocId,
             artistBio,
@@ -31,9 +32,32 @@ const AddData = ({ firebase }) => {
         event.preventDefault();
     };
 
+    const handleLocationSubmit = (event) => {
+        firebase.setLocation({
+            locationDocId,
+            locationDescription,
+            locationImg,
+            locationInstaId,
+            locationMapLink,
+            locationName,
+            locationProgramType: locationProgramType.split(',')
+        }).then(isSuccess => {
+            if (isSuccess) {
+                setLocationDocId('');
+                setLocationDescription('');
+                setLocationImg('');
+                setLocationInstaId('');
+                setLocationMapLink('');
+                setLocationName('');
+                setLocationProgramType('');
+            }
+        });
+        event.preventDefault();
+    };
+
     return (
         <div className='AddData'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleArtistSubmit}>
                 <h1>Artist</h1>
                 <label>
                     <h3>artist Doc Id</h3>
@@ -63,8 +87,13 @@ const AddData = ({ firebase }) => {
                 <button>submit</button>
             </form>
 
-            <form>
+            <form onSubmit={handleLocationSubmit}>
                 <h1>Location</h1>
+                <label>
+                    <h3>location Doc Id</h3>
+                    <p>고유한 장소의 id이여야 한다.(ex. club_ff)</p>
+                    <textarea value={locationDocId} onChange={e => setLocationDocId(e.target.value)}/>
+                </label>
                 <label>
                     <h3>description</h3>
                     <textarea value={locationDescription} onChange={e => setLocationDescription(e.target.value)}/>

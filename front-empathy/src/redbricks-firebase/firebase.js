@@ -86,9 +86,11 @@ class Firebase {
             artistName,
             artistProgramType
         }).then(() => {
-            alert('submit success!')
+            alert('submit success!');
+            return true;
         }).catch(() => {
-            alert('submit failure')
+            alert('submit failure');
+            return false;
         });
     }
 
@@ -102,6 +104,33 @@ class Firebase {
             } else {
                 throw new Error("No such document!");
             }
+        });
+    }
+
+    setLocation(locationData) {
+        const {
+            locationDocId,
+            locationDescription,
+            locationImg,
+            locationInstaId,
+            locationMapLink,
+            locationName,
+            locationProgramType
+        } = locationData;
+
+        return this.db.collection('location').doc(locationDocId).set({
+            locationDescription,
+            locationImg,
+            locationInstaId,
+            locationMapLink,
+            locationName,
+            locationProgramType
+        }).then(() => {
+            alert('submit success!');
+            return true;
+        }).catch(() => {
+            alert('submit failure');
+            return false;
         });
     }
 }
