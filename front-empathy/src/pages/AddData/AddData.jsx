@@ -9,7 +9,7 @@ const AddData = () => {
     const [artistName, setArtistName] = useState('');
     const [artistProgramType, setArtistProgramType] = useState('');
 
-    // location state
+    // location statek
     const [locationDescription, setLocationDescription] = useState('');
     const [locationImg, setLocationImg] = useState('');
     const [locationInstaId, setLocationInstaId] = useState('');
@@ -17,6 +17,9 @@ const AddData = () => {
     const [locationName, setLocationName] = useState('');
     const [locationProgramType, setLocationProgramType] = useState('');
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+    };
 
     return (
         <div className='AddData'>
@@ -24,23 +27,23 @@ const AddData = () => {
                 <h1>Artist</h1>
                 <label>
                     <h3>artist Bio</h3>
-                    <textarea/>
+                    <textarea value={artistBio} onChange={e => setArtistBio(e.target.value)}/>
                 </label>
                 <label>
                     <h3>img</h3>
-                    <input/>
+                    <input value={artistImg} onChange={e => setArtistImg(e.target.value)}/>
                 </label>
                 <label>
                     <h3>instaId</h3>
-                    <input/>
+                    <input value={artistInstaId} onChange={e => setArtistInstaId(e.target.value)}/>
                 </label>
                 <label>
                     <h3>name</h3>
-                    <input/>
+                    <input value={artistName} onChange={e => setArtistName(e.target.value)}/>
                 </label>
                 <label>
                     <h3>programType</h3>
-                    <input/>
+                    <input value={artistProgramType} onChange={e => setArtistProgramType(e.target.value)}/>
                 </label>
                 <button>submit</button>
             </form>
@@ -49,27 +52,27 @@ const AddData = () => {
                 <h1>Location</h1>
                 <label>
                     <h3>description</h3>
-                    <textarea/>
+                    <textarea value={locationDescription} onChange={e => setLocationDescription(e.target.value)}/>
                 </label>
                 <label>
                     <h3>img</h3>
-                    <input/>
+                    <input value={locationImg} onChange={e => setLocationImg(e.target.value)}/>
                 </label>
                 <label>
                     <h3>instaId</h3>
-                    <input/>
+                    <input value={locationInstaId} onChange={e => setLocationInstaId(e.target.value)}/>
                 </label>
                 <label>
                     <h3>mapLink</h3>
-                    <input/>
+                    <input value={locationMapLink} onChange={e => setLocationMapLink(e.target.value)}/>
                 </label>
                 <label>
                     <h3>name</h3>
-                    <input/>
+                    <input value={locationName} onChange={e => setLocationName(e.target.value)}/>
                 </label>
                 <label>
                     <h3>programType</h3>
-                    <input/>
+                    <input value={locationProgramType} onChange={e => setLocationProgramType(e.target.value)}/>
                 </label>
                 <button>submit</button>
             </form>
