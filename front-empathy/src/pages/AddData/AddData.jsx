@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddData.scss';
 
 const AddData = () => {
+    // artist state
+    const [artistBio, setArtistBio] = useState('');
+    const [artistImg, setArtistImg] = useState('');
+    const [artistInstaId, setArtistInstaId] = useState('');
+    const [artistName, setArtistName] = useState('');
+    const [artistProgramType, setArtistProgramType] = useState('');
+
+    // location state
+    const [locationDescription, setLocationDescription] = useState('');
+    const [locationImg, setLocationImg] = useState('');
+    const [locationInstaId, setLocationInstaId] = useState('');
+    const [locationMapLink, setLocationMapLink] = useState('');
+    const [locationName, setLocationName] = useState('');
+    const [locationProgramType, setLocationProgramType] = useState('');
+
+
     return (
         <div className='AddData'>
             <form>
