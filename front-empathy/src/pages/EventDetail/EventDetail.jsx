@@ -16,10 +16,7 @@ function EventDetail({ firebase, match: { params: { id } } }) {
         const fetchData = async () => {
             const event = await firebase.loadEvent(id);
             const location = await firebase.loadLocationWithPath(event.location.path);
-            const artists$ = event.artists.map(({ path }) => {
-                if (!path) return;
-                return firebase.loadArtistWithPath(path);
-            });
+            const artists$ = event.artists.map(({ path }) => firebase.loadArtistWithPath(path));
             const artists = await Promise.all(artists$);
             setEvent({ ...event, location, artists });
         };
