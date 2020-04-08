@@ -81,10 +81,10 @@ class Firebase {
 
         this.db.collection('artist').doc(artistDocId).set({
             artistBio,
-            artistImg,
-            artistInstaId,
-            artistName,
-            artistProgramType
+            img: artistImg,
+            instaId: artistInstaId,
+            name: artistName,
+            programType: artistProgramType
         }).then(() => {
             alert('submit success!');
             return true;
@@ -119,12 +119,12 @@ class Firebase {
         } = locationData;
 
         return this.db.collection('location').doc(locationDocId).set({
-            locationDescription,
-            locationImg,
-            locationInstaId,
-            locationMapLink,
-            locationName,
-            locationProgramType
+            description: locationDescription,
+            img: locationImg,
+            instaId:locationInstaId,
+            mapLink: locationMapLink,
+            name: locationName,
+            programType: locationProgramType
         }).then(() => {
             alert('submit success!');
             return true;
