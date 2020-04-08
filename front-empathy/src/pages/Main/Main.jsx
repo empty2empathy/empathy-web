@@ -9,10 +9,19 @@ function Main({ firebase }) {
     const [featuredEvent, setFeaturedEvent] = useState(null);
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        firebase.loadEvents().then(events => {
-            setFeaturedEvent(events[0]);
-            setEvents(mapEvents(events));
-        })
+        const fetchData = async () => {
+            const events = await firebase.loadEvents();
+            const parsedEvents$ = events.map( async event => {
+                const location = await firebase.loadLocationWithPath(event.location.path);
+                const artists$ = event.artists.map(({ path }) => firebase.loadArtistWithPath(path));
+                const artists = await Promise.all(artists$);
+                return { ...event, location, artists }
+            });
+            const parsedEvents = await Promise.all(parsedEvents$);
+            setFeaturedEvent(parsedEvents[0]);
+            setEvents(mapEvents(parsedEvents));
+        };
+        fetchData();
     }, [firebase]);
 
     return (
