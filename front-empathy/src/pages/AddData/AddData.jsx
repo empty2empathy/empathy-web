@@ -22,7 +22,7 @@ const AddData = ({ firebase }) => {
 
     // event state
     const [eventArtists, setEventArtists] = useState('');
-    const [eventTime, setEventTime] = useState('');
+    const [eventTime, setEventTime] = useState({ start: '', end: '' });
     const [eventDescription, setEventDescription] = useState('');
     const [eventLocation, setEventLocation] = useState('');
     const [eventProgramType, setEventProgramType] = useState('');
@@ -75,11 +75,11 @@ const AddData = ({ firebase }) => {
 
     const handleEventSubmit = ev => {
         firebase.setEvent({
-            eventArtists,
+            eventArtists: eventArtists.split(','),
             eventTime,
             eventDescription,
             eventLocation,
-            eventProgramType: locationProgramType.split(','),
+            eventProgramType: eventProgramType.split(','),
             eventTitle,
             eventYoutubeVideoId,
         }).then(isSuccess => {
@@ -165,16 +165,27 @@ const AddData = ({ firebase }) => {
             <h1>Event</h1>
 
             <form onSubmit={handleEventSubmit}>
-                // 이벤트 doc id는 자동생성
+                <p>이벤트 doc id는 자동생성된다.</p>
                 <label>
                     <h3>artists (path를 ','으로 나누어서 넣어야 한다. ex. /artist/dawn_studio)</h3>
                     <input value={eventArtists} onChange={e => setEventArtists(e.target.value)}/>
                 </label>
                 <label>
                     <h3>date</h3>
-                    // 어떻게 데이터 넣어야 하지....? time stamp로 잘 저장되는지 확인하기..!
-                    // data type을 map으로 넣어야한다. start, end
-                    <input value={eventTime} onChange={e => setEventTime(e.target.value)}/>
+                    <div>
+                        <span>start</span>
+                        <input type='date' value={eventTime.start}
+                               onChange={e => setEventTime({
+                                   ...eventTime, start: e.target.value
+                               })}/>
+                    </div>
+                    <div>
+                        <span>end</span>
+                        <input type='date' value={eventTime.end}
+                               onChange={e => setEventTime({
+                                   ...eventTime, end: e.target.value
+                               })}/>
+                    </div>
                 </label>
                 <label>
                     <h3>description</h3>

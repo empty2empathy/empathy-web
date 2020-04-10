@@ -121,7 +121,7 @@ class Firebase {
         return this.db.collection('location').doc(locationDocId).set({
             description: locationDescription,
             img: locationImg,
-            instaId:locationInstaId,
+            instaId: locationInstaId,
             mapLink: locationMapLink,
             name: locationName,
             programType: locationProgramType
@@ -132,6 +132,54 @@ class Firebase {
             alert('submit failure');
             return false;
         });
+    }
+
+    setEvent(eventData) {
+        const {
+            eventArtists,
+            eventTime,
+            eventDescription,
+            eventLocation,
+            eventProgramType,
+            eventTitle,
+            eventYoutubeVideoId,
+        } = eventData;
+
+        const artistRefs = eventArtists.map(artist => {
+            return this.db.collection('artist').doc(artist);
+        });
+        const locationRef = this.db.collection('location').doc(eventLocation);
+        const startDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.start));
+        const endDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.end));
+
+        // .add 메서드는 Auto id를 제너레이트한다.
+        debugger
+        try {
+            this.db.collection('event').add({
+                artists: artistRefs,
+                date: {
+                    start: startDate,
+                    end: endDate
+                },
+                description: eventDescription,
+                location: locationRef,
+                programType: eventProgramType,
+                title: eventTitle,
+                youtubeVideoId: eventYoutubeVideoId
+            }).then(() => {
+                debugger
+                alert('submit success!');
+                return true;
+            }).catch((e) => {
+                console.log(e);
+                debugger
+                alert('submit failure');
+                return false;
+            });
+        } catch (e) {
+            console.log(e)
+            debugger
+        }
     }
 }
 
