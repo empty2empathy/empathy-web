@@ -11,7 +11,7 @@ const AddData = ({ firebase }) => {
     const [artistName, setArtistName] = useState('');
     const [artistProgramType, setArtistProgramType] = useState('');
 
-    // location statek
+    // location state
     const [locationDocId, setLocationDocId] = useState('');
     const [locationDescription, setLocationDescription] = useState('');
     const [locationImg, setLocationImg] = useState('');
@@ -19,6 +19,15 @@ const AddData = ({ firebase }) => {
     const [locationMapLink, setLocationMapLink] = useState('');
     const [locationName, setLocationName] = useState('');
     const [locationProgramType, setLocationProgramType] = useState('');
+
+    // event state
+    const [eventArtists, setEventArtists] = useState('');
+    const [eventTime, setEventTime] = useState({ start: '', end: '' });
+    const [eventDescription, setEventDescription] = useState('');
+    const [eventLocation, setEventLocation] = useState('');
+    const [eventProgramType, setEventProgramType] = useState('');
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventYoutubeVideoId, setEventYoutubeVideoId] = useState('');
 
     const handleArtistSubmit = (event) => {
         firebase.setArtist({
@@ -28,6 +37,15 @@ const AddData = ({ firebase }) => {
             artistInstaId,
             artistName,
             artistProgramType: artistProgramType.split(',')
+        }).then(isSuccess => {
+            if (isSuccess) {
+                setArtistDocId('');
+                setArtistBio('');
+                setArtistImg('');
+                setArtistInstaId('');
+                setArtistName('');
+                setArtistProgramType('');
+            }
         });
         event.preventDefault();
     };
@@ -53,6 +71,29 @@ const AddData = ({ firebase }) => {
             }
         });
         event.preventDefault();
+    };
+
+    const handleEventSubmit = ev => {
+        firebase.setEvent({
+            eventArtists: eventArtists.split(','),
+            eventTime,
+            eventDescription,
+            eventLocation,
+            eventProgramType: eventProgramType.split(','),
+            eventTitle,
+            eventYoutubeVideoId,
+        }).then(isSuccess => {
+            if (isSuccess) {
+                setEventArtists('');
+                setEventTime({ start: '', end: '' });
+                setEventDescription('');
+                setEventLocation('');
+                setEventProgramType('');
+                setEventTitle('');
+                setEventYoutubeVideoId('');
+            }
+        });
+        ev.preventDefault();
     };
 
     return (
@@ -122,6 +163,52 @@ const AddData = ({ firebase }) => {
             </form>
 
             <h1>Event</h1>
+
+            <form onSubmit={handleEventSubmit}>
+                <p>이벤트 doc id는 자동생성된다.</p>
+                <label>
+                    <h3>artists (path를 ','으로 나누어서 넣어야 한다. ex. /artist/dawn_studio)</h3>
+                    <input value={eventArtists} onChange={e => setEventArtists(e.target.value)}/>
+                </label>
+                <label>
+                    <h3>date</h3>
+                    <div>
+                        <span>start</span>
+                        <input type='date' value={eventTime.start}
+                               onChange={e => setEventTime({
+                                   ...eventTime, start: e.target.value
+                               })}/>
+                    </div>
+                    <div>
+                        <span>end</span>
+                        <input type='date' value={eventTime.end}
+                               onChange={e => setEventTime({
+                                   ...eventTime, end: e.target.value
+                               })}/>
+                    </div>
+                </label>
+                <label>
+                    <h3>description</h3>
+                    <textarea value={eventDescription} onChange={e => setEventDescription(e.target.value)}/>
+                </label>
+                <label>
+                    <h3>location (path를 넣어야 한다. ex. /location/evanslounge)</h3>
+                    <input value={eventLocation} onChange={e => setEventLocation(e.target.value)}/>
+                </label>
+                <label>
+                    <h3>programType (','로 나누어 여러개의 programType을 넣을 수 있다.)</h3>
+                    <input value={eventProgramType} onChange={e => setEventProgramType(e.target.value)}/>
+                </label>
+                <label>
+                    <h3>title</h3>
+                    <input value={eventTitle} onChange={e => setEventTitle(e.target.value)}/>
+                </label>
+                <label>
+                    <h3>youtubeVideoId</h3>
+                    <input value={eventYoutubeVideoId} onChange={e => setEventYoutubeVideoId(e.target.value)}/>
+                </label>
+                <button>submit</button>
+            </form>
         </div>
     );
 };
