@@ -85,7 +85,7 @@ const AddData = ({ firebase }) => {
         }).then(isSuccess => {
             if (isSuccess) {
                 setEventArtists('');
-                setEventTime('');
+                setEventTime({ start: '', end: '' });
                 setEventDescription('');
                 setEventLocation('');
                 setEventProgramType('');
