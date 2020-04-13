@@ -42,6 +42,7 @@ class Firebase {
             querySnapshot.forEach((doc) => {
                 events.push({ id: doc.id, ...doc.data() });
             });
+            events.sort((a, b) => a.date.start - b.date.start);
             return events;
         })
     };
@@ -121,7 +122,7 @@ class Firebase {
         return this.db.collection('location').doc(locationDocId).set({
             description: locationDescription,
             img: locationImg,
-            instaId:locationInstaId,
+            instaId: locationInstaId,
             mapLink: locationMapLink,
             name: locationName,
             programType: locationProgramType
