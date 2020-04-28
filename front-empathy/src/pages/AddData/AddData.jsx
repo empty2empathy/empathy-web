@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddData.scss';
 import { withFirebase } from "redbricks-firebase";
 
@@ -28,6 +28,10 @@ const AddData = ({ firebase }) => {
     const [eventProgramType, setEventProgramType] = useState('');
     const [eventTitle, setEventTitle] = useState('');
     const [eventYoutubeVideoId, setEventYoutubeVideoId] = useState('');
+
+    useEffect(() => {
+        firebase.loadArtists();
+    }, []);
 
     const handleArtistSubmit = (event) => {
         firebase.setArtist({
