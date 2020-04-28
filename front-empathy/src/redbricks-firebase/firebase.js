@@ -71,12 +71,12 @@ class Firebase {
   };
 
   loadArtists() {
-    this.db.collection('artist')
+    return this.db.collection('artist')
       .get()
       .then((querySnapshot) => {
         const artists = [];
         querySnapshot.forEach(doc => artists.push(doc.data()));
-        return artists
+        return artists;
       })
       .catch(function (error) {
         console.log("Error getting artists: ", error);
@@ -119,6 +119,19 @@ class Firebase {
         throw new Error("No such document!");
       }
     });
+  }
+
+  loadLocations() {
+    return this.db.collection('location')
+      .get()
+      .then((querySnapshot) => {
+        const locations = [];
+        querySnapshot.forEach(doc => locations.push(doc.data()));
+        return locations;
+      })
+      .catch(function (error) {
+        console.log("Error getting artists: ", error);
+      });
   }
 
   setLocation(locationData) {

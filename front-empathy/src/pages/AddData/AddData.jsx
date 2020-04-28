@@ -31,6 +31,7 @@ const AddData = ({ firebase }) => {
 
     useEffect(() => {
         firebase.loadArtists();
+        firebase.loadLocations();
     }, []);
 
     const handleArtistSubmit = (event) => {
