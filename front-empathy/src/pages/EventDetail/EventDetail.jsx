@@ -11,86 +11,86 @@ import { openInsta, shareLink } from "utils";
 import "./EventDetail.scss";
 
 function EventDetail({ firebase, match: { params: { id } } }) {
-    const [event, setEvent] = useState(null);
-    useEffect(() => {
-        const fetchData = async () => {
-            const event = await firebase.loadEvent(id);
-            const location = await firebase.loadLocationWithPath(event.location.path);
-            const artists$ = event.artists.map(({ path }) => firebase.loadArtistWithPath(path));
-            const artists = await Promise.all(artists$);
-            setEvent({ ...event, location, artists });
-        };
-        fetchData();
-    }, [firebase, id]);
+  const [event, setEvent] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const event = await firebase.loadEvent(id);
+      const location = await firebase.loadLocationWithPath(event.location.path);
+      const artists$ = event.artists.map(({ path }) => firebase.loadArtistWithPath(path));
+      const artists = await Promise.all(artists$);
+      setEvent({ ...event, location, artists });
+    };
+    fetchData();
+  }, [firebase, id]);
 
-    const [isYoutubePlay, setIsYoutubePlay] = useState(false);
-    const [youtubeRef, setYoutubeRef] = useState(null);
+  const [isYoutubePlay, setIsYoutubePlay] = useState(false);
+  const [youtubeRef, setYoutubeRef] = useState(null);
 
-    function togglePlay() {
-        if (youtubeRef) {
-            isYoutubePlay ? youtubeRef.pauseVideo() : youtubeRef.playVideo();
-        }
+  function togglePlay() {
+    if (youtubeRef) {
+      isYoutubePlay ? youtubeRef.pauseVideo() : youtubeRef.playVideo();
     }
+  }
 
-    if (!event) return <div>Loading</div>;
-    const { title, youtubeVideoId, description, location, artists } = event;
-    return (
-        <div className="EventDetail">
-            <div className="movie-bg"/>
-            <FixedHeader/>
-            <FeaturedYoutube
-                youtubeVideoId={youtubeVideoId}
-                isYoutubePlay={isYoutubePlay}
-                setIsYoutubePlay={setIsYoutubePlay}
-                setYoutubeRef={setYoutubeRef}
-                togglePlay={togglePlay}/>
-            <div className="info-wrapper">
-                <span className="event-location">{location.name}</span>
-                <p className="event-title">
-                    {title}
-                </p>
-                <button>
-                    <LottieTogglePlay onClick={togglePlay}/>
-                </button>
-            </div>
+  if (!event) return <div>Loading</div>;
+  const { title, youtubeVideoId, description, location, artists } = event;
+  return (
+    <div className="EventDetail">
+      <div className="movie-bg"/>
+      <FixedHeader/>
+      <FeaturedYoutube
+        youtubeVideoId={youtubeVideoId}
+        isYoutubePlay={isYoutubePlay}
+        setIsYoutubePlay={setIsYoutubePlay}
+        setYoutubeRef={setYoutubeRef}
+        togglePlay={togglePlay}/>
+      <div className="info-wrapper">
+        <span className="event-location">{location.name}</span>
+        <p className="event-title">
+          {title}
+        </p>
+        <button>
+          <LottieTogglePlay onClick={togglePlay}/>
+        </button>
+      </div>
 
 
-            <div className="featured-event-info">
-                <FeaturedEventInfo
-                    featuredEvent={event}
-                    ctaFunc={() => window.open(location.mapLink)}
-                    ctaLabel="공연장소 위치 검색"/>
-            </div>
+      <div className="featured-event-info">
+        <FeaturedEventInfo
+          featuredEvent={event}
+          ctaFunc={() => window.open(location.mapLink)}
+          ctaLabel="공연장소 위치 검색"/>
+      </div>
 
-            <div className="cta-button">
-                <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>
-            </div>
+      <div className="cta-button">
+        <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>
+      </div>
 
-            <p className="description">{description}</p>
-            {artists.map(({ artistBio, instaId, name, img, programType }) => (
-                <DetailInfo
-                    key={name}
-                    img={img}
-                    title={name}
-                    programType={programType}
-                    description={artistBio}
-                    ctaLabel="아티스트 인스타그램"
-                    ctaFunc={() => openInsta(instaId)}
-                />
-            ))}
+      <p className="description">{description}</p>
+      {artists.map(({ artistBio, instaId, name, img, programType }) => (
+        <DetailInfo
+          key={name}
+          img={img}
+          title={name}
+          programType={programType}
+          description={artistBio}
+          ctaLabel="아티스트 인스타그램"
+          ctaFunc={() => openInsta(instaId)}
+        />
+      ))}
 
-            <div className="location-info">
-                <DetailInfo
-                    img={location.img}
-                    title={location.name}
-                    programType={location.programType}
-                    description={location.description}
-                    ctaLabel="공연장소 인스타그램"
-                    ctaFunc={() => openInsta(location.instaId)}
-                />
-            </div>
-        </div>
-    );
+      <div className="location-info">
+        <DetailInfo
+          img={location.img}
+          title={location.name}
+          programType={location.programType}
+          description={location.description}
+          ctaLabel="공연장소 인스타그램"
+          ctaFunc={() => openInsta(location.instaId)}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default withRouter(withFirebase(EventDetail));

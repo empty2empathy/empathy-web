@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Firebase, { FirebaseContext } from 'redbricks-firebase';
+import { routes } from './pages/routes';
+import { renderRoutes } from "react-router-config";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-    <FirebaseContext.Provider value={new Firebase()}>
-        <App/>
-    </FirebaseContext.Provider>,
-    document.getElementById('root')
+  <FirebaseContext.Provider value={new Firebase()}>
+    <BrowserRouter>
+      {renderRoutes(routes)}
+    </BrowserRouter>
+  </FirebaseContext.Provider>,
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

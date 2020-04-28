@@ -19,20 +19,20 @@ export const routes = [
       {
         path: "/add-data",
         component: AddData,
-        routes: [
-          {
-            path: "/add-data/artist",
-            component: AddData
-          },
-          {
-            path: "/add-data/location",
-            component: AddData
-          },
-          {
-            path: "/add-data/event",
-            component: AddData
-          }
-        ]
+        // routes: [
+        //   {
+        //     path: "/add-data/artist",
+        //     component: AddData
+        //   },
+        //   {
+        //     path: "/add-data/location",
+        //     component: AddData
+        //   },
+        //   {
+        //     path: "/add-data/event",
+        //     component: AddData
+        //   }
+        // ]
       }
     ]
   }
