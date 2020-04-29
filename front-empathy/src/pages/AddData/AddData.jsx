@@ -32,6 +32,8 @@ const AddData = ({ firebase }) => {
     useEffect(() => {
         firebase.loadArtists();
         firebase.loadLocations();
+        firebase.loadLocationWithPath('location/boogiewoogieseoul');
+        firebase.loadEventsByLocation('soap_seoul');
     }, []);
 
     const handleArtistSubmit = (event) => {

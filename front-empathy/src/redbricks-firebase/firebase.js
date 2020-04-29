@@ -47,6 +47,20 @@ class Firebase {
     })
   };
 
+  loadEventsByLocation(locationDocId) {
+    const locationRef = this.db.collection('location').doc(locationDocId);
+    return this.db.collection('event').where('location', '==', locationRef)
+      .get()
+      .then(querySnapshot => {
+        const events = [];
+        querySnapshot.forEach(doc => {
+          events.push({ id: doc.id, ...doc.data() });
+        });
+        return events;
+      })
+      .catch(error => console.log("Error getting documents: ", error))
+  };
+
   loadEvent(eventId) {
     return this.db.collection('event').doc(eventId).get().then(doc => {
       if (doc.exists) {
@@ -126,7 +140,9 @@ class Firebase {
       .get()
       .then((querySnapshot) => {
         const locations = [];
-        querySnapshot.forEach(doc => locations.push(doc.data()));
+        querySnapshot.forEach(doc => {
+          return locations.push(doc.data())
+        });
         return locations;
       })
       .catch(function (error) {
