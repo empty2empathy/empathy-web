@@ -1,10 +1,10 @@
 import React from 'react';
 import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
 
-const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [artistInfo, setArtistInfo] = React.useState({});
+const AddLocationModal = ({ isModalOpen, setIsModalOpen }) => {
+  const [locationInfo, setLocationInfo] = React.useState({});
   const handleChange = ({ target: { value, name } }) => {
-    setArtistInfo({ ...artistInfo, [name]: value });
+    setLocationInfo({ ...locationInfo, [name]: value });
   };
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -12,7 +12,7 @@ const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <AddBaseModal
-      title={'Artist Data'}
+      title={'Location Data'}
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}>
       <form onSubmit={handleSubmit}>
@@ -37,8 +37,12 @@ const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
           <input name='programType' onChange={handleChange}/>
         </label>
         <label>
-          Biography
-          <textarea name='biography' onChange={handleChange}/>
+          Naver Map Link
+          <input name='mapLink' onChange={handleChange}/>
+        </label>
+        <label>
+          Description
+          <textarea name='description' onChange={handleChange}/>
         </label>
         <button>Cancel</button>
         <button>+Add</button>
@@ -47,4 +51,4 @@ const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
   )
 };
 
-export default AddArtistModal;
+export default AddLocationModal;

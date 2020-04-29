@@ -17,10 +17,15 @@ const AddArtist = ({ firebase }) => {
     fetchData();
   }, [firebase]);
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   return (
     <>
       <div>
-        <AddArtistModal/>
+        <button onClick={() => setIsModalOpen(true)}>+Add</button>
+        <AddArtistModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}/>
       </div>
       {isLoading ? (
         <h1>Loading...</h1>
