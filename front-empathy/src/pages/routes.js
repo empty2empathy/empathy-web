@@ -3,6 +3,7 @@ import EventDetail from "pages/EventDetail/EventDetail";
 import AddData from "pages/AddData/AddData";
 import App from 'App';
 import AddArtist from "./AddData/AddArtist/AddArtist";
+import AddEvent from "./AddData/AddEvent/AddEvent";
 
 export const routes = [
   {
@@ -25,14 +26,14 @@ export const routes = [
             path: "/add-data/artist",
             component: AddArtist
           },
-          //   {
-          //     path: "/add-data/location",
-          //     component: AddData
-          //   },
-          //   {
-          //     path: "/add-data/event",
-          //     component: AddData
-          //   }
+            {
+              path: "/add-data/event",
+              component: AddEvent
+            }
+            // {
+          //   path: "/add-data/location",
+          //   component: AddData
+          // },
         ]
       }
     ]
