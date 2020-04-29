@@ -1,31 +1,12 @@
 import React from 'react';
-import Main from "./pages/Main/Main";
-import EventDetail from "./pages/EventDetail/EventDetail";
-import LocationDetail from "./pages/LocationDetail/LocationDetail";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import AddData from "./pages/AddData/AddData";
+import { renderRoutes } from "react-router-config";
 
-function App() {
-    return (
-        <>
-            <Router>
-                <Switch>
-                    <Route exact path={"/"}>
-                        <Main/>
-                    </Route>
-                    <Route path={"/event/:id"}>
-                        <EventDetail/>
-                    </Route>
-                    <Route path={"/location/:id"}>
-                        <LocationDetail/>
-                    </Route>
-                    <Route path={"/add-data"}>
-                        <AddData/>
-                    </Route>
-                </Switch>
-            </Router>
-        </>
-    );
+function App({ route }) {
+  return (
+    <>
+      {renderRoutes(route.routes)}
+    </>
+  );
 }
 
 export default App;

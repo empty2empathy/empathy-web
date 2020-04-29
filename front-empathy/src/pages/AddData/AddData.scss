@@ -1,7 +1,16 @@
 .AddData {
   background: white;
+
   form {
     border: 1px solid black;
     margin: 0 0 10px;
+  }
+}
+
+.navTabContainer {
+  color: #fcfcfc;
+
+  > .navTab {
+    padding: 10px;
   }
 }
