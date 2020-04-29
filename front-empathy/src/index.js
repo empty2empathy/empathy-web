@@ -7,6 +7,7 @@ import { routes } from './pages/routes';
 import { renderRoutes } from "react-router-config";
 import { BrowserRouter } from "react-router-dom";
 
+
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <BrowserRouter>
