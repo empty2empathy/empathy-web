@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddData.scss';
 import { withFirebase } from "redbricks-firebase";
 import { renderRoutes } from "react-router-config";
@@ -31,26 +31,33 @@ const AddData = ({ firebase, route }) => {
   const [eventTitle, setEventTitle] = useState('');
   const [eventYoutubeVideoId, setEventYoutubeVideoId] = useState('');
 
-  const handleArtistSubmit = (event) => {
-    firebase.setArtist({
-      artistDocId,
-      artistBio,
-      artistImg,
-      artistInstaId,
-      artistName,
-      artistProgramType: artistProgramType.split(',')
-    }).then(isSuccess => {
-      if (isSuccess) {
-        setArtistDocId('');
-        setArtistBio('');
-        setArtistImg('');
-        setArtistInstaId('');
-        setArtistName('');
-        setArtistProgramType('');
-      }
-    });
-    event.preventDefault();
-  };
+    useEffect(() => {
+        firebase.loadArtists();
+        firebase.loadLocations();
+        firebase.loadLocationWithPath('location/boogiewoogieseoul');
+        firebase.loadEventsByLocation('soap_seoul');
+    }, []);
+
+    const handleArtistSubmit = (event) => {
+        firebase.setArtist({
+            artistDocId,
+            artistBio,
+            artistImg,
+            artistInstaId,
+            artistName,
+            artistProgramType: artistProgramType.split(',')
+        }).then(isSuccess => {
+            if (isSuccess) {
+                setArtistDocId('');
+                setArtistBio('');
+                setArtistImg('');
+                setArtistInstaId('');
+                setArtistName('');
+                setArtistProgramType('');
+            }
+        });
+        event.preventDefault();
+    };
 
   const handleLocationSubmit = (event) => {
     firebase.setLocation({
