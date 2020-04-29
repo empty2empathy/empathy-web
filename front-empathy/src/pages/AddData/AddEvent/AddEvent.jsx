@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "../../../redbricks-firebase";
 
-const AddEvent = ({firebase}) => {
+const AddEvent = ({ firebase }) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsloading(true);
-      const event = await firebase.loadEvents();
-      setEvents(event);
+      const events = await firebase.loadEvents();
+      setEvents(events);
       setIsloading(false);
     }
     fetchData();
@@ -23,12 +23,12 @@ const AddEvent = ({firebase}) => {
       ) : (
         <table>
           <tbody>
-          {events.map(({ id, name }, i) => {
+          {events.map(({ id, title }, i) => {
             return (
               <tr key={id}>
                 <td>{i + 1}</td>
+                <td>{title}</td>
                 <td>{id}</td>
-                <td>{name}</td>
                 <td>X</td>
               </tr>
             )
