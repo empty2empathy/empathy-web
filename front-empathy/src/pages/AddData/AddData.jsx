@@ -31,33 +31,33 @@ const AddData = ({ firebase, route }) => {
   const [eventTitle, setEventTitle] = useState('');
   const [eventYoutubeVideoId, setEventYoutubeVideoId] = useState('');
 
-    useEffect(() => {
-        firebase.loadArtists();
-        firebase.loadLocations();
-        firebase.loadLocationWithPath('location/boogiewoogieseoul');
-        firebase.loadEventsByLocation('soap_seoul');
-    }, []);
+  useEffect(() => {
+    firebase.loadArtists();
+    firebase.loadLocations();
+    firebase.loadLocationWithPath('location/boogiewoogieseoul');
+    firebase.loadEventsByLocation('soap_seoul');
+  }, [firebase]);
 
-    const handleArtistSubmit = (event) => {
-        firebase.setArtist({
-            artistDocId,
-            artistBio,
-            artistImg,
-            artistInstaId,
-            artistName,
-            artistProgramType: artistProgramType.split(',')
-        }).then(isSuccess => {
-            if (isSuccess) {
-                setArtistDocId('');
-                setArtistBio('');
-                setArtistImg('');
-                setArtistInstaId('');
-                setArtistName('');
-                setArtistProgramType('');
-            }
-        });
-        event.preventDefault();
-    };
+  const handleArtistSubmit = (event) => {
+    firebase.setArtist({
+      artistDocId,
+      artistBio,
+      artistImg,
+      artistInstaId,
+      artistName,
+      artistProgramType: artistProgramType.split(',')
+    }).then(isSuccess => {
+      if (isSuccess) {
+        setArtistDocId('');
+        setArtistBio('');
+        setArtistImg('');
+        setArtistInstaId('');
+        setArtistName('');
+        setArtistProgramType('');
+      }
+    });
+    event.preventDefault();
+  };
 
   const handleLocationSubmit = (event) => {
     firebase.setLocation({

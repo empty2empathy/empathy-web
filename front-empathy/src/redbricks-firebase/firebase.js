@@ -89,7 +89,7 @@ class Firebase {
       .get()
       .then((querySnapshot) => {
         const artists = [];
-        querySnapshot.forEach(doc => artists.push(doc.data()));
+        querySnapshot.forEach(doc => artists.push({ id: doc.id, ...doc.data() }));
         return artists;
       })
       .catch(function (error) {

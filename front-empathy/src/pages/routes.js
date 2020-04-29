@@ -2,7 +2,7 @@ import Main from "pages/Main/Main";
 import EventDetail from "pages/EventDetail/EventDetail";
 import AddData from "pages/AddData/AddData";
 import App from 'App';
-import Artist from "./AddData/Artist/Artist";
+import AddArtist from "./AddData/AddArtist/AddArtist";
 
 export const routes = [
   {
@@ -23,7 +23,7 @@ export const routes = [
         routes: [
           {
             path: "/add-data/artist",
-            component: Artist
+            component: AddArtist
           },
           //   {
           //     path: "/add-data/location",
