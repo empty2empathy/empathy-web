@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withFirebase } from "redbricks-firebase";
+import AddArtistModal from 'pages/AddData/_components/AddArtistModal/AddArtistModal'
 import './AddArtist.scss';
 
 const AddArtist = ({ firebase }) => {
@@ -16,9 +17,11 @@ const AddArtist = ({ firebase }) => {
     fetchData();
   }, [firebase]);
 
-
   return (
     <>
+      <div>
+        <AddArtistModal/>
+      </div>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
@@ -39,6 +42,6 @@ const AddArtist = ({ firebase }) => {
       )}
     </>
   );
-}
+};
 
 export default withFirebase(AddArtist);
