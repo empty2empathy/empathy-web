@@ -141,7 +141,7 @@ class Firebase {
       .then((querySnapshot) => {
         const locations = [];
         querySnapshot.forEach(doc => {
-          return locations.push(doc.data())
+          return locations.push({ id: doc.id, ...doc.data() })
         });
         return locations;
       })
