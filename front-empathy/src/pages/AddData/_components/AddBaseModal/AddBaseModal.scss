@@ -40,7 +40,24 @@
     padding: 16px 24px;
     box-shadow: inset 0px 1px 0px 0px #ededed;
 
-    button {
+    .cancel-btn {
+      // TODO: 공통코드 분리하기
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      height: 35px;
+      padding: 8px 16px 8px 16px;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+
+      background: none;
+      color: #999999;
+      margin: 0 16px 0 0;
+    }
+
+    .add-btn {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,15 +66,7 @@
       border: none;
       font-size: 16px;
       font-weight: 500;
-    }
 
-    .cancel-btn {
-      background: none;
-      color: #999999;
-      margin: 0 16px 0 0;
-    }
-
-    .add-btn {
       background: #2d2c2d;
       color: #fcfcfc;
     }

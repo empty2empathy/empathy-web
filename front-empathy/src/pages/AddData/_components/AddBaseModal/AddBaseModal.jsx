@@ -25,8 +25,7 @@ const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen, handleSubm
 
   return (
     <Modal
-      // isOpen={isModalOpen}
-      isOpen={true}
+      isOpen={isModalOpen}
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Add Modal">
@@ -47,7 +46,7 @@ const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen, handleSubm
           {children}
         </section>
         <div className='bottom'>
-          <button className='cancel-btn'>Cancel</button>
+          <div onClick={closeModal} className='cancel-btn'>Cancel</div>
           <button className='add-btn'>+Add</button>
         </div>
       </form>

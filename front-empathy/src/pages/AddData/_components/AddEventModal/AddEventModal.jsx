@@ -1,6 +1,9 @@
 import React from 'react';
 import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
 
+import InputText from "../InputText/InputText";
+import InputTextArea from "../InputTextArea/InputTextArea";
+
 const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
   const [eventInfo, setEventInfo] = React.useState({
     title: '', locationId: '', youtubeVideoId: '',
@@ -24,36 +27,22 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
     <AddBaseModal
       title={'Event Data'}
       isModalOpen={isModalOpen}
-      setIsModalOpen={setIsModalOpen}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title
-          <input name='title' onChange={handleChange}/>
-        </label>
-        <label>
-          Location ID
-          <input name='locationId' onChange={handleChange}/>
-        </label>
-        <label>
-          YouTube Video ID
-          <input name='youtubeVideoId' onChange={handleChange}/>
-        </label>
+      setIsModalOpen={setIsModalOpen}
+      handleSubmit={handleSubmit}>
+      <div className='AddEventModal'>
+        <InputText handleChange={handleChange} labelName={'Title'} inputName={'title'}/>
+        <InputText handleChange={handleChange} labelName={'Location ID'} inputName={'locationId'}
+                   subText={'ex) location/evanslounge'}/>
+        <InputText handleChange={handleChange} labelName={'YouTube Video ID'} inputName={'youtubeVideoId'}/>
         <label>
           Event Date
           <input type='date' name='start' onChange={handleDateChange}/>
           <input type='date' name='end' onChange={handleDateChange}/>
         </label>
-        <label>
-          Artist ID
-          <input name='artistId' onChange={handleChange}/>
-        </label>
-        <label>
-          Description
-          <textarea name='description' onChange={handleChange}/>
-        </label>
-        <button>Cancel</button>
-        <button>+Add</button>
-      </form>
+        <InputText handleChange={handleChange} labelName={'Artist ID'} inputName={'artistId'}
+                   subText={'쉼표(,)로 나누어서 넣어야 한다.'}/>
+        <InputTextArea handleChange={handleChange} labelName={'Description'} inputName={'description'}/>
+      </div>
     </AddBaseModal>
   )
 };

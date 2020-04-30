@@ -1,5 +1,8 @@
 import React from 'react';
 import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
+import './AddLocationModal.scss';
+import InputText from "../InputText/InputText";
+import InputTextArea from "../InputTextArea/InputTextArea";
 
 const AddLocationModal = ({ isModalOpen, setIsModalOpen }) => {
   const [locationInfo, setLocationInfo] = React.useState({});
@@ -14,39 +17,18 @@ const AddLocationModal = ({ isModalOpen, setIsModalOpen }) => {
     <AddBaseModal
       title={'Location Data'}
       isModalOpen={isModalOpen}
-      setIsModalOpen={setIsModalOpen}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          ID
-          <input name='id' onChange={handleChange}/>
-        </label>
-        <label>
-          Name
-          <input name='name' onChange={handleChange}/>
-        </label>
-        <label>
-          Image Url
-          <input name='imgUrl' onChange={handleChange}/>
-        </label>
-        <label>
-          Instagram ID
-          <input name='instaId' onChange={handleChange}/>
-        </label>
-        <label>
-          Program Type
-          <input name='programType' onChange={handleChange}/>
-        </label>
-        <label>
-          Naver Map Link
-          <input name='mapLink' onChange={handleChange}/>
-        </label>
-        <label>
-          Description
-          <textarea name='description' onChange={handleChange}/>
-        </label>
-        <button>Cancel</button>
-        <button>+Add</button>
-      </form>
+      setIsModalOpen={setIsModalOpen}
+      handleSubmit={handleSubmit}>
+      <div className='AddLocationModal'>
+        <InputText handleChange={handleChange} labelName={'ID'} inputName={'id'}
+                   subText={'고유한 장소의 id이여야 한다.(ex. club_ff)'}/>
+        <InputText handleChange={handleChange} labelName={'Name'} inputName={'name'}/>
+        <InputText handleChange={handleChange} labelName={'Image Url'} inputName={'imgUrl'}/>
+        <InputText handleChange={handleChange} labelName={'Instagram ID'} inputName={'instaId'}/>
+        <InputText handleChange={handleChange} labelName={'Program Type'} inputName={'programType'}/>
+        <InputText handleChange={handleChange} labelName={'Naver Map Link'} inputName={'mapLink'}/>
+        <InputTextArea handleChange={handleChange} labelName={'Description'} inputName={'description'}/>
+      </div>
     </AddBaseModal>
   )
 };
