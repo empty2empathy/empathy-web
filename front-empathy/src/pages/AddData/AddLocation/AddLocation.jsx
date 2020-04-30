@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "redbricks-firebase";
+import DataList from "../_components/DataList/DataList";
 
 const AddLocation = ({ firebase }) => {
   const [locations, setLocations] = useState([]);
@@ -20,20 +21,11 @@ const AddLocation = ({ firebase }) => {
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <table>
-          <tbody>
-          {locations.map(({ id, name }, i) => {
-            return (
-              <tr key={id}>
-                <td>{i + 1}</td>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>X</td>
-              </tr>
-            )
-          })}
-          </tbody>
-        </table>
+        <>
+          {locations.map(({ id, name }, i) =>
+            <DataList id={id} name={name} i={i}/>
+          )}
+        </>
       )}
     </>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withFirebase } from "redbricks-firebase";
 import AddArtistModal from 'pages/AddData/_components/AddArtistModal/AddArtistModal'
 import './AddArtist.scss';
+import DataList from "../_components/DataList/DataList";
 
 const AddArtist = ({ firebase }) => {
   const [artists, setArtists] = useState([]);
@@ -25,20 +26,11 @@ const AddArtist = ({ firebase }) => {
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <table>
-          <tbody>
-          {artists.map(({ id, name }, i) => {
-            return (
-              <tr key={id}>
-                <td>{i + 1}</td>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>X</td>
-              </tr>
-            )
-          })}
-          </tbody>
-        </table>
+        <>
+          {artists.map(({ id, name }, i) =>
+            <DataList id={id} name={name} i={i}/>
+          )}
+        </>
       )}
     </>
   );
