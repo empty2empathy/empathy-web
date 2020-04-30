@@ -1,10 +1,12 @@
 import React from "react";
-export default ({ width = 12, height = 12, color = "white", style }) => (
+
+export default ({ width = 12, height = 12, color = "white", style, onClick }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}
     height={height}
     style={{ ...style }}
+    onClick={onClick}
   >
     <path
       d="M 18 6 L 6 18 M 6 6 L 18 18"
