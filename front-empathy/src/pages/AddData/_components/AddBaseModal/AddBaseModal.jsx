@@ -18,7 +18,7 @@ const customStyles = {
   }
 };
 
-const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen }) => {
+const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen, handleSubmit }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -30,7 +30,7 @@ const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen }) => {
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Add Modal">
-      <div className='AddBaseModal'>
+      <form className='AddBaseModal' onSubmit={handleSubmit}>
         <div className='header'>
           <h1 className='title'>{title}</h1>
           <CloseIcon width={16} height={16} color={'#999999'}
@@ -43,12 +43,14 @@ const AddBaseModal = ({ title, children, isModalOpen, setIsModalOpen }) => {
                      }}
                      onClick={closeModal}/>
         </div>
-        {children}
+        <section className='children'>
+          {children}
+        </section>
         <div className='bottom'>
           <button className='cancel-btn'>Cancel</button>
           <button className='add-btn'>+Add</button>
         </div>
-      </div>
+      </form>
     </Modal>
   )
 };

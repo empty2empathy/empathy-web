@@ -1,6 +1,8 @@
 .AddBaseModal {
-  max-width: 500px;
-  //background: red;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 450px;
   color: #424042;
 
   .header {
@@ -24,6 +26,12 @@
       background: #f5f5f5;
       border-radius: 18px;
     }
+  }
+
+  .children {
+    flex: 1;
+    overflow: scroll;
+    padding: 24px;
   }
 
   .bottom {
