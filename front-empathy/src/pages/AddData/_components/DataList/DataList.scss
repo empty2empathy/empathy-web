@@ -1,3 +1,46 @@
-span {
-  padding: 0 10px;
+.dataContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 0 0 #1a1a1a;
+  color: #424042;
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 500;
+
+
+  > .dataIdx {
+    flex: 0.2;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  > .dataId {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  > .dataName {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  > .button {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
 }

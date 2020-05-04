@@ -24,13 +24,13 @@ const AddArtist = ({ firebase }) => {
         <AddArtistModal/>
       </div>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <h1 className="loading">Loading...</h1>
       ) : (
-        <>
+        <div className="artistListContainer">
           {artists.map(({ id, name }, i) =>
-            <DataList id={id} name={name} i={i}/>
+            <DataList key={id} name={name} i={i}/>
           )}
-        </>
+        </div>
       )}
     </>
   );
