@@ -32,8 +32,8 @@ const AddLocation = ({ firebase }) => {
         <Loading/>
       ) : (
         <ListWrapper>
-          {locations.map(({ id, name }, i) =>
-            <DataList key={id} name={name} i={i}/>
+          {locations.map(({ id, name }, index) =>
+            <DataList key={id} id={id} name={name} index={index}/>
           )}
         </ListWrapper>
       )}

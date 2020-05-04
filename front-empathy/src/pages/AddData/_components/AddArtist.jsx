@@ -33,8 +33,8 @@ const AddArtist = ({ firebase }) => {
         <Loading/>
       ) : (
         <ListWrapper>
-          {artists.map(({ id, name }, i) =>
-            <DataList key={id} name={name} i={i}/>
+          {artists.map(({ id, name }, index) =>
+            <DataList key={id} id={id} name={name} index={index}/>
           )}
         </ListWrapper>
       )}
