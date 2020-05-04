@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './AddData.scss';
 import { withFirebase } from "redbricks-firebase";
 import { renderRoutes } from "react-router-config";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AddData = ({ firebase, route }) => {
   // artist state
@@ -107,10 +107,10 @@ const AddData = ({ firebase, route }) => {
 
   return (
     <div>
-      <div className={'navTabContainer'}>
-        <Link className={'navTab'} to="/add-data/artist">artist</Link>
-        <Link className={'navTab'} to="/add-data/location">location</Link>
-        <Link className={'navTab'} to="/add-data/event">event</Link>
+      <div className="navTabContainer">
+        <NavLink className="navTab" activeClassName="active" to="/add-data/artist">artist</NavLink>
+        <NavLink className="navTab" activeClassName="active" to="/add-data/location">location</NavLink>
+        <NavLink className="navTab" activeClassName="active" to="/add-data/event">event</NavLink>
       </div>
       {renderRoutes(route.routes)}
     </div>

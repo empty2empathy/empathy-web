@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "redbricks-firebase";
 import AddLocationModal from 'pages/AddData/_components/AddLocationModal/AddLocationModal';
+import DataList from "../_components/DataList/DataList";
+import './AddLocation.scss';
 
 const AddLocation = ({ firebase }) => {
   const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +19,6 @@ const AddLocation = ({ firebase }) => {
     fetchData();
   }, [firebase]);
 
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-
   return (
     <>
       <div>
@@ -27,22 +28,13 @@ const AddLocation = ({ firebase }) => {
           setIsModalOpen={setIsModalOpen}/>
       </div>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <h1 className="loading">Loading...</h1>
       ) : (
-        <table>
-          <tbody>
-          {locations.map(({ id, name }, i) => {
-            return (
-              <tr key={id}>
-                <td>{i + 1}</td>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>X</td>
-              </tr>
-            )
-          })}
-          </tbody>
-        </table>
+        <div className="locationListContainer">
+          {locations.map(({ id, name }, i) =>
+            <DataList key={id} name={name} i={i}/>
+          )}
+        </div>
       )}
     </>
   );

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "../../../redbricks-firebase";
+import DataList from "../_components/DataList/DataList";
 import AddEventModal from 'pages/AddData/_components/AddEventModal/AddEventModal';
+import './AddEvent.scss';
 
 const AddEvent = ({ firebase }) => {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsloading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +19,6 @@ const AddEvent = ({ firebase }) => {
     fetchData();
   }, [firebase]);
 
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-
   return (
     <>
       <div>
@@ -27,22 +28,13 @@ const AddEvent = ({ firebase }) => {
           setIsModalOpen={setIsModalOpen}/>
       </div>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <h1 className="loading">Loading...</h1>
       ) : (
-        <table>
-          <tbody>
-          {events.map(({ id, title }, i) => {
-            return (
-              <tr key={id}>
-                <td>{i + 1}</td>
-                <td>{title}</td>
-                <td>{id}</td>
-                <td>X</td>
-              </tr>
-            )
-          })}
-          </tbody>
-        </table>
+        <div className="eventListContainer">
+          {events.map(({ id, title }, i) =>
+            <DataList key={id} name={title} i={i}/>
+          )}
+        </div>
       )}
     </>
   );
