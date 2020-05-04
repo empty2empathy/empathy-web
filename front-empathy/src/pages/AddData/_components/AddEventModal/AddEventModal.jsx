@@ -22,7 +22,6 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
     setEventInfo({ ...eventInfo, [name]: value });
   };
   const handleDateChange = ({ target: { value, name } }) => {
-    console.log(value, name)
     setEventInfo({
       ...eventInfo, eventDate: {
         ...eventInfo.eventDate, [name]: value
