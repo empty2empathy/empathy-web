@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "../../../redbricks-firebase";
-import DataList from "../_components/DataList/DataList";
+import DataList from "./DataList/DataList";
+import Loading from "./Loading";
 import AddEventModal from 'pages/AddData/_components/AddEventModal/AddEventModal';
-import './AddEvent.scss';
+import { AddBtn, AddBtnWrapper, ListWrapper } from "./_StyledComponents";
 
 const AddEvent = ({ firebase }) => {
   const [events, setEvents] = useState([]);
@@ -21,20 +22,20 @@ const AddEvent = ({ firebase }) => {
 
   return (
     <>
-      <div>
-        <button onClick={() => setIsModalOpen(true)}>+Add</button>
+      <AddBtnWrapper>
+        <AddBtn onClick={() => setIsModalOpen(true)}>+Add</AddBtn>
         <AddEventModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}/>
-      </div>
+      </AddBtnWrapper>
       {isLoading ? (
-        <h1 className="loading">Loading...</h1>
+        <Loading/>
       ) : (
-        <div className="eventListContainer">
+        <ListWrapper>
           {events.map(({ id, title }, i) =>
             <DataList key={id} name={title} i={i}/>
           )}
-        </div>
+        </ListWrapper>
       )}
     </>
   );

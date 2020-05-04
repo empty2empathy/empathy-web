@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { withFirebase } from "redbricks-firebase";
 import AddArtistModal from 'pages/AddData/_components/AddArtistModal/AddArtistModal'
-import './AddArtist.scss';
-import DataList from "../_components/DataList/DataList";
+import DataList from "./DataList/DataList";
+import Loading from "./Loading";
+import { AddBtn, AddBtnWrapper, ListWrapper } from "./_StyledComponents";
 
 const AddArtist = ({ firebase }) => {
   const [artists, setArtists] = useState([]);
@@ -22,20 +23,20 @@ const AddArtist = ({ firebase }) => {
 
   return (
     <>
-      <div>
-        <button onClick={() => setIsModalOpen(true)}>+Add</button>
+      <AddBtnWrapper>
+        <AddBtn onClick={() => setIsModalOpen(true)}>+Add</AddBtn>
         <AddArtistModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}/>
-      </div>
+      </AddBtnWrapper>
       {isLoading ? (
-        <h1 className="loading">Loading...</h1>
+        <Loading/>
       ) : (
-        <div className="artistListContainer">
+        <ListWrapper>
           {artists.map(({ id, name }, i) =>
             <DataList key={id} name={name} i={i}/>
           )}
-        </div>
+        </ListWrapper>
       )}
     </>
   );

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "redbricks-firebase";
 import AddLocationModal from 'pages/AddData/_components/AddLocationModal/AddLocationModal';
-import DataList from "../_components/DataList/DataList";
-import './AddLocation.scss';
+import DataList from "./DataList/DataList";
+import Loading from "./Loading";
+import { AddBtn, AddBtnWrapper, ListWrapper } from "./_StyledComponents";
 
 const AddLocation = ({ firebase }) => {
   const [locations, setLocations] = useState([]);
@@ -21,23 +22,23 @@ const AddLocation = ({ firebase }) => {
 
   return (
     <>
-      <div>
-        <button onClick={() => setIsModalOpen(true)}>+Add</button>
+      <AddBtnWrapper>
+        <AddBtn onClick={() => setIsModalOpen(true)}>+Add</AddBtn>
         <AddLocationModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}/>
-      </div>
+      </AddBtnWrapper>
       {isLoading ? (
-        <h1 className="loading">Loading...</h1>
+        <Loading/>
       ) : (
-        <div className="locationListContainer">
+        <ListWrapper>
           {locations.map(({ id, name }, i) =>
             <DataList key={id} name={name} i={i}/>
           )}
-        </div>
+        </ListWrapper>
       )}
     </>
   );
-}
+};
 
 export default withFirebase(AddLocation);
