@@ -108,9 +108,9 @@ const AddData = ({ firebase, route }) => {
   return (
     <div>
       <div className="navTabContainer">
-        <NavLink className="navTab" activerClassName="active" to="/add-data/artist">artist</NavLink>
-        <NavLink className="navTab" activerClassName="active" to="/add-data/location">location</NavLink>
-        <NavLink className="navTab" activerClassName="active" to="/add-data/event">event</NavLink>
+        <NavLink className="navTab" activeClassName="active" to="/add-data/artist">artist</NavLink>
+        <NavLink className="navTab" activeClassName="active" to="/add-data/location">location</NavLink>
+        <NavLink className="navTab" activeClassName="active" to="/add-data/event">event</NavLink>
       </div>
       {renderRoutes(route.routes)}
     </div>
