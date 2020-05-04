@@ -3,6 +3,15 @@ import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
 
 import InputText from "../InputText/InputText";
 import InputTextArea from "../InputTextArea/InputTextArea";
+import DateInputs from '../DateInputs';
+import styled from 'styled-components';
+
+const ModalWrapper = styled.div`
+  width: 60%;
+  > div {
+    margin: 0 0 24px;
+  }
+`;
 
 const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
   const [eventInfo, setEventInfo] = React.useState({
@@ -13,6 +22,7 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
     setEventInfo({ ...eventInfo, [name]: value });
   };
   const handleDateChange = ({ target: { value, name } }) => {
+    console.log(value, name)
     setEventInfo({
       ...eventInfo, eventDate: {
         ...eventInfo.eventDate, [name]: value
@@ -29,20 +39,16 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}
       handleSubmit={handleSubmit}>
-      <div className='AddEventModal'>
-        <InputText handleChange={handleChange} labelName={'Title'} inputName={'title'}/>
-        <InputText handleChange={handleChange} labelName={'Location ID'} inputName={'locationId'}
-                   subText={'ex) location/evanslounge'}/>
-        <InputText handleChange={handleChange} labelName={'YouTube Video ID'} inputName={'youtubeVideoId'}/>
-        <label>
-          Event Date
-          <input type='date' name='start' onChange={handleDateChange}/>
-          <input type='date' name='end' onChange={handleDateChange}/>
-        </label>
-        <InputText handleChange={handleChange} labelName={'Artist ID'} inputName={'artistId'}
+      <ModalWrapper>
+        <InputText labelName={'Title'} inputName={'title'} handleChange={handleChange}/>
+        <InputText labelName={'Location ID'} inputName={'locationId'}
+                   subText={'ex) location/evanslounge'} handleChange={handleChange}/>
+        <InputText labelName={'YouTube Video ID'} inputName={'youtubeVideoId'} handleChange={handleChange}/>
+        <DateInputs labelName={'Event Date'} inputNames={['start', 'end']} handleDateChange={handleDateChange}/>
+        <InputText labelName={'Artist ID'} inputName={'artistId'} handleChange={handleChange}
                    subText={'쉼표(,)로 나누어서 넣어야 한다.'}/>
-        <InputTextArea handleChange={handleChange} labelName={'Description'} inputName={'description'}/>
-      </div>
+        <InputTextArea labelName={'Description'} inputName={'description'} handleChange={handleChange}/>
+      </ModalWrapper>
     </AddBaseModal>
   )
 };
