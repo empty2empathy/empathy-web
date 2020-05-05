@@ -1,0 +1,11 @@
+.AddLocationModal {
+  width: 60%;
+
+  > div { // inputText를 감싸고 있는 div 태그
+    margin: 0 0 24px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

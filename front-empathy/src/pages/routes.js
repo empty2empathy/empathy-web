@@ -2,9 +2,9 @@ import Main from "pages/Main/Main";
 import EventDetail from "pages/EventDetail/EventDetail";
 import AddData from "pages/AddData/AddData";
 import App from 'App';
-import AddArtist from "./AddData/AddArtist/AddArtist";
-import AddEvent from "./AddData/AddEvent/AddEvent";
-import AddLocation from "./AddData/AddLocation/AddLocation";
+import AddArtist from "./AddData/_components/AddArtist";
+import AddEvent from "./AddData/_components/AddEvent";
+import AddLocation from "./AddData/_components/AddLocation";
 
 export const routes = [
   {

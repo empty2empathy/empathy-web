@@ -1,37 +1,36 @@
 import React from 'react';
 import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
-import './AddArtistModal.scss';
+import './AddLocationModal.scss';
 import InputText from "../InputText/InputText";
 import InputTextArea from "../InputTextArea/InputTextArea";
 
-const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [artistInfo, setArtistInfo] = React.useState({});
+const AddLocationModal = ({ isModalOpen, setIsModalOpen }) => {
+  const [locationInfo, setLocationInfo] = React.useState({});
   const handleChange = ({ target: { value, name } }) => {
-    setArtistInfo({ ...artistInfo, [name]: value });
+    setLocationInfo({ ...locationInfo, [name]: value });
   };
   const handleSubmit = ev => {
-    alert('submit!')
     ev.preventDefault();
-    setArtistInfo({});
   };
 
   return (
     <AddBaseModal
-      title={'Artist Data'}
+      title={'Location Data'}
       isModalOpen={isModalOpen}
       setIsModalOpen={setIsModalOpen}
       handleSubmit={handleSubmit}>
-      <div className='AddArtistModal'>
+      <div className='AddLocationModal'>
         <InputText handleChange={handleChange} labelName={'ID'} inputName={'id'}
-                   subText={'고유한 아티스트의 id이여야 한다.(ex. abel_ko)'}/>
+                   subText={'고유한 장소의 id이여야 한다.(ex. club_ff)'}/>
         <InputText handleChange={handleChange} labelName={'Name'} inputName={'name'}/>
         <InputText handleChange={handleChange} labelName={'Image Url'} inputName={'imgUrl'}/>
         <InputText handleChange={handleChange} labelName={'Instagram ID'} inputName={'instaId'}/>
         <InputText handleChange={handleChange} labelName={'Program Type'} inputName={'programType'}/>
-        <InputTextArea handleChange={handleChange} labelName={'Biography'} inputName={'biography'}/>
+        <InputText handleChange={handleChange} labelName={'Naver Map Link'} inputName={'mapLink'}/>
+        <InputTextArea handleChange={handleChange} labelName={'Description'} inputName={'description'}/>
       </div>
     </AddBaseModal>
   )
 };
 
-export default AddArtistModal;
+export default AddLocationModal;
