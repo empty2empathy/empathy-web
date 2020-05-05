@@ -141,22 +141,11 @@ class Firebase {
 
   setLocation(locationData) {
     const {
-      locationDocId,
-      locationDescription,
-      locationImg,
-      locationInstaId,
-      locationMapLink,
-      locationName,
-      locationProgramType
+      id, name, img, instaId, programType, mapLink, description
     } = locationData;
 
-    return this.db.collection('location').doc(locationDocId).set({
-      description: locationDescription,
-      img: locationImg,
-      instaId: locationInstaId,
-      mapLink: locationMapLink,
-      name: locationName,
-      programType: locationProgramType
+    return this.db.collection('location').doc(id).set({
+      name, img, instaId, programType, mapLink, description
     }).then(() => {
       alert('submit success!');
       return true;
