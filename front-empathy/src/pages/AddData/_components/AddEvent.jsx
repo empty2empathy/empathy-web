@@ -5,6 +5,7 @@ import AddEventModal from 'pages/AddData/_components/AddEventModal/AddEventModal
 import { AddBtn, AddBtnWrapper, ListWrapper } from "./_StyledComponents";
 import styled from 'styled-components';
 import XSquare from "../../../assets/svg/XSquare";
+import dayjs from "dayjs";
 
 const EventWrapper = styled.div`
   display: flex;
@@ -28,6 +29,9 @@ const EventWrapper = styled.div`
     &:nth-child(3) {
       flex: 1;
     }
+    &:nth-child(4) {
+      flex: 1;
+    }
     &:last-child {
       width: 42px;
       height: 42px;
@@ -39,18 +43,17 @@ const EventWrapper = styled.div`
   }
 `;
 
-const EventItem = ({ index, title, locationId }) => {
-  return (
-    <EventWrapper>
-      <span>{index + 1}</span>
-      <span>{title}</span>
-      <span>{locationId}</span>
-      <span>
+const EventItem = ({ index, title, locationId, date }) => (
+  <EventWrapper>
+    <span>{index + 1}</span>
+    <span>{title}</span>
+    <span>{locationId}</span>
+    <span>{date}</span>
+    <span>
         <XSquare/>
       </span>
-    </EventWrapper>
-  )
-};
+  </EventWrapper>
+);
 
 const AddEvent = ({ firebase }) => {
   const [events, setEvents] = useState([]);
@@ -79,8 +82,11 @@ const AddEvent = ({ firebase }) => {
         <Loading/>
       ) : (
         <ListWrapper>
-          {events.map(({ id, title, location }, index) =>
-            <EventItem key={id} index={index} title={title} locationId={location.id}/>
+          {events.map(({ id, title, location, date }, index) => {
+              const _d = dayjs(date.start.seconds * 1000);
+              return <EventItem key={id} index={index} title={title} locationId={location.id}
+                                date={`${_d.get('year')}-${_d.get('month') + 1}-${_d.get('date')}`}/>
+            }
           )}
         </ListWrapper>
       )}
