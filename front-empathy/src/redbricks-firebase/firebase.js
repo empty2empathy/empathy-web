@@ -157,34 +157,34 @@ class Firebase {
 
   setEvent(eventData) {
     const {
-      eventArtists,
-      eventTime,
-      eventDescription,
-      eventLocation,
-      eventProgramType,
-      eventTitle,
-      eventYoutubeVideoId,
+      title,
+      locationId,
+      youtubeVideoId,
+      eventDate,
+      artistIds,
+      description,
+      programType
     } = eventData;
 
-    const artistRefs = eventArtists.map(artist => {
+    const artistRefs = artistIds.map(artist => {
       return this.db.collection('artist').doc(artist);
     });
-    const locationRef = this.db.collection('location').doc(eventLocation);
-    const startDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.start));
-    const endDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.end));
+    const locationRef = this.db.collection('location').doc(locationId);
+    const startDate = firebase.firestore.Timestamp.fromDate(new Date(eventDate.start));
+    const endDate = firebase.firestore.Timestamp.fromDate(new Date(eventDate.end));
 
     // .add 메서드는 Auto id를 제너레이트한다.
     return this.db.collection('event').add({
-      artists: artistRefs,
+      title,
+      location: locationRef,
+      youtubeVideoId,
       date: {
         start: startDate,
         end: endDate
       },
-      description: eventDescription,
-      location: locationRef,
-      programType: eventProgramType,
-      title: eventTitle,
-      youtubeVideoId: eventYoutubeVideoId
+      artists: artistRefs,
+      description,
+      programType
     }).then(() => {
       alert('submit success!');
       return true;

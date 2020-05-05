@@ -5,6 +5,7 @@ import InputText from "../InputText/InputText";
 import InputTextArea from "../InputTextArea/InputTextArea";
 import DateInputs from '../DateInputs';
 import styled from 'styled-components';
+import { withFirebase } from "redbricks-firebase";
 
 const ModalWrapper = styled.div`
   width: 60%;
@@ -13,11 +14,14 @@ const ModalWrapper = styled.div`
   }
 `;
 
-const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [eventInfo, setEventInfo] = React.useState({
-    title: '', locationId: '', youtubeVideoId: '',
-    eventDate: { start: '', end: '' }, artistId: '', description: ''
-  });
+const EVENT_INIT_STATE = {
+  title: '', locationId: '', youtubeVideoId: '',
+  eventDate: { start: '', end: '' }, artistIds: '',
+  description: '', programType: ''
+};
+
+const AddEventModal = ({ firebase, isModalOpen, setIsModalOpen }) => {
+  const [eventInfo, setEventInfo] = React.useState(EVENT_INIT_STATE);
   const handleChange = ({ target: { value, name } }) => {
     setEventInfo({ ...eventInfo, [name]: value });
   };
@@ -29,6 +33,21 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
     });
   };
   const handleSubmit = ev => {
+    const {
+      title, locationId, youtubeVideoId,
+      eventDate, artistIds, description, programType
+    } = eventInfo;
+    firebase.setEvent({
+      title, locationId, youtubeVideoId, eventDate,
+      artistIds: artistIds.split(','),
+      description,
+      programType: programType.split(','),
+    }).then(isSuccess => {
+      if (isSuccess) {
+        setEventInfo(EVENT_INIT_STATE);
+        setIsModalOpen(false);
+      }
+    });
     ev.preventDefault();
   };
 
@@ -44,12 +63,13 @@ const AddEventModal = ({ isModalOpen, setIsModalOpen }) => {
                    subText={'ex) location/evanslounge'} handleChange={handleChange}/>
         <InputText labelName={'YouTube Video ID'} inputName={'youtubeVideoId'} handleChange={handleChange}/>
         <DateInputs labelName={'Event Date'} inputNames={['start', 'end']} handleDateChange={handleDateChange}/>
-        <InputText labelName={'Artist ID'} inputName={'artistId'} handleChange={handleChange}
+        <InputText labelName={'Artist IDs'} inputName={'artistIds'} handleChange={handleChange}
                    subText={'쉼표(,)로 나누어서 넣어야 한다.'}/>
+        <InputText labelName={'Program Type'} inputName={'programType'} handleChange={handleChange}/>
         <InputTextArea labelName={'Description'} inputName={'description'} handleChange={handleChange}/>
       </ModalWrapper>
     </AddBaseModal>
   )
 };
 
-export default AddEventModal;
+export default withFirebase(AddEventModal);
