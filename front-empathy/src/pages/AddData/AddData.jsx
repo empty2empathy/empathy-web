@@ -38,27 +38,6 @@ const AddData = ({ firebase, route }) => {
     firebase.loadEventsByLocation('soap_seoul');
   }, [firebase]);
 
-  const handleArtistSubmit = (event) => {
-    firebase.setArtist({
-      artistDocId,
-      artistBio,
-      artistImg,
-      artistInstaId,
-      artistName,
-      artistProgramType: artistProgramType.split(',')
-    }).then(isSuccess => {
-      if (isSuccess) {
-        setArtistDocId('');
-        setArtistBio('');
-        setArtistImg('');
-        setArtistInstaId('');
-        setArtistName('');
-        setArtistProgramType('');
-      }
-    });
-    event.preventDefault();
-  };
-
   const handleLocationSubmit = (event) => {
     firebase.setLocation({
       locationDocId,

@@ -3,16 +3,35 @@ import AddBaseModal from "pages/AddData/_components/AddBaseModal/AddBaseModal";
 import './AddArtistModal.scss';
 import InputText from "../InputText/InputText";
 import InputTextArea from "../InputTextArea/InputTextArea";
+import { withFirebase } from "redbricks-firebase";
 
-const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
-  const [artistInfo, setArtistInfo] = React.useState({});
+const ARTIST_INIT_STATE = {
+  id: "",
+  name: "",
+  imgUrl: "",
+  instaId: "",
+  programType: "",
+  biography: "",
+};
+
+const AddArtistModal = ({ firebase, isModalOpen, setIsModalOpen }) => {
+  const [artistInfo, setArtistInfo] = React.useState(ARTIST_INIT_STATE);
   const handleChange = ({ target: { value, name } }) => {
     setArtistInfo({ ...artistInfo, [name]: value });
   };
-  const handleSubmit = ev => {
-    alert('submit!')
-    ev.preventDefault();
-    setArtistInfo({});
+
+  const handleSubmit = (event) => {
+    const { id, name, imgUrl, instaId, programType, biography } = artistInfo;
+    firebase.setArtist({
+      id, name, artistBio: biography, img: imgUrl, instaId,
+      programType: programType.split(',')
+    }).then(isSuccess => {
+      if (isSuccess) {
+        setArtistInfo(ARTIST_INIT_STATE);
+        setIsModalOpen(false);
+      }
+    });
+    event.preventDefault();
   };
 
   return (
@@ -34,4 +53,4 @@ const AddArtistModal = ({ isModalOpen, setIsModalOpen }) => {
   )
 };
 
-export default AddArtistModal;
+export default withFirebase(AddArtistModal);

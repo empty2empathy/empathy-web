@@ -98,28 +98,17 @@ class Firebase {
   };
 
   setArtist(artistData) {
-    const {
-      artistDocId,
-      artistBio,
-      artistImg,
-      artistInstaId,
-      artistName,
-      artistProgramType
-    } = artistData;
-
-    return this.db.collection('artist').doc(artistDocId).set({
-      artistBio,
-      img: artistImg,
-      instaId: artistInstaId,
-      name: artistName,
-      programType: artistProgramType
-    }).then(() => {
-      alert('submit success!');
-      return true;
-    }).catch(() => {
-      alert('submit failure');
-      return false;
-    });
+    const { id, name, artistBio, img, instaId, programType } = artistData;
+    return this.db.collection('artist')
+      .doc(id)
+      .set({ name, artistBio, img, instaId, programType })
+      .then(() => {
+        alert('submit success!');
+        return true;
+      }).catch(() => {
+        alert('submit failure');
+        return false;
+      });
   }
 
   // *** Location API ***
