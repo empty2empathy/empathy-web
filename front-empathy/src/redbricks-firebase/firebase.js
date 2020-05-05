@@ -98,28 +98,17 @@ class Firebase {
   };
 
   setArtist(artistData) {
-    const {
-      artistDocId,
-      artistBio,
-      artistImg,
-      artistInstaId,
-      artistName,
-      artistProgramType
-    } = artistData;
-
-    return this.db.collection('artist').doc(artistDocId).set({
-      artistBio,
-      img: artistImg,
-      instaId: artistInstaId,
-      name: artistName,
-      programType: artistProgramType
-    }).then(() => {
-      alert('submit success!');
-      return true;
-    }).catch(() => {
-      alert('submit failure');
-      return false;
-    });
+    const { id, name, artistBio, img, instaId, programType } = artistData;
+    return this.db.collection('artist')
+      .doc(id)
+      .set({ name, artistBio, img, instaId, programType })
+      .then(() => {
+        alert('submit success!');
+        return true;
+      }).catch(() => {
+        alert('submit failure');
+        return false;
+      });
   }
 
   // *** Location API ***
@@ -152,22 +141,11 @@ class Firebase {
 
   setLocation(locationData) {
     const {
-      locationDocId,
-      locationDescription,
-      locationImg,
-      locationInstaId,
-      locationMapLink,
-      locationName,
-      locationProgramType
+      id, name, img, instaId, programType, mapLink, description
     } = locationData;
 
-    return this.db.collection('location').doc(locationDocId).set({
-      description: locationDescription,
-      img: locationImg,
-      instaId: locationInstaId,
-      mapLink: locationMapLink,
-      name: locationName,
-      programType: locationProgramType
+    return this.db.collection('location').doc(id).set({
+      name, img, instaId, programType, mapLink, description
     }).then(() => {
       alert('submit success!');
       return true;
@@ -179,34 +157,34 @@ class Firebase {
 
   setEvent(eventData) {
     const {
-      eventArtists,
-      eventTime,
-      eventDescription,
-      eventLocation,
-      eventProgramType,
-      eventTitle,
-      eventYoutubeVideoId,
+      title,
+      locationId,
+      youtubeVideoId,
+      eventDate,
+      artistIds,
+      description,
+      programType
     } = eventData;
 
-    const artistRefs = eventArtists.map(artist => {
+    const artistRefs = artistIds.map(artist => {
       return this.db.collection('artist').doc(artist);
     });
-    const locationRef = this.db.collection('location').doc(eventLocation);
-    const startDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.start));
-    const endDate = firebase.firestore.Timestamp.fromDate(new Date(eventTime.end));
+    const locationRef = this.db.collection('location').doc(locationId);
+    const startDate = firebase.firestore.Timestamp.fromDate(new Date(eventDate.start));
+    const endDate = firebase.firestore.Timestamp.fromDate(new Date(eventDate.end));
 
     // .add 메서드는 Auto id를 제너레이트한다.
     return this.db.collection('event').add({
-      artists: artistRefs,
+      title,
+      location: locationRef,
+      youtubeVideoId,
       date: {
         start: startDate,
         end: endDate
       },
-      description: eventDescription,
-      location: locationRef,
-      programType: eventProgramType,
-      title: eventTitle,
-      youtubeVideoId: eventYoutubeVideoId
+      artists: artistRefs,
+      description,
+      programType
     }).then(() => {
       alert('submit success!');
       return true;
