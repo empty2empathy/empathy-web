@@ -5,6 +5,7 @@ import App from 'App';
 import AddArtist from "./AddData/_components/AddArtist";
 import AddEvent from "./AddData/_components/AddEvent";
 import AddLocation from "./AddData/_components/AddLocation";
+import LocationDetail from "./LocationDetail/LocationDetail";
 
 export const routes = [
   {
@@ -36,6 +37,10 @@ export const routes = [
             component: AddEvent
           },
         ]
+      },
+      {
+        path: "/location/:locationId",
+        component: LocationDetail
       }
     ]
   }
