@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from "styled-components";
 import Slider from "react-slick";
 import ArrowRight from "assets/svg/arrowRight";
@@ -57,17 +57,50 @@ const ArrowWrapper = styled.div`
 `;
 
 const CircleItemSlider = () => {
+  const sliderEl = useRef(null);
+
+  // TODO: useCallback으로 감싸야하는지 공부하고 개선
+  const onLeftArrowClick = () => {
+    sliderEl.current.slickPrev();
+  };
+  const onRightArrowClick = () => {
+    sliderEl.current.slickNext();
+  };
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 8,
-    slidesToScroll: 1,
-    arrows: false
+    slidesToScroll: 4,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 470,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 3
+        }
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 3
+        }
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2
+        }
+      }
+    ]
   };
   return (
     <CircleItemSliderWrapper>
-      <SliderWrapper {...settings}>
-        {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0].map((v, i) => (
+      <SliderWrapper ref={sliderEl}  {...settings}>
+        {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,].map((v, i) => (
           <div className="item" key={i}>
             <div className="circle">
 
@@ -77,10 +110,10 @@ const CircleItemSlider = () => {
         ))}
       </SliderWrapper>
       <div className="arrows">
-        <ArrowWrapper>
+        <ArrowWrapper onClick={onLeftArrowClick}>
           <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
         </ArrowWrapper>
-        <ArrowWrapper>
+        <ArrowWrapper onClick={onRightArrowClick}>
           <ArrowRight width={20} height={20} color={"white"}/>
         </ArrowWrapper>
       </div>
