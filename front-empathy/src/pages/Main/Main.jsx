@@ -29,7 +29,7 @@ function Main({ firebase }) {
     <div className="Main">
       <div className="movie-bg"/>
       <FeaturedEvent featuredEvent={featuredEvent}/>
-      <div>
+      <div className="location-slick">
         <CircleItemSlider/>
       </div>
       <div className="all-event-list">

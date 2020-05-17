@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const SliderWrapper = styled(Slider)`
-  background: #999999;
   .item {
     .circle {
       width: 50px;
@@ -33,14 +32,25 @@ const SliderWrapper = styled(Slider)`
 `;
 
 const CircleItemSliderWrapper = styled.div`
-  position: relative;
-  .arrows {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
+  .title {
+    margin: 0 0 16px;
+    color: rgba(252, 252, 252, 0.5);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .slide {
+    position: relative;
+    .arrows {
+      position: absolute;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }  
+  }
 `;
 
 const ArrowWrapper = styled.div`
@@ -75,47 +85,57 @@ const CircleItemSlider = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 470,
+        breakpoint: 500,
         settings: {
           slidesToShow: 7,
           slidesToScroll: 3
         }
       },
       {
-        breakpoint: 400,
+        breakpoint: 450,
         settings: {
           slidesToShow: 6,
           slidesToScroll: 3
         }
       },
       {
-        breakpoint: 320,
+        breakpoint: 380,
         settings: {
           slidesToShow: 5,
           slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1
         }
       }
     ]
   };
   return (
     <CircleItemSliderWrapper>
-      <SliderWrapper ref={sliderEl}  {...settings}>
-        {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,].map((v, i) => (
-          <div className="item" key={i}>
-            <div className="circle">
+      <h4 className="title">Upcoming event's location</h4>
+      <div className="slide">
+        <SliderWrapper ref={sliderEl}  {...settings}>
+          {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,].map((v, i) => (
+            <div className="item" key={i}>
+              <div className="circle">
 
+              </div>
+              <p className="title">Location</p>
             </div>
-            <p className="title">Location</p>
-          </div>
-        ))}
-      </SliderWrapper>
-      <div className="arrows">
-        <ArrowWrapper onClick={onLeftArrowClick}>
-          <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
-        </ArrowWrapper>
-        <ArrowWrapper onClick={onRightArrowClick}>
-          <ArrowRight width={20} height={20} color={"white"}/>
-        </ArrowWrapper>
+          ))}
+        </SliderWrapper>
+        <div className="arrows">
+          <ArrowWrapper onClick={onLeftArrowClick}>
+            <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
+          </ArrowWrapper>
+          <ArrowWrapper onClick={onRightArrowClick}>
+            <ArrowRight width={20} height={20} color={"white"}/>
+          </ArrowWrapper>
+        </div>
       </div>
     </CircleItemSliderWrapper>
   );
