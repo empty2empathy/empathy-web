@@ -85,7 +85,8 @@ const CircleItemSlider = () => {
     sliderEl.current.slickNext();
   };
 
-  const _beforeChange = (nextIdx, lastIdx) => {
+  const _beforeChange = slidesToShow => (currIdx, nextIdx) => {
+    const lastIdx = nextIdx + slidesToShow;
     if (nextIdx !== 0) {
       if (!showArrow.left) {
         setShowArrow({ ...showArrow, left: true });
@@ -94,7 +95,7 @@ const CircleItemSlider = () => {
       setShowArrow({ ...showArrow, left: false });
     }
 
-    if (lastIdx <= slickItems.length) {
+    if (lastIdx < slickItems.length) {
       if (!showArrow.right) {
         setShowArrow({ ...showArrow, right: true });
       }
@@ -109,60 +110,38 @@ const CircleItemSlider = () => {
     slidesToShow: 8,
     slidesToScroll: 4,
     arrows: false,
-    beforeChange: (currIdx, nextIdx) => {
-      console.log('before: ', currIdx, nextIdx);
-      const slidesToShow = sliderEl.current.props.slidesToShow;
-      const lastIdx = nextIdx + slidesToShow;
-      _beforeChange(nextIdx, lastIdx)
-    },
+    beforeChange: _beforeChange(8),
     responsive: [
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 7,
-          beforeChange: (currIdx, nextIdx) => {
-            console.log('breakpoint: 500 before: ', currIdx, nextIdx);
-            const slidesToShow = sliderEl.current.props.slidesToShow;
-            const lastIdx = nextIdx + slidesToShow;
-            _beforeChange(nextIdx, lastIdx)
-          }
+          slidesToScroll: 4,
+          beforeChange: _beforeChange(7)
         }
       },
       {
         breakpoint: 450,
         settings: {
           slidesToShow: 6,
-          beforeChange: (currIdx, nextIdx) => {
-            console.log('breakpoint: 500 before: ', currIdx, nextIdx);
-            const slidesToShow = sliderEl.current.props.slidesToShow;
-            const lastIdx = nextIdx + slidesToShow;
-            _beforeChange(nextIdx, lastIdx)
-          }
+          slidesToScroll: 3,
+          beforeChange: _beforeChange(6)
         }
       },
       {
         breakpoint: 380,
         settings: {
           slidesToShow: 5,
-          beforeChange: (currIdx, nextIdx) => {
-            console.log('breakpoint: 380 before: ', currIdx, nextIdx);
-            const slidesToShow = 5;
-            const lastIdx = nextIdx + slidesToShow;
-            console.log(slidesToShow, lastIdx);
-            _beforeChange(nextIdx, lastIdx)
-          }
+          slidesToScroll: 3,
+          beforeChange: _beforeChange(5)
         }
       },
       {
         breakpoint: 320,
         settings: {
           slidesToShow: 4,
-          beforeChange: (currIdx, nextIdx) => {
-            console.log('breakpoint: 320 before: ', currIdx, nextIdx);
-            const slidesToShow = sliderEl.current.props.slidesToShow;
-            const lastIdx = nextIdx + slidesToShow;
-            _beforeChange(nextIdx, lastIdx)
-          }
+          slidesToScroll: 2,
+          beforeChange: _beforeChange(4)
         }
       }
     ]
