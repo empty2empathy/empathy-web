@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from "styled-components";
 import Slider from "react-slick";
 import ArrowRight from "assets/svg/arrowRight";
@@ -31,29 +31,8 @@ const SliderWrapper = styled(Slider)`
   } 
 `;
 
-const CircleItemSliderWrapper = styled.div`
-  .title {
-    margin: 0 0 16px;
-    color: rgba(252, 252, 252, 0.5);
-    font-size: 13px;
-    line-height: 1.5;
-    font-weight: 500;
-  }
-
-  .slide {
-    position: relative;
-    .arrows {
-      position: absolute;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-    }  
-  }
-`;
-
 const ArrowWrapper = styled.div`
+  visibility: ${props => props.show ? 'visible' : 'hidden'};
   width: 40px;
   height: 100%;
   display: flex;
@@ -66,8 +45,37 @@ const ArrowWrapper = styled.div`
   backdrop-filter: blur(1px);
 `;
 
+const CircleItemSliderWrapper = styled.div`
+  .title {
+    margin: 0 0 16px;
+    color: rgba(252, 252, 252, 0.5);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .slide {
+    position: relative;
+    ${ArrowWrapper} {
+      &.left {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      &.right {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+`;
+
 const CircleItemSlider = () => {
   const sliderEl = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showArrow, setShowArrow] = useState({ left: false, right: true });
+  const slickItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   // TODO: useCallback으로 감싸야하는지 공부하고 개선
   const onLeftArrowClick = () => {
@@ -78,11 +86,24 @@ const CircleItemSlider = () => {
   };
 
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 4,
     arrows: false,
+    beforeChange: v => {
+      console.log('before: ', v)
+    },
+    afterChange: currentIndex => {
+      console.log(slickItems.length);
+      console.log(currentIndex);
+      if (currentIndex !== 0) {
+        if (showArrow.left) return;
+        setShowArrow({ ...showArrow, left: true });
+      } else {
+        setShowArrow({ ...showArrow, left: false });
+      }
+    },
     responsive: [
       {
         breakpoint: 500,
@@ -119,23 +140,21 @@ const CircleItemSlider = () => {
       <h4 className="title">Upcoming event's location</h4>
       <div className="slide">
         <SliderWrapper ref={sliderEl}  {...settings}>
-          {[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,].map((v, i) => (
+          {slickItems.map((v, i) => (
             <div className="item" key={i}>
-              <div className="circle">
+              <div className="circle" onClick={() => console.log('hi')}>
 
               </div>
               <p className="title">Location</p>
             </div>
           ))}
         </SliderWrapper>
-        <div className="arrows">
-          <ArrowWrapper onClick={onLeftArrowClick}>
-            <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
-          </ArrowWrapper>
-          <ArrowWrapper onClick={onRightArrowClick}>
-            <ArrowRight width={20} height={20} color={"white"}/>
-          </ArrowWrapper>
-        </div>
+        <ArrowWrapper className="left" onClick={onLeftArrowClick} show={showArrow.left}>
+          <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
+        </ArrowWrapper>
+        <ArrowWrapper className="right" onClick={onRightArrowClick} show={showArrow.right}>
+          <ArrowRight width={20} height={20} color={"white"}/>
+        </ArrowWrapper>
       </div>
     </CircleItemSliderWrapper>
   );
