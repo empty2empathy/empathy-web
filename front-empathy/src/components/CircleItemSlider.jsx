@@ -85,52 +85,84 @@ const CircleItemSlider = () => {
     sliderEl.current.slickNext();
   };
 
+  const _beforeChange = (nextIdx, lastIdx) => {
+    if (nextIdx !== 0) {
+      if (!showArrow.left) {
+        setShowArrow({ ...showArrow, left: true });
+      }
+    } else {
+      setShowArrow({ ...showArrow, left: false });
+    }
+
+    if (lastIdx <= slickItems.length) {
+      if (!showArrow.right) {
+        setShowArrow({ ...showArrow, right: true });
+      }
+    } else {
+      setShowArrow({ ...showArrow, right: false });
+    }
+  };
+
   const settings = {
     infinite: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 4,
     arrows: false,
-    beforeChange: v => {
-      console.log('before: ', v)
-    },
-    afterChange: currentIndex => {
-      console.log(slickItems.length);
-      console.log(currentIndex);
-      if (currentIndex !== 0) {
-        if (showArrow.left) return;
-        setShowArrow({ ...showArrow, left: true });
-      } else {
-        setShowArrow({ ...showArrow, left: false });
-      }
+    beforeChange: (currIdx, nextIdx) => {
+      console.log('before: ', currIdx, nextIdx);
+      const slidesToShow = sliderEl.current.props.slidesToShow;
+      const lastIdx = nextIdx + slidesToShow;
+      _beforeChange(nextIdx, lastIdx)
     },
     responsive: [
       {
         breakpoint: 500,
         settings: {
           slidesToShow: 7,
-          slidesToScroll: 3
+          beforeChange: (currIdx, nextIdx) => {
+            console.log('breakpoint: 500 before: ', currIdx, nextIdx);
+            const slidesToShow = sliderEl.current.props.slidesToShow;
+            const lastIdx = nextIdx + slidesToShow;
+            _beforeChange(nextIdx, lastIdx)
+          }
         }
       },
       {
         breakpoint: 450,
         settings: {
           slidesToShow: 6,
-          slidesToScroll: 3
+          beforeChange: (currIdx, nextIdx) => {
+            console.log('breakpoint: 500 before: ', currIdx, nextIdx);
+            const slidesToShow = sliderEl.current.props.slidesToShow;
+            const lastIdx = nextIdx + slidesToShow;
+            _beforeChange(nextIdx, lastIdx)
+          }
         }
       },
       {
         breakpoint: 380,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 2
+          beforeChange: (currIdx, nextIdx) => {
+            console.log('breakpoint: 380 before: ', currIdx, nextIdx);
+            const slidesToShow = 5;
+            const lastIdx = nextIdx + slidesToShow;
+            console.log(slidesToShow, lastIdx);
+            _beforeChange(nextIdx, lastIdx)
+          }
         }
       },
       {
         breakpoint: 320,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1
+          beforeChange: (currIdx, nextIdx) => {
+            console.log('breakpoint: 320 before: ', currIdx, nextIdx);
+            const slidesToShow = sliderEl.current.props.slidesToShow;
+            const lastIdx = nextIdx + slidesToShow;
+            _beforeChange(nextIdx, lastIdx)
+          }
         }
       }
     ]
