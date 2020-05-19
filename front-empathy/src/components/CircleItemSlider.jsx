@@ -17,6 +17,7 @@ const SliderWrapper = styled(Slider)`
       border-radius: 25px;
       //background-image: url(/* bg-noise-texture.png */);
       border: 1.5px dotted #ffffff;
+      background-size: cover;
     }
     .title {
       height: 15px;
@@ -43,6 +44,7 @@ const ArrowWrapper = styled.div`
   padding: 0 10px;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(1px);
+  cursor: pointer;
 `;
 
 const CircleItemSliderWrapper = styled.div`
@@ -71,11 +73,9 @@ const CircleItemSliderWrapper = styled.div`
   }
 `;
 
-const CircleItemSlider = () => {
+const CircleItemSlider = ({ slickItems }) => {
   const sliderEl = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [showArrow, setShowArrow] = useState({ left: false, right: true });
-  const slickItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   // TODO: useCallback으로 감싸야하는지 공부하고 개선
   const onLeftArrowClick = () => {
@@ -151,12 +151,10 @@ const CircleItemSlider = () => {
       <h4 className="title">Upcoming event's location</h4>
       <div className="slide">
         <SliderWrapper ref={sliderEl}  {...settings}>
-          {slickItems.map((v, i) => (
-            <div className="item" key={i}>
-              <div className="circle" onClick={() => console.log('hi')}>
-
-              </div>
-              <p className="title">Location</p>
+          {slickItems.map(({ id, title, img, date }) => (
+            <div className="item" key={id}>
+              <div className="circle" style={{ backgroundImage: `url(${img})` }}/>
+              <p className="title">{title}</p>
             </div>
           ))}
         </SliderWrapper>
