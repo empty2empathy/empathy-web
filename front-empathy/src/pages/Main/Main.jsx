@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Main.scss";
-import FeaturedEvent from "components/FeaturedEvent";
 import CircleItemSlider from "components/CircleItemSlider";
 import GroupPerDay from "../../components/GroupPerDay/GroupPerDay";
 import { mapEvents } from "utils";
@@ -26,7 +25,6 @@ const temp = [
 ];
 
 function Main({ firebase }) {
-  const [featuredEvent, setFeaturedEvent] = useState(null);
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +36,6 @@ function Main({ firebase }) {
         return { ...event, location, artists }
       });
       const parsedEvents = await Promise.all(parsedEvents$);
-      setFeaturedEvent(parsedEvents[0]);
       setEvents(mapEvents(parsedEvents));
     };
     fetchData();
@@ -47,7 +44,6 @@ function Main({ firebase }) {
   return (
     <div className="Main">
       <div className="movie-bg"/>
-      <FeaturedEvent featuredEvent={featuredEvent}/>
       <HeroEvents/>
       <div className="location-slick">
         <CircleItemSlider slickItems={temp}/>
