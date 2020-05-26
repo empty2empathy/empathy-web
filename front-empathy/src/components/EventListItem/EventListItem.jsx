@@ -3,8 +3,8 @@ import './EventListItem.scss';
 import { Link } from "react-router-dom";
 import { formatTime } from "utils";
 
-const EventListItem = ({ title, location, date, eventId }) => {
-    const time = formatTime(date.start.seconds);
+const EventListItem = ({ title, location, startAt, eventId }) => {
+    const time = formatTime(startAt);
 
     return (
         <div className="EventListItem">

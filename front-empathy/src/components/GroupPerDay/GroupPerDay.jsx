@@ -5,7 +5,7 @@ import { MONTH, WEEK } from "utils";
 import dayjs from 'dayjs';
 
 
-const GroupPerDay = ({ date, eventList }) => {
+const GroupPerDay = ({date, eventList}) => {
     const _date = dayjs(date);
     const month = MONTH[_date.get('month')];
     const dayOfWeek = WEEK[_date.get('day')];
@@ -20,7 +20,7 @@ const GroupPerDay = ({ date, eventList }) => {
                 </div>
             </div>
             <div className="event-list-container">
-                {eventList.map(v => <EventListItem key={v.id} eventId={v.id} {...v}/>)}
+                {eventList.map(v => <EventListItem key={v.eventId} {...v}/>)}
             </div>
         </div>
     );

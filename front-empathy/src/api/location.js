@@ -7,7 +7,7 @@ export const loadLocation = (locationId = 1) => {
 };
 
 export const loadLocations = (page = 1, pageUnit = 5) => {
-  return fetch(`${SERVER_URL}/location?page=${page}&page_unit=${pageUnit}`)
+  return fetch(`${SERVER_URL}/location?page=${page}&pageUnit=${pageUnit}`)
     .then(res => res.json())
     .catch(err => console.error(err));
 };

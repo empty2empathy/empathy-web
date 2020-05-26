@@ -7,7 +7,7 @@ export const loadArtist = (artistId = 1) => {
 };
 
 export const loadArtists = (page = 1, pageUnit = 5) => {
-  return fetch(`${SERVER_URL}/artist?page=${page}&page_unit=${pageUnit}`)
+  return fetch(`${SERVER_URL}/artist?page=${page}&pageUnit=${pageUnit}`)
     .then(res => res.json())
     .catch(err => console.error(err));
 };

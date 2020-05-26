@@ -6,8 +6,8 @@ export const loadEvent = (eventId = 1) => {
     .catch(err => console.error(err));
 };
 
-export const loadEvents = (page = 1, pageUnit = 5) => {
-  return fetch(`${SERVER_URL}/event?page=${page}&page_unit=${pageUnit}`)
+export const loadEvents = ({ page = 1, pageUnit = 5 }) => {
+  return fetch(`${SERVER_URL}/event?page=${page}&pageUnit=${pageUnit}`)
     .then(res => res.json())
     .catch(err => console.error(err));
 };
