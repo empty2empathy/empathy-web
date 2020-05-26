@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { withFirebase } from "redbricks-firebase";
 import styled from "styled-components";
-import CtaButton from "../../components/CtaButton";
-import { shareLink } from "../../utils";
+import { mapEvents, shareLink } from "../../utils";
 import { withRouter } from "react-router-dom";
 import Map from "../../components/Map";
+import GroupPerDay from "../../components/GroupPerDay";
+import ChevronLeft from "../../assets/svg/chevronLeft";
+import CtaButton from "../../components/CtaButton";
+
+const fetchData = (url) => {
+  return fetch(url)
+    .then(res => {
+      return res.json()
+    })
+    .catch(err => {
+      throw err;
+    })
+}
+
+export const getLocationId = (locationId) => {
+  return fetchData(`http://localhost:5000/locationDetail/${locationId}`)
+};
+
 
 const HeroSection = styled.div`
+  background-color: #404040;
   position: relative;
   height: 320px;
   overflow: hidden;
@@ -19,22 +37,31 @@ const HeroSection = styled.div`
 const Header = styled.div`
   position: absolute;
   display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 0;
   top: 0;
   color: white;
   text-align: center;
+  
+  > p {
+    flex: 1;
+    color: #fcfcfc;
+    font-size: 16px;
+  }
 `;
 
 const Info = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 20px;
+  bottom: 16px;
   color: white;
   text-align: center;
     
   p {
     &:nth-child(1) {
       padding: 4px 6px;
+      margin-bottom: 8px;
       background-color: rgba(0, 0, 0, 0.4);
       color: #000000;
       font-size: 14px;
@@ -51,9 +78,34 @@ const Info = styled.div`
   }
 `;
 
-const InfoSection = styled.ul`
-  color: white;
+const InfoSection = styled.div`
   padding: 30px 20px 0 20px;
+  
+  > div {
+    padding-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  
+    span:first-child {
+      padding-right: 8px;
+      color: rgba(252, 252, 252, 0.9);
+    }
+    
+    span:nth-child(2) {}
+      color: rgba(252, 252, 252, 0.45);
+  }
+`;
+
+const CtaButtonContainer = styled.div`
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  padding: 44px 20px 0 20px;
+  background: black;
+  align-items: center;
+  z-index: 3;
 `;
 
 const DescriptionSection = styled.div`
@@ -68,22 +120,59 @@ const MapSection = styled.div`
   padding: 30px 20px 0 20px;
 `;
 
+const EventGroup = styled.div`
+  display: flex;
+  
+  .event-list-container {
+    padding: 44px 10px 30px;
+    background: black;
+  }
+`;
+
+const EventItem = styled.div`
+  
+`;
+
 const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
   const [location, setLocation] = useState([]);
+  const [events, setEvents] = useState([]);
+
+  // useEffect(() => {
+  //   firebase.loadLocationWithPath(`location/${locationId}`).then((res) => {
+  //     setLocation(res);
+  //   });
+  // }, [])
 
   useEffect(() => {
-    firebase.loadLocationWithPath(`location/${locationId}`).then((res) => {
-      setLocation(res);
-    });
+    const fetchData = async () => {
+      const events = await firebase.loadEvents();
+      const parsedEvents$ = events.map(async event => {
+        const location = await firebase.loadLocationWithPath(event.location.path);
+        const artists$ = event.artists.map(({ path }) => firebase.loadArtistWithPath(path));
+        const artists = await Promise.all(artists$);
+        return { ...event, location, artists }
+      });
+      const parsedEvents = await Promise.all(parsedEvents$);
+      setEvents(mapEvents(parsedEvents));
+    };
+    fetchData();
+  }, [firebase]);
+
+  useEffect(() => {
+    setLocationDetail();
   }, [])
+
+  const setLocationDetail = () => {
+    getLocationId(locationId).then(res => setLocation(res));
+  }
 
   return (
     <>
       <HeroSection>
-        <img src={location.img}/>
+        <img src={location.image}/>
         <Header>
-          <button>back</button>
-          <p>locaion.name</p>
+          <ChevronLeft/>
+          <p>{location.name}</p>
         </Header>
         <Info>
           <p>{location.name}</p>
@@ -92,31 +181,31 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
       </HeroSection>
 
       <InfoSection>
-        <li>
-          <span>Adress</span>
-          <span>location.adress</span>
-        </li>
-        <li>
+        <div>
+          <span>Address</span>
+          <span>{location.address}</span>
+        </div>
+        <div>
           <span>ProgrammeType</span>
-          <span>location.programmeType</span>
-        </li>
-        <li>
+          <span>{location.programmeType}</span>
+        </div>
+        <div>
           <span>Location Fee</span>
-          <span>location.fee</span>
-        </li>
-        <li>
+          <span>{location.fee}</span>
+        </div>
+        <div>
           <span>Opening Hour</span>
-          <span>location.openHour</span>
-        </li>
-        <li>
+          <span>{location.openHour}</span>
+        </div>
+        <div>
           <span>Istagram</span>
-          <span>location.instaId</span>
-        </li>
+          <span>{location.instaId}</span>
+        </div>
       </InfoSection>
 
-      {/*<div className="cta-button">*/}
-      {/*  <CtaButton label={`${title}`} onClick={() => shareLink(title, description)}/>*/}
-      {/*</div>*/}
+      <CtaButtonContainer>
+        <CtaButton label={`locationDetail`} onClick={() => shareLink(`locationDetail`, `locationDetail`)}/>
+      </CtaButtonContainer>
 
       <DescriptionSection>
         <p>
@@ -133,11 +222,17 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
       </DescriptionSection>
 
       <MapSection>
-        <Map width='540px' height='270px' latitude={37.7577} longitude={-122.4376} zoom={8}/>
+        <Map width='100%' height='270px' latitude={37.7577} longitude={-122.4376} zoom={8}/>
       </MapSection>
 
       <div>
-        EVENTS LIST
+        {location.eventGroup?.map(({ id, date, eventList }) => (
+          <EventGroup>
+            <div className="event-list-container">
+              {events.map(event => <GroupPerDay key={event.date} {...event} />)}
+            </div>
+          </EventGroup>
+        ))}
       </div>
     </>
   );
