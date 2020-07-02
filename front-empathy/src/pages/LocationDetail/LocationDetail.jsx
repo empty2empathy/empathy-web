@@ -7,21 +7,19 @@ import Map from "../../components/Map";
 import GroupPerDay from "../../components/GroupPerDay";
 import ChevronLeft from "../../assets/svg/chevronLeft";
 import CtaButton from "../../components/CtaButton";
+// import { loadLocation } from "../../api/location";
+import CircleItemSlider from "../../components/CircleItemSlider";
+import Loading from "../AddData/_components/Loading";
 
 const fetchData = (url) => {
   return fetch(url)
-    .then(res => {
-      return res.json()
-    })
-    .catch(err => {
-      throw err;
-    })
+    .then(res => res.json())
+    .catch(err => console.error(err));
 }
 
 export const getLocationId = (locationId) => {
-  return fetchData(`http://localhost:5000/locationDetail/${locationId}`)
+  return fetchData(`http://localhost:5000/locationDetail/${locationId}`);
 };
-
 
 const HeroSection = styled.div`
   background-color: #404040;
@@ -32,6 +30,11 @@ const HeroSection = styled.div`
   img {
     width: 100%;
   }
+`;
+
+const LocationSlick = styled.div`
+  padding: 60px 20px 0;
+  background: black;
 `;
 
 const Header = styled.div`
@@ -129,13 +132,21 @@ const EventGroup = styled.div`
   }
 `;
 
-const EventItem = styled.div`
-  
-`;
+// const EventItem = styled.div`
+//
+// `;
 
 const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
   const [location, setLocation] = useState([]);
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const setLocationDetail = async () => {
+    const response = await fetch(`http://localhost:5000/locationDetail/${locationId}`);
+    const initialData = await response.json();
+    setLocation(initialData);
+    setLoading(false);
+  }
 
   // useEffect(() => {
   //   firebase.loadLocationWithPath(`location/${locationId}`).then((res) => {
@@ -162,78 +173,85 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
     setLocationDetail();
   }, [])
 
-  const setLocationDetail = () => {
-    getLocationId(locationId).then(res => setLocation(res));
-  }
-
   return (
     <>
-      <HeroSection>
-        <img src={location.image}/>
-        <Header>
-          <ChevronLeft/>
-          <p>{location.name}</p>
-        </Header>
-        <Info>
-          <p>{location.name}</p>
-          <p>{location.name}</p>
-        </Info>
-      </HeroSection>
+      {loading ? (
+        <Loading/>
+      ) : (
+        <>
+          <HeroSection>
+            <img alt="" src={location.image}/>
+            <Header>
+              <ChevronLeft/>
+              <p>{location.name}</p>
+            </Header>
+            <Info>
+              <p>{location.name}</p>
+              <p>{location.name}</p>
+            </Info>
+          </HeroSection>
 
-      <InfoSection>
-        <div>
-          <span>Address</span>
-          <span>{location.address}</span>
-        </div>
-        <div>
-          <span>ProgrammeType</span>
-          <span>{location.programmeType}</span>
-        </div>
-        <div>
-          <span>Location Fee</span>
-          <span>{location.fee}</span>
-        </div>
-        <div>
-          <span>Opening Hour</span>
-          <span>{location.openHour}</span>
-        </div>
-        <div>
-          <span>Istagram</span>
-          <span>{location.instaId}</span>
-        </div>
-      </InfoSection>
+          <LocationSlick>
+            <CircleItemSlider slickItems={location.artists}/>
+          </LocationSlick>
 
-      <CtaButtonContainer>
-        <CtaButton label={`locationDetail`} onClick={() => shareLink(`locationDetail`, `locationDetail`)}/>
-      </CtaButtonContainer>
-
-      <DescriptionSection>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make
-          a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-          containing
-          Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-          versions
-          of Lorem Ipsum.
-        </p>
-      </DescriptionSection>
-
-      <MapSection>
-        <Map width='100%' height='270px' latitude={37.7577} longitude={-122.4376} zoom={8}/>
-      </MapSection>
-
-      <div>
-        {location.eventGroup?.map(({ id, date, eventList }) => (
-          <EventGroup>
-            <div className="event-list-container">
-              {events.map(event => <GroupPerDay key={event.date} {...event} />)}
+          <InfoSection>
+            <div>
+              <span>Address</span>
+              <span>{location.address}</span>
             </div>
-          </EventGroup>
-        ))}
-      </div>
+            <div>
+              <span>ProgrammeType</span>
+              <span>{location.programmeType}</span>
+            </div>
+            <div>
+              <span>Location Fee</span>
+              <span>{location.fee}</span>
+            </div>
+            <div>
+              <span>Opening Hour</span>
+              <span>{location.openHour}</span>
+            </div>
+            <div>
+              <span>Istagram</span>
+              <span>{location.instaId}</span>
+            </div>
+          </InfoSection>
+
+          <CtaButtonContainer>
+            <CtaButton label={`locationDetail`} onClick={() => shareLink(`locationDetail`, `locationDetail`)}/>
+          </CtaButtonContainer>
+
+          <DescriptionSection>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's
+              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+              to
+              make
+              a type specimen book. It has survived not only five centuries, but also the leap into electronic
+              typesetting,
+              remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+              containing
+              Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
+              versions
+              of Lorem Ipsum.
+            </p>
+          </DescriptionSection>
+
+          <MapSection>
+            <Map width='100%' height='270px' latitude={37.7577} longitude={-122.4376} zoom={8}/>
+          </MapSection>
+
+          <div>
+            <EventGroup>
+              <div className="event-list-container">
+                {events.map(event => <GroupPerDay key={event.date} {...event} />)}
+              </div>
+            </EventGroup>
+          </div>
+        </>
+      )}
     </>
   );
 }
