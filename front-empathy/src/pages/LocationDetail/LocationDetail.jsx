@@ -7,7 +7,6 @@ import Map from "../../components/Map";
 import GroupPerDay from "../../components/GroupPerDay";
 import ChevronLeft from "../../assets/svg/chevronLeft";
 import CtaButton from "../../components/CtaButton";
-// import { loadLocation } from "../../api/location";
 import CircleItemSlider from "../../components/CircleItemSlider";
 import Loading from "../AddData/_components/Loading";
 
