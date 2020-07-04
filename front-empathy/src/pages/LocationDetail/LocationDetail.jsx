@@ -131,10 +131,6 @@ const EventGroup = styled.div`
   }
 `;
 
-// const EventItem = styled.div`
-//
-// `;
-
 const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
   const [location, setLocation] = useState([]);
   const [events, setEvents] = useState([]);
@@ -146,12 +142,6 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
     setLocation(initialData);
     setLoading(false);
   }
-
-  // useEffect(() => {
-  //   firebase.loadLocationWithPath(`location/${locationId}`).then((res) => {
-  //     setLocation(res);
-  //   });
-  // }, [])
 
   useEffect(() => {
     const fetchData = async () => {
