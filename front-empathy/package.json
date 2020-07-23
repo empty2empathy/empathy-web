@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.23",
+    "eslint-plugin-react": "^7.20.3",
     "firebase": "^7.11.0",
     "framer-motion": "^1.8.4",
     "json-server": "^0.16.1",
@@ -56,6 +57,10 @@
     "framer": "^1"
   },
   "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.22.0",
     "framer": "^1.1.7"
   },
   "framer": {
