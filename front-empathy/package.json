@@ -56,7 +56,8 @@
     "framer": "^1"
   },
   "devDependencies": {
-    "framer": "^1.1.7"
+    "framer": "^1.1.7",
+    "typescript": "^3.9.6"
   },
   "framer": {
     "displayName": ""

@@ -17,7 +17,7 @@ const fetchData = (url) => {
 }
 
 export const getLocationId = (locationId) => {
-  return fetchData(`http://localhost:5000/locationDetail/${locationId}`);
+  return fetchData(`http://localhost:5000/locationDetail/${ locationId }`);
 };
 
 const HeroSection = styled.div`
@@ -137,7 +137,7 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
   const [loading, setLoading] = useState(true);
 
   const setLocationDetail = async () => {
-    const response = await fetch(`http://localhost:5000/locationDetail/${locationId}`);
+    const response = await fetch(`http://localhost:5000/locationDetail/${ locationId }`);
     const initialData = await response.json();
     setLocation(initialData);
     setLoading(false);
@@ -164,51 +164,51 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
 
   return (
     <>
-      {loading ? (
+      { loading ? (
         <Loading/>
       ) : (
         <>
           <HeroSection>
-            <img alt="" src={location.image}/>
+            <img alt="" src={ location.image }/>
             <Header>
               <ChevronLeft/>
-              <p>{location.name}</p>
+              <p>{ location.name }</p>
             </Header>
             <Info>
-              <p>{location.name}</p>
-              <p>{location.name}</p>
+              <p>{ location.name }</p>
+              <p>{ location.name }</p>
             </Info>
           </HeroSection>
 
           <LocationSlick>
-            <CircleItemSlider slickItems={location.artists}/>
+            <CircleItemSlider slickItems={ location.artists }/>
           </LocationSlick>
 
           <InfoSection>
             <div>
               <span>Address</span>
-              <span>{location.address}</span>
+              <span>{ location.address }</span>
             </div>
             <div>
               <span>ProgrammeType</span>
-              <span>{location.programmeType}</span>
+              <span>{ location.programmeType }</span>
             </div>
             <div>
               <span>Location Fee</span>
-              <span>{location.fee}</span>
+              <span>{ location.fee }</span>
             </div>
             <div>
               <span>Opening Hour</span>
-              <span>{location.openHour}</span>
+              <span>{ location.openHour }</span>
             </div>
             <div>
               <span>Istagram</span>
-              <span>{location.instaId}</span>
+              <span>{ location.instaId }</span>
             </div>
           </InfoSection>
 
           <CtaButtonContainer>
-            <CtaButton label={`locationDetail`} onClick={() => shareLink(`locationDetail`, `locationDetail`)}/>
+            <CtaButton label={ `locationDetail` } onClick={ () => shareLink(`locationDetail`, `locationDetail`) }/>
           </CtaButtonContainer>
 
           <DescriptionSection>
@@ -229,18 +229,18 @@ const LocationDetail = ({ firebase, match: { params: { locationId } } }) => {
           </DescriptionSection>
 
           <MapSection>
-            <Map width='100%' height='270px' latitude={37.7577} longitude={-122.4376} zoom={8}/>
+            <Map width='100%' height='270px' latitude={ 37.7577 } longitude={ -122.4376 } zoom={ 8 }/>
           </MapSection>
 
           <div>
             <EventGroup>
               <div className="event-list-container">
-                {events.map(event => <GroupPerDay key={event.date} {...event} />)}
+                { events.map(event => <GroupPerDay key={ event.date } { ...event } />) }
               </div>
             </EventGroup>
           </div>
         </>
-      )}
+      ) }
     </>
   );
 }
