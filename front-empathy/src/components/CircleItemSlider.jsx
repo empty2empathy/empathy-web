@@ -33,7 +33,7 @@ const SliderWrapper = styled(Slider)`
 `;
 
 const ArrowWrapper = styled.div`
-  visibility: ${props => props.show ? 'visible' : 'hidden'};
+  visibility: ${ props => props.show ? 'visible' : 'hidden' };
   width: 40px;
   height: 100%;
   display: flex;
@@ -58,7 +58,7 @@ const CircleItemSliderWrapper = styled.div`
 
   .slide {
     position: relative;
-    ${ArrowWrapper} {
+    ${ ArrowWrapper } {
       &.left {
         position: absolute;
         top: 0;
@@ -150,19 +150,19 @@ const CircleItemSlider = ({ slickItems }) => {
     <CircleItemSliderWrapper>
       <h4 className="title">Upcoming event's location</h4>
       <div className="slide">
-        <SliderWrapper ref={sliderEl}  {...settings}>
-          {slickItems.map(({ id, title, img, date }) => (
-            <div className="item" key={id}>
-              <div className="circle" style={{ backgroundImage: `url(${img})` }}/>
-              <p className="title">{title}</p>
+        <SliderWrapper ref={ sliderEl }  { ...settings }>
+          { slickItems.map(({ id, title, img, date }) => (
+            <div className="item" key={ id }>
+              <div className="circle" style={ { backgroundImage: `url(${ img })` } }/>
+              <p className="title">{ title }</p>
             </div>
-          ))}
+          )) }
         </SliderWrapper>
-        <ArrowWrapper className="left" onClick={onLeftArrowClick} show={showArrow.left}>
-          <ArrowRight width={20} height={20} color={"white"} style={{ transform: 'rotate(180deg)' }}/>
+        <ArrowWrapper className="left" onClick={ onLeftArrowClick } show={ showArrow.left }>
+          <ArrowRight width={ 20 } height={ 20 } color={ "white" } style={ { transform: 'rotate(180deg)' } }/>
         </ArrowWrapper>
-        <ArrowWrapper className="right" onClick={onRightArrowClick} show={showArrow.right}>
-          <ArrowRight width={20} height={20} color={"white"}/>
+        <ArrowWrapper className="right" onClick={ onRightArrowClick } show={ showArrow.right }>
+          <ArrowRight width={ 20 } height={ 20 } color={ "white" }/>
         </ArrowWrapper>
       </div>
     </CircleItemSliderWrapper>
